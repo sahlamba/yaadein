@@ -1,1 +1,1 @@
-console.log('\'Allo \'Allo!');
+angular.module('yaadeinApp',['ngSanitize']);
