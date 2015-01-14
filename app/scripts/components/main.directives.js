@@ -1,3 +1,3 @@
 'use strict';
 
-var app=angular.module('yaadeinApp');
+var app = angular.module('yaadeinApp');

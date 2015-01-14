@@ -1,1 +1,1 @@
-angular.module('yaadeinApp',['ngSanitize']);
+angular.module('yaadeinApp', ['ngSanitize']);
