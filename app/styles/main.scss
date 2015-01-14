@@ -16,14 +16,14 @@ body {
   right: 11px;
   bottom: 110px;
   font-family: $script-font;
-  transform: rotate(-90deg);
-  transform-origin: right bottom 0;
+  @include transform (rotate(-90deg));
+  @include transform-origin(right bottom 0);
   color: $primary;
   font-size: $massive;
   text-transform: lowercase;
 }
 
-.options-sidebar {
+.nav-sidebar {
   width: 63px;
   height: 100%;
   position: fixed;
@@ -31,7 +31,7 @@ body {
   top: 0;
   background: $white;
 
-  .option-link {
+  a.nav-link {
     display: block;
   }
 
@@ -40,9 +40,41 @@ body {
     text-align: center;
     font-size: $huge;
     cursor: pointer;
+    @include transition(all 250ms ease-out);
 
     &:hover, &.active {
       color: $primary;
+    }
+  }
+}
+
+.options-sidebar {
+  width: 25%;
+  max-width: 220px;
+  height: 100%;
+  position: fixed;
+  left: 63px;
+  top: 0;
+  background: rgba(255, 255, 255, 0.8);
+  overflow: auto;
+  overflow-x: hidden;
+
+  a.option-link {
+    display: block;
+    padding: 15px 20px;
+    text-transform: capitalize;
+    @include transition(all 200ms ease-out);
+
+    .icon {
+      font-size: $big;
+      line-height: 1.5em;
+      margin-right: 10px;
+    }
+
+    &:hover {
+      border-right: 4px solid $primary;
+      background: $white;
+      padding-left: 30px;
     }
   }
 }
