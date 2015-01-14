@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('yaadeinApp', ['ngSanitize', 'ngAnimate']);
+var app = angular.module('yaadeinApp');
 
 app.controller('YaadeinController', ['$scope', function ($scope) {
 
@@ -47,5 +47,25 @@ app.controller('YaadeinController', ['$scope', function ($scope) {
 			'iconClasses': 'icon icon-power'
 		}
 	];
+
+	$scope.tickerElements = [
+		{
+			'id': ''
+		}
+	];
 	
+}]);
+
+app.controller('NavigationController', ['$scope', 'NavigationService', function ($scope, NavigationService) {
+
+	var makepromise=NavigationService.getData();
+	makepromise.then(function(d){
+		$scope.x=d.forecast;
+	});
+
+
+}]);
+
+app.controller('ProfileController',['$routeParams','$scope',function($routeParams,$scope){
+	console.log($routeParams.id);
 }]);

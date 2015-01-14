@@ -16,6 +16,11 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider,$
 		templateUrl: '/views/home.html',
 		controller: 'HomeController',
 		resolve: resolve
+	})
+	.when('/:id/profile',{
+		templateUrl:'/views/profile.html',
+		controller:'ProfileController',
+		resolve:resolve
 	});
 
 	$locationProvider.html5Mode(true).hashPrefix('!');
