@@ -2,13 +2,11 @@
 <html class="no-js" ng-app="yaadeinApp" ng-controller="YaadeinController">
   <head>
     <meta charset="utf-8">
-    <title>{{appname}}</title>
+    <title ng-bind="appname"></title>
     <base href="/">
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="stylesheet" href="styles/vendor/normalize.css">
-    <link rel="stylesheet" href="styles/font-styles.css">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700|Pacifico" rel="stylesheet">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
@@ -16,6 +14,8 @@
     <link rel="stylesheet" href="bower_components/ng-notify/src/styles/ng-notify.css" />
     <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
     <link rel="stylesheet" href="bower_components/ng-emoticons/ng-emoticons.css" />
+    <link rel="stylesheet" href="styles/font-styles.css" />
+    <link rel="stylesheet" href="styles/vendor/normalize.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -26,33 +26,39 @@
     <!-- endbuild -->
 
   </head>
-  <body>
+  <body ng-cloak class="ng-cloak">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="nav-sidebar">
+    <div class="nav-sidebar" class="slide-left">
       <div>
-        <a href="#" class="nav-link" ng-repeat="navItem in navigationItems">
-          <div id="{{navItem.id}}" class="{{navItem.classes}}"></div>
+        <a href="" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
+          <div id="{{navItem.id}}" class="{{navItem.class}}" ng-class="{ 'active': isCurrentNavItem(navItem) }"></div>
         </a>
-        <div class="yaadein-title">
-          {{appname}}
-        </div>
+        <a href="/"><div class="yaadein-title" ng-bind="appname"></div></a>
       </div>
     </div>
 
-    <div class="options-sidebar" ng-controller="NavigationController">
+    <div class="options-sidebar">
         <div>
-            <a href="#" class="option-link" ng-repeat="option in moreOptions">
-                <div class="{{option.iconClasses}} pull-left"></div>{{option.name}}
+            <div class="sidebar-profile-pic-container" ng-if="isCurrentNavItem(navigationItems[0])">
+                <div class="pad">
+                    <div class="img" style="background: url('images/user.png');"></div>
+                </div>
+            </div>
+            <a ng-repeat="option in moreOptions | filter:{navItem:currentNavItem.id}" class="option-link" href="{{option.url}}">
+                <div class="{{option.iconClass}} pull-left"></div>
+                <div ng-bind="option.name"></div>
             </a>
         </div>
     </div>
 
+    <div class="center" ng-view></div>
+
     <div class="ticker">
         <div>
-            <a href="#" class="ticker-element" ng-repeat="tickerElement in tickerElements">
+            <a href="#" class="ticker-element">
                 <img src="" alt="">
                 <div id=""></div>
             </a>
