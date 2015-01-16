@@ -10,6 +10,8 @@
 
 module.exports = function (grunt) {
 
+  var modRewrite = require('connect-modrewrite');
+
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
@@ -81,6 +83,7 @@ module.exports = function (grunt) {
         options: {
           middleware: function(connect) {
             return [
+              modRewrite(['^[^\\.]*$ /index.html [L]']),
               connect.static('.tmp'),
               connect().use('/bower_components', connect.static('./bower_components')),
               connect.static(config.app)
@@ -255,12 +258,12 @@ module.exports = function (grunt) {
           // Take our Autoprefixed stylesheet main.css &
           // any other stylesheet dependencies we have..
           stylesheets: [
-            '../.tmp/styles/main.css',
-            
+            '../.tmp/styles/main.css'
+
           ],
           // Ignore css selectors for async content with complete selector or regexp
           // Only needed if using Bootstrap
-          ignore: [/dropdown-menu/,/\.collapsing/,/\.collapse/] 
+          ignore: [/dropdown-menu/,/\.collapsing/,/\.collapse/]
         },
         files: {
           '.tmp/styles/main.css': ['<%= config.app %>/index.html']
