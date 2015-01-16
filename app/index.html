@@ -42,8 +42,9 @@
 
     <div class="options-sidebar">
         <div>
-            <div class="sidebar-profile-pic-container" ng-if="isCurrentNavItem(navigationItems[0])">
-                <div class="pad">
+            <div class="sidebar-profile-pic-container" ng-switch on="isCurrentNavItem(navigationItems[0])">
+                <!-- isCurrentNavitem(navigationItems[0]) === true -->
+                <div class="pad" ng-switch-when="true">
                     <div class="img" style="background: url('images/user.png');"></div>
                 </div>
             </div>

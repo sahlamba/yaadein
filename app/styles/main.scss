@@ -32,8 +32,9 @@ body {
 }
 
 .nav-sidebar {
-  width: 5%;
-  max-width: 64px;
+  width: 63px;
+  // width: 5%;
+  // max-width: 64px;
   height: 100%;
   position: fixed;
   left: 0;
@@ -61,8 +62,9 @@ body {
 }
 
 .options-sidebar {
-  width: 25%;
-  max-width: 220px;
+  width: 220px;
+  // width: 20%;
+  // max-width: 220px;
   height: 100%;
   position: fixed;
   left: 63px;
@@ -85,9 +87,9 @@ body {
         height: 120px;
         margin: 0 auto;
         background: url('images/user.png');
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 25% !important;
+        background-repeat: no-repeat !important;
+        background-position: center !important;
+        background-size: cover !important;
         border-radius: 50%;
         border: 4px solid $black;
       }
