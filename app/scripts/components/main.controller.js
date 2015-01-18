@@ -22,6 +22,10 @@ app.controller('YaadeinController', ['$scope', function ($scope) {
 		{
 			'id': 'notifications',
 			'class': 'icon icon-store'
+		},
+		{
+			'id': 'signOut',
+			'class': 'icon icon-power'
 		}
 	];
 
@@ -35,8 +39,19 @@ app.controller('YaadeinController', ['$scope', function ($scope) {
 		return $scope.currentNavItem !== null && $scope.currentNavItem.id === navItem.id;
 	}
 
+	function getCurrentNavItem () {
+		return $scope.currentNavItem.id;
+	}
+
+	function closePost () {
+		$('#postBox').fadeOut(300);
+		$scope.currentNavItem = $scope.navigationItems[0];
+	}
+
 	$scope.setCurrentNavItem = setCurrentNavItem;
 	$scope.isCurrentNavItem = isCurrentNavItem;
+	$scope.getCurrentNavItem = getCurrentNavItem;
+	$scope.closePost = closePost;
 
 	$scope.moreOptions = [
 		{
@@ -68,14 +83,36 @@ app.controller('YaadeinController', ['$scope', function ($scope) {
 			'url': '/settings'
 		},
 		{
-			'id': 'signOut',
-			'name': 'Sign Out',
-			'navItem': 'default',
-			'iconClass': 'icon icon-power',
+			'id': 'test1',
+			'name': 'test1',
+			'navItem': 'search',
+			'iconClass': 'icon icon-torsos-all',
+			'url': '/'
+		},
+		{
+			'id': 'test2',
+			'name': 'test2',
+			'navItem': 'search',
+			'iconClass': 'icon icon-torso',
 			'url': '/'
 		}
 	];
 
+	$scope.user = {
+		'name': 'Sahil Lamba',
+		'enrolmentNo': '13117060',
+		'year': 2,
+		'course': 'B.Tech',
+		'branch': 'ME',
+		'profilePic': 'images/user.png',
+		'coverPic': 'images/cover.png',
+		'url': '/profile/13117060',
+		'gallery': ['images/gallery.png', 'images/gallery.png']
+	};
+
+}]);
+
+app.controller('HomeController', ['$scope', function ($scope) {
 }]);
 
 // app.controller('NavigationController', ['$scope', 'NavigationService', function ($scope, NavigationService) {
@@ -87,6 +124,12 @@ app.controller('YaadeinController', ['$scope', function ($scope) {
 
 // }]);
 
-// app.controller('ProfileController',['$routeParams','$scope',function($routeParams,$scope){
-// 	console.log($routeParams.id);
-// }]);
+app.controller('ProfileController', ['$routeParams', '$scope', function ($routeParams, $scope) {
+	console.log($routeParams.enrolmentNo);
+}]);
+
+app.controller('GalleryController', ['$scope', function ($scope) {
+}]);
+
+app.controller('SettingsController', ['$scope', function ($scope) {
+}]);

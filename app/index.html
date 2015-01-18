@@ -31,7 +31,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="nav-sidebar" class="slide-left">
+    <div class="nav-sidebar">
       <div>
         <a href="" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
           <div id="{{navItem.id}}" class="{{navItem.class}}" ng-class="{ 'active': isCurrentNavItem(navItem) }"></div>
@@ -42,16 +42,56 @@
 
     <div class="options-sidebar">
         <div>
-            <div class="sidebar-profile-pic-container" ng-switch on="isCurrentNavItem(navigationItems[0])">
-                <!-- isCurrentNavitem(navigationItems[0]) === true -->
-                <div class="pad" ng-switch-when="true">
-                    <div class="img" style="background: url('images/user.png');"></div>
+            <div class="sidebar-container" ng-switch on="getCurrentNavItem()">
+                <div ng-switch-when="default" class="slide ng-cloak" ng-cloak>
+                    <div class="pad">
+                        <div>
+                            <div class="img" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
+                        </div>
+                    </div>
+                    <a ng-repeat="option in moreOptions | filter:{navItem:currentNavItem.id}" class="option-link" ng-href="{{option.url}}">
+                        <div class="{{option.iconClass}} pull-left"></div>
+                        <div ng-bind="option.name"></div>
+                    </a>
+                </div>
+                <div ng-switch-when="search" class="slide ng-cloak" ng-cloak>
+                    <angucomplete-alt id="ex1"
+                                      placeholder="Search spots, people..."
+                                      pause="100"
+                                      selected-object="selectedReceiver"
+                                      remote-url="http://beta.json-generator.com/api/json/get/BflDVyA?searchstr="
+                                      search-fields="name"
+                                      title-field="name"
+                                      minlength="1"
+                                      template-url="/views/autocomplete.html"
+                                      input-class="input"
+                                      description-field="details"
+                                      field-required="true"
+                                      match-class="matched"
+                                      image-field="image"
+                                      class="search-bar">
+                    </angucomplete-alt>
+                    <!-- <div class="search-container">
+                        <div class="icon icon-search-1"></div>
+                        <input type="text" placeholder="Search people, spots..." class="search-bar">
+                    </div> -->
+                    <a ng-repeat="option in moreOptions | filter:{navItem:currentNavItem.id}" class="option-link" ng-href="{{option.url}}">
+                        <div class="{{option.iconClass}} pull-left"></div>
+                        <div ng-bind="option.name"></div>
+                    </a>
+                </div>
+                <div ng-switch-when="post" class="fade ng-cloak" ng-cloak>
+                    <div id="postBox" class="post-lightbox">
+                        <div class="close-lightbox icon icon-cancel" ng-click="closePost()">
+                        </div>
+                    </div>
+                </div>
+                <div ng-switch-when="notifications" class="slide ng-cloak" ng-cloak>
+                    <div class="notifs-header">
+                        <div>Notification Center</div>
+                    </div>
                 </div>
             </div>
-            <a ng-repeat="option in moreOptions | filter:{navItem:currentNavItem.id}" class="option-link" href="{{option.url}}">
-                <div class="{{option.iconClass}} pull-left"></div>
-                <div ng-bind="option.name"></div>
-            </a>
         </div>
     </div>
 
