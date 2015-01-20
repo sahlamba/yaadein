@@ -31,79 +31,94 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div class="nav-sidebar">
-      <div>
-        <a href="" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
-          <div id="{{navItem.id}}" class="{{navItem.class}}" ng-class="{ 'active': isCurrentNavItem(navItem) }"></div>
-        </a>
-        <a href="/"><div class="yaadein-title" ng-bind="appname"></div></a>
-      </div>
-    </div>
+    <div class="left-sidebar">
+    <div>
+        <div class="nav">
+            <a href="" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
+              <div id="{{navItem.id}}" class="{{navItem.class}}" ng-class="{ 'active': isCurrentNavItem(navItem) }"></div>
+            </a>
+            <a href="/"><div class="yaadein-title" ng-bind="appname"></div></a>
+        </div>
 
-    <div class="options-sidebar">
-        <div>
-            <div class="sidebar-container" ng-switch on="getCurrentNavItem()">
-                <div ng-switch-when="default" class="slide ng-cloak" ng-cloak>
-                    <div class="pad">
-                        <div>
-                            <div class="img" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                        </div>
+        <div class="options">
+        <div class="sidebar-container" ng-switch on="getCurrentNavItem()">
+            <div ng-switch-when="default" class="slide ng-cloak" ng-cloak>
+                <div class="options-profile-pic">
+                <div>
+                    <div class="img" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
+                </div>
+                </div>
+                <a ng-repeat="option in moreOptions | filter:{navItem:currentNavItem.id}" class="option-link" ng-href="{{option.url}}">
+                    <div class="{{option.iconClass}} pull-left"></div>
+                    <div ng-bind="option.name"></div>
+                </a>
+            </div>
+            <div ng-switch-when="search" class="slide ng-cloak search-container" ng-cloak>
+                <!-- <angucomplete-alt id="predictive-search"
+                                  placeholder="Search spots, people..."
+                                  pause="100"
+                                  selected-object="selectedReceiver"
+                                  remote-url="http://beta.json-generator.com/api/json/get/BflDVyA?searchstr="
+                                  search-fields="name"
+                                  title-field="name"
+                                  minlength="1"
+                                  template-url="/views/autocomplete.html"
+                                  input-class="input"
+                                  description-field="details"
+                                  field-required="true"
+                                  match-class="matched"
+                                  image-field="image"
+                                  class="search-bar">
+                </angucomplete-alt> -->
+                <div class="icon icon-search-1"></div>
+                <input type="text" placeholder="Search people, spots..." class="search-bar" autofocus>
+                <a ng-href="" class="search-result">
+                    <div class="user-image-container">
+                    <div>
+                        <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
                     </div>
-                    <a ng-repeat="option in moreOptions | filter:{navItem:currentNavItem.id}" class="option-link" ng-href="{{option.url}}">
-                        <div class="{{option.iconClass}} pull-left"></div>
-                        <div ng-bind="option.name"></div>
-                    </a>
-                </div>
-                <div ng-switch-when="search" class="slide ng-cloak" ng-cloak>
-                    <angucomplete-alt id="ex1"
-                                      placeholder="Search spots, people..."
-                                      pause="100"
-                                      selected-object="selectedReceiver"
-                                      remote-url="http://beta.json-generator.com/api/json/get/BflDVyA?searchstr="
-                                      search-fields="name"
-                                      title-field="name"
-                                      minlength="1"
-                                      template-url="/views/autocomplete.html"
-                                      input-class="input"
-                                      description-field="details"
-                                      field-required="true"
-                                      match-class="matched"
-                                      image-field="image"
-                                      class="search-bar">
-                    </angucomplete-alt>
-                    <!-- <div class="search-container">
-                        <div class="icon icon-search-1"></div>
-                        <input type="text" placeholder="Search people, spots..." class="search-bar">
-                    </div> -->
-                    <a ng-repeat="option in moreOptions | filter:{navItem:currentNavItem.id}" class="option-link" ng-href="{{option.url}}">
-                        <div class="{{option.iconClass}} pull-left"></div>
-                        <div ng-bind="option.name"></div>
-                    </a>
-                </div>
-                <div ng-switch-when="post" class="fade ng-cloak" ng-cloak>
-                    <div id="postBox" class="post-lightbox">
-                        <div class="close-lightbox icon icon-cancel" ng-click="closePost()">
-                        </div>
                     </div>
-                </div>
-                <div ng-switch-when="notifications" class="slide ng-cloak" ng-cloak>
-                    <div class="notifs-header">
-                        <div>Notification Center</div>
+                    <div class="result-details">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
+                    </p>
+                    </div>
+                </a>
+                <a ng-href="" class="search-result">
+                    <div class="user-image-container">
+                    <div>
+                        <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
+                    </div>
+                    </div>
+                    <div class="result-details">
+                    <p>
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
+                    </p>
+                    </div>
+                </a>
+            </div>
+             <div ng-switch-when="post" class="fade ng-cloak" ng-cloak>
+                <div id="postBox" class="post-lightbox">
+                    <div class="close-lightbox icon icon-cancel" ng-click="closePost()"></div>
+                    <div>
                     </div>
                 </div>
             </div>
+            <div ng-switch-when="notifications" class="slide ng-cloak" ng-cloak>
+                <div class="notifs-header">
+                    <div>Notification Center</div>
+                </div>
+            </div>
+        </div>
         </div>
     </div>
+    </div>
 
-    <div class="center" ng-view></div>
+    <div id="centered" class="center-content">
+    <div ng-view></div>
+    </div>
 
-    <div class="ticker">
-        <div>
-            <a href="#" class="ticker-element">
-                <img src="" alt="">
-                <div id=""></div>
-            </a>
-        </div>
+    <div class="right-sidebar">
     </div>
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -129,5 +144,9 @@
         <script src="scripts/components/main.directives.js"></script>
         <script src="scripts/components/main.controller.js"></script>
         <!-- endbuild -->
+
+    <script type="text/javascript">
+        $('#centered').css('width', $(window).width() - 260 - 200);
+    </script>
 </body>
 </html>
