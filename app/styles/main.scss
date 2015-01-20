@@ -95,7 +95,7 @@ body {
       height: 100vh;
       margin-right: 2px;
       margin-left: 51px;
-      background: rgba(255, 255, 255, 0.8);
+      background: rgba(250, 250, 250, 0.8);
       z-index: 999;
       overflow: hidden;
       .sidebar-container {
@@ -161,13 +161,16 @@ body {
           overflow: hidden;
           text-align: center;
           .search-bar {
-            width: 73%;
-            line-height: 30px;
+            width: 71%;
+            line-height: 19px;
+			height: 19px;
             font-weight: 300;
             border: 1px solid $grey;
             border-radius: 3px;
-            padding-left: 4%;
+            padding-left: 6%;
             padding-right: 11%;
+			padding-top: 5px;
+			padding-bottom: 5px;
             margin-top: 20px;
             margin-bottom: 20px;
             color: $black;
@@ -180,7 +183,7 @@ body {
           .icon.icon-search-1 {
             position: absolute;
             right: 18px;
-            top: 29px;
+            top: 28px;
             counter-reset: $dark-grey;
           }
           a.search-result {
@@ -238,7 +241,6 @@ body {
 .center-content {
   position: relative;
   height: 100vh;
-  overflow: auto;
   z-index: 900;
   margin-left: 260px;
   margin-right: 200px;
