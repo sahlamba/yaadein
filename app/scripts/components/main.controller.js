@@ -31,27 +31,22 @@ app.controller('YaadeinController', ['$scope', function ($scope) {
 
 	$scope.currentNavItem = $scope.navigationItems[0];
 
-	function setCurrentNavItem (navItem) {
+	$scope.setCurrentNavItem = function (navItem) {
 		$scope.currentNavItem = navItem;
-	}
+	};
 
-	function isCurrentNavItem (navItem) {
+	$scope.isCurrentNavItem = function (navItem) {
 		return $scope.currentNavItem !== null && $scope.currentNavItem.id === navItem.id;
-	}
+	};
 
-	function getCurrentNavItem () {
+	$scope.getCurrentNavItem = function () {
 		return $scope.currentNavItem.id;
-	}
+	};
 
-	function closePost () {
+	$scope.closePost = function () {
 		$('#postBox').fadeOut(300);
 		$scope.currentNavItem = $scope.navigationItems[0];
-	}
-
-	$scope.setCurrentNavItem = setCurrentNavItem;
-	$scope.isCurrentNavItem = isCurrentNavItem;
-	$scope.getCurrentNavItem = getCurrentNavItem;
-	$scope.closePost = closePost;
+	};
 
 	$scope.moreOptions = [
 		{
