@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="bower_components/ng-notify/src/styles/ng-notify.css" />
     <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
     <link rel="stylesheet" href="bower_components/ng-emoticons/ng-emoticons.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -31,6 +32,11 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div id="postBox" class="post-lightbox fade" ng-if="getCurrentNavItem() === 'post'">
+        <div class="close-lightbox icon icon-cancel" ng-click="closePost()"></div>
+        <div></div>
+    </div>
+
     <div class="left-sidebar">
     <div>
         <div class="nav">
@@ -42,6 +48,7 @@
 
         <div class="options">
         <div class="sidebar-container" ng-switch on="getCurrentNavItem()">
+
             <div ng-switch-when="default" class="slide ng-cloak" ng-cloak>
                 <div class="options-profile-pic">
                 <div>
@@ -53,6 +60,7 @@
                     <div ng-bind="option.name"></div>
                 </a>
             </div>
+
             <div ng-switch-when="search" class="slide ng-cloak search-container" ng-cloak>
                 <!-- <angucomplete-alt id="predictive-search"
                                   placeholder="Search spots, people..."
@@ -97,12 +105,9 @@
                     </div>
                 </a>
             </div>
-             <div ng-switch-when="post" class="fade ng-cloak" ng-cloak>
-                <div id="postBox" class="post-lightbox">
-                    <div class="close-lightbox icon icon-cancel" ng-click="closePost()"></div>
-                    <div></div>
-                </div>
-            </div>
+
+            <div ng-switch-when="post" class="ng-cloak" ng-cloak></div>
+
             <div ng-switch-when="notifications" class="slide ng-cloak" ng-cloak>
                 <div class="notifs-header">
                     <div>Notification Center</div>
@@ -156,6 +161,7 @@
                     </div>
                 </a>
             </div>
+
         </div>
         </div>
     </div>
@@ -248,7 +254,7 @@
         <!-- endbuild -->
 
     <script type="text/javascript">
-        $('#centered').css('width', window.innerWidth - 260 - 200);
+        $('#centered').css('width', window.innerWidth - $('.right-sidebar').innerWidth() - $('.left-sidebar').innerWidth());
         $('#year').html(new Date().getFullYear());
     </script>
 </body>

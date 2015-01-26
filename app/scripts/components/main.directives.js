@@ -7,7 +7,7 @@ app.directive('showFocus', function($timeout) {
     scope.$watch(attrs.showFocus, 
       function (newValue) { 
         $timeout(function() {
-            newValue && element[0].focus();
+            element[0].focus();
         });
       }, true);
   };    

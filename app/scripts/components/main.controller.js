@@ -107,17 +107,24 @@ app.controller('YaadeinController', ['$scope', function ($scope) {
 
 }]);
 
-app.controller('HomeController', ['$scope', function ($scope) {
+app.controller('HomeController', ['$scope', '$http', 'dataPosts', function ($scope, $http, dataPosts) {
+
+	$scope.posts = [];
+	var dataPromise = dataPosts.getPosts();
+	dataPromise.then(function (d) {
+		$scope.posts = d;
+	});
+
+	$scope.addToFeed = function () {
+		$http.get('http://beta.json-generator.com/api/json/get/GurpFNY')
+			.success(function (ds) {
+				angular.forEach(ds, function (d) {
+		    	$scope.posts.push(d);
+		  });
+		});
+	};
+
 }]);
-
-// app.controller('NavigationController', ['$scope', 'NavigationService', function ($scope, NavigationService) {
-
-// 	var makepromise=NavigationService.getData();
-// 	makepromise.then(function(d){
-// 		$scope.x=d.forecast;
-// 	});
-
-// }]);
 
 app.controller('ProfileController', ['$routeParams', '$scope', function ($routeParams, $scope) {
 	console.log($routeParams.enrolmentNo);

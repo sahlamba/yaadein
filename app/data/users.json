@@ -1,0 +1,325 @@
+[
+  {
+    "taggable": true,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "Int.MSc",
+    "branch": "EE",
+    "year": 2,
+    "name": "Woodard Ball",
+    "enrolmentNo": 13113543
+  },
+  {
+    "taggable": true,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "B.Tech",
+    "branch": "GPT",
+    "year": 3,
+    "name": "Valarie Eaton",
+    "enrolmentNo": 13113921
+  },
+  {
+    "taggable": false,
+    "gallery": [],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "Int.MSc",
+    "branch": "MSP",
+    "year": 5,
+    "name": "Betsy Mckinney",
+    "enrolmentNo": 13113636
+  },
+  {
+    "taggable": false,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "B.Tech",
+    "branch": "CSE",
+    "year": 3,
+    "name": "Inez Castillo",
+    "enrolmentNo": 13110714
+  },
+  {
+    "taggable": false,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "M.Tech",
+    "branch": "Archi",
+    "year": 1,
+    "name": "Kristin Johns",
+    "enrolmentNo": 13114165
+  },
+  {
+    "taggable": false,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "M.Tech",
+    "branch": "ECE",
+    "year": 4,
+    "name": "Leticia Castaneda",
+    "enrolmentNo": 13119669
+  },
+  {
+    "taggable": true,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "B.Tech",
+    "branch": "Archi",
+    "year": 3,
+    "name": "Hendricks Hamilton",
+    "enrolmentNo": 13114603
+  },
+  {
+    "taggable": true,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "Int.MSc",
+    "branch": "GPT",
+    "year": 3,
+    "name": "Campos Mooney",
+    "enrolmentNo": 13119019
+  },
+  {
+    "taggable": true,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "B.Tech",
+    "branch": "CE",
+    "year": 4,
+    "name": "Matilda Simpson",
+    "enrolmentNo": 13119249
+  },
+  {
+    "taggable": true,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "M.Tech",
+    "branch": "Chemical",
+    "year": 5,
+    "name": "Gibbs Mclean",
+    "enrolmentNo": 13116479
+  },
+  {
+    "taggable": false,
+    "gallery": [
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      },
+      {
+        "url": "images/gallery.png"
+      }
+    ],
+    "coverPic": "images/cover.png",
+    "profilePic": "images/user.png",
+    "course": "M.Tech",
+    "branch": "Meta",
+    "year": 5,
+    "name": "Rachelle Sandoval",
+    "enrolmentNo": 13113283
+  }
+]
