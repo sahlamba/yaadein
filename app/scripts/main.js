@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('yaadeinApp', ['angular.filter', 'ngSanitize', 'ngAnimate', 'ngRoute', 'angucomplete-alt', 'ngNotify', 'ngEmoticons', 'mentio', 'angularMoment']);
+angular.module('yaadeinApp', ['ngSanitize', 'ngAnimate', 'ngRoute', 'ngResource', 'angucomplete-alt', 'ngNotify', 'ngEmoticons', 'angular.filter', 'mentio', 'angularMoment']);

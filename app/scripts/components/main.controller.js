@@ -109,25 +109,44 @@ app.controller('YaadeinController', ['$scope', function ($scope) {
 
 app.controller('HomeController', ['$scope', '$http', 'dataPosts', function ($scope, $http, dataPosts) {
 
+
 	$scope.posts = [];
 	var dataPromise = dataPosts.getPosts();
 	dataPromise.then(function (d) {
 		$scope.posts = d;
 	});
 
-	$scope.addToFeed = function () {
-		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
-			.success(function (ds) {
-				angular.forEach(ds, function (d) {
-		    	$scope.posts.push(d);
-		  });
-		});
-	};
+	// $scope.addToFeed = function () {
+	// 	$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
+	// 		.success(function (ds) {
+	// 			angular.forEach(ds, function (d) {
+	// 	    	$scope.posts.push(d);
+	// 	  });
+	// 	});
+	// };
 
 }]);
 
-app.controller('ProfileController', ['$routeParams', '$scope', function ($routeParams, $scope) {
-	console.log($routeParams.enrolmentNo);
+app.controller('ProfileController', ['$routeParams', '$scope', '$http', '$resource', 'dataPosts', 'dataUsers', function ($routeParams, $scope, $http, $resource, dataPosts, dataUsers) {
+
+	$scope.posts = [];
+	var dataPromise = dataPosts.getPosts();
+	dataPromise.then(function (d) {
+		$scope.posts = d;
+	});
+
+	$scope.currentUser = {};
+	var userPromise = dataUsers.getUsers();
+	userPromise.then(function (d) {
+		console.log(d[0].enrolmentNo);
+		for(var i = 0; i < d.length; i += 1) {
+			if(d[i].enrolmentNo === parseInt($routeParams.enrolmentNo)) {
+				$scope.currentUser = d[i];
+				break;
+			}
+ 		}
+	});
+
 }]);
 
 app.controller('GalleryController', ['$scope', function ($scope) {

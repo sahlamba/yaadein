@@ -363,8 +363,21 @@ body {
   margin-right: 220px;
 
   & > div {
-    padding: 20px;
+    padding: 0;
     text-align: center;
+
+    .cover-pic {
+      width: 100%;
+      height: 352px;
+      background: $dark-grey;
+      background-repeat: no-repeat !important;
+      background-position: 50% !important;
+      background-size: 100% !important;
+    }
+
+     & > div.padded {
+      padding: 20px;
+    }
 
     .feed-container {
       position: relative;

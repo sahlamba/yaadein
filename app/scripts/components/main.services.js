@@ -24,4 +24,31 @@ app.service('dataUsers', ['$http', '$q', function ($http, $q) {
 	this.getUsers = function () {
 		return deferred.promise;
 	};
+
+	// this.getUser = function (enrolmentNo) {
+	// 	var def = $q.defer();
+	// 	$http.get('data/users.json?enrolmentNo=' + enrolmentNo)
+	// 		.success(function (x) {
+	// 			def.resolve(x);
+	// 		});
+	// 	return def.promise;
+	// };
+
+	// var User = function(data) {
+	// 	if (data) {
+	// 		angular.copy(data, this);
+	// 	}
+	// };
+
+	// this.getCover = function(enrolmentNo) {
+	// 	return deferred.promise.then(function(d) {
+	// 		var result = null;
+	// 		angular.forEach(d, function(d) {
+	// 			if (d.enrolmentNo === enrolmentNo) {
+	// 				result = new User(d);
+	// 			}
+	// 		});
+	// 		return result;
+	// 	});
+	// };
 }]);
