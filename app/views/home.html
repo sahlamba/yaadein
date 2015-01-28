@@ -21,7 +21,9 @@
             </h2>
             <p>{{post.message}}</p>
             <div class="images-container">
-                <a href="#" ng-click="enlargeImage(image.url)"><div class="image" ng-repeat="image in post.images" ng-style="{ 'background-image': 'url(' + image.url + ')' }"></div></a>
+                <a href="#" ng-repeat="image in post.images" ng-click="enlargeImage(image.url)">
+                    <div class="image" ng-style="{ 'background-image': 'url(' + image.url + ')' }"></div>
+                </a>
             </div>
         </div>
         </div>
