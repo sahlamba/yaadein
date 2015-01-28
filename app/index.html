@@ -34,7 +34,13 @@
 
     <div id="postBox" class="post-lightbox fade" ng-if="getCurrentNavItem() === 'post'">
         <div class="close-lightbox icon icon-cancel" ng-click="closePost()"></div>
-        <div></div>
+        <div>
+            <form>
+                <input type="text" name="usertags" placeholder="Tag friends here">
+                <input type="text" name="location" placeholder="Spot">
+                <textarea placeholder="Type memory here" style="resize:none;"></textarea>
+            </form>
+        </div>
     </div>
 
     <div class="left-sidebar">
@@ -242,6 +248,7 @@
     <script src="bower_components/ment.io/dist/mentio.js"></script>
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->
