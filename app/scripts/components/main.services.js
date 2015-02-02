@@ -2,6 +2,18 @@
 
 var app = angular.module('yaadeinApp');
 
+app.service('dataTicker', ['$http', '$q', function ($http, $q) {
+	var deferred = $q.defer();
+	$http.get('http://beta.json-generator.com/api/json/get/OJgO6ee')
+		.success(function (d) {
+			deferred.resolve(d);
+		});
+
+	this.getTicks = function () {
+		return deferred.promise;
+	};
+}]);
+
 app.service('dataPosts', ['$http', '$q', function ($http, $q) {
 	var deferred = $q.defer();
 	$http.get('/data/posts.json')

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="bower_components/angucomplete-alt/angucomplete-alt.css" />
     <link rel="stylesheet" href="bower_components/ng-emoticons/ng-emoticons.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
+    <link rel="stylesheet" href="bower_components/nanoscroller/bin/css/nanoscroller.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -53,7 +54,7 @@
         </div>
 
         <div class="options">
-        <div class="sidebar-container" ng-switch on="getCurrentNavItem()">
+        <div class="sidebar-container" ng-switch on="getCurrentNavItem()" scrollable>
 
             <div ng-switch-when="default" class="slide ng-cloak" ng-cloak>
                 <div class="options-profile-pic">
@@ -93,21 +94,7 @@
                     </div>
                     </div>
                     <div class="result-details">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                    </p>
-                    </div>
-                </a>
-                <a ng-href="" class="search-result">
-                    <div class="user-image-container">
-                    <div>
-                        <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                    </div>
-                    </div>
-                    <div class="result-details">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                    </p>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
                     </div>
                 </a>
             </div>
@@ -118,52 +105,14 @@
                 <div class="notifs-header">
                     <div>Notification Center</div>
                 </div>
-                <a ng-href="" class="notification">
+                <a ng-href="/profile/{{tick.enrolmentNo}}" class="notification" ng-repeat="tick in ticks | limitTo:5">
                     <div class="user-image-container">
                     <div>
-                        <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
+                        <div class="user-image" ng-style="{ 'background-image': 'url(' + tick.profilePic + ')' }"></div>
                     </div>
                     </div>
                     <div class="notif-details">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                    </p>
-                    </div>
-                </a>
-                <a ng-href="" class="notification">
-                    <div class="user-image-container">
-                    <div>
-                        <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                    </div>
-                    </div>
-                    <div class="notif-details">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                    </p>
-                    </div>
-                </a>
-                <a ng-href="" class="notification">
-                    <div class="user-image-container">
-                    <div>
-                        <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                    </div>
-                    </div>
-                    <div class="notif-details">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                    </p>
-                    </div>
-                </a>
-                <a ng-href="" class="notification">
-                    <div class="user-image-container">
-                    <div>
-                        <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                    </div>
-                    </div>
-                    <div class="notif-details">
-                    <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                    </p>
+                    <p>{{tick.name}} posted on your wall</p>
                     </div>
                 </a>
             </div>
@@ -173,58 +122,21 @@
     </div>
     </div>
 
-    <div id="centered" class="center-content">
-    <div ng-view class="fade"></div>
+    <div id="centered" class="center-content" scrollable>
+        <div class="fade" ng-view autoscroll>
+        </div>
     </div>
 
     <div class="right-sidebar" id="ticker">
-        <div class="ticker-content">
-            <a ng-href="" class="ticker-element">
+        <div class="ticker-content" scrollable>
+            <a ng-href="/profile/{{tick.enrolmentNo}}" class="ticker-element" ng-repeat="tick in ticks">
                 <div class="user-image-container">
                 <div>
-                    <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
+                    <div class="user-image" ng-style="{ 'background-image': 'url(' + tick.profilePic + ')' }"></div>
                 </div>
                 </div>
                 <div class="ticker-details">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                </p>
-                </div>
-            </a>
-            <a ng-href="" class="ticker-element">
-                <div class="user-image-container">
-                <div>
-                    <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                </div>
-                </div>
-                <div class="ticker-details">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                </p>
-                </div>
-            </a>
-            <a ng-href="" class="ticker-element">
-                <div class="user-image-container">
-                <div>
-                    <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                </div>
-                </div>
-                <div class="ticker-details">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                </p>
-                </div>
-            </a>
-            <a ng-href="" class="ticker-element">
-                <div class="user-image-container">
-                <div>
-                    <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                </div>
-                </div>
-                <div class="ticker-details">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged
-                </p>
+                <p>{{tick.name}} posted a new memory</p>
                 </div>
             </a>
         </div>
@@ -250,6 +162,8 @@
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
+    <script src="bower_components/angular-nanoscroller/scrollable.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->
@@ -263,7 +177,9 @@
 
     <script type="text/javascript">
         $('#centered').css('width', window.innerWidth - $('.right-sidebar').innerWidth() - $('.left-sidebar').innerWidth());
+        $('#centered').css('height', window.innerHeight);
         $('#year').html(new Date().getFullYear());
     </script>
+    <script type="text/javascript" src="scripts/vendor/jquery.scrollmagic.min.js"></script>
 </body>
 </html>

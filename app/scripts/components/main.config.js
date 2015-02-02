@@ -17,12 +17,12 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
 		controller: 'HomeController',
 		resolve: resolve
 	})
-	.when('/profile/:enrolmentNo?', {
+	.when('/profile/:enrolmentNo', {
 		templateUrl: '/views/profile.html',
 		controller: 'ProfileController',
 		resolve: resolve
 	})
-	.when('/gallery/:enrolmentNo?', {
+	.when('/gallery/:enrolmentNo', {
 		templateUrl: '/views/gallery.html',
 		controller: 'GalleryController',
 		resolve: resolve

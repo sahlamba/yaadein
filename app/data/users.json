@@ -1,5 +1,27 @@
 [
   {
+    "name": "Chintapenta Subramaniam Pramod",
+    "year": 4,
+    "course": "B.Tech",
+    "branch": "ECE",
+    "enrolmentNo": 10115001,
+    "profilePic": "images/user.png",
+    "coverPic": "images/cover.png",
+    "url": "/profile/10115001",
+    "gallery": ["images/gallery.png", "images/gallery.png"]
+  },
+  {
+    "name": "Sahil Lamba",
+    "year": 2,
+    "course": "B.Tech",
+    "branch": "ME",
+    "enrolmentNo": 13117060,
+    "profilePic": "images/user.png",
+    "coverPic": "images/gallery.png",
+    "url": "/profile/13117060",
+    "gallery": ["images/gallery.png", "images/gallery.png"]
+  },
+  {
     "taggable": false,
     "gallery": [
       {

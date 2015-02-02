@@ -1,4 +1,9 @@
 <div class="cover-pic" ng-style="{ 'background-image': 'url(' + currentUser.coverPic + ')' }">
+    <div class="profile-user-details">
+        <h1 ng-bind="currentUser.name"></h1>
+        <!-- <p ng-bind-html="renderSnippet"></p> -->
+        <p><i class="fa fa-graduation-cap"></i> {{currentUser.course}} ({{currentUser.branch}}) {{currentUser.year | romanNumber}} Year</p>
+    </div>
 </div>
 <div class="padded">
     <div class="feed-container" ng-repeat="post in posts | orderBy: 'date'">
