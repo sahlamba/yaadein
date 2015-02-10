@@ -360,6 +360,10 @@ body {
   background: rgba(0, 0, 0, 0.4);
 }
 
+.loader > img {
+  height: 15px;
+}
+
 .center-content {
   position: absolute;
   top: 0;
@@ -377,6 +381,11 @@ body {
   & > div {
     padding: 0;
     text-align: center;
+
+    //For the scrollable attribute div of different views
+    & > div {
+      @include calc(height, 100%);
+    }
 
     .cover-pic {
       position: relative;

@@ -1,3 +1,4 @@
+<div scrollable scrollend="addToFeed();">
 <div class="padded">
     <div class="feed-container" ng-repeat="post in posts">
     <div>
@@ -30,4 +31,8 @@
         <p class="info stars" ng-click="">{{post.stars}} <i class="fa fa-star"></i></p>
     </div>
     </div>
+    <div class="loader">
+        <img src="images/svg-loaders/three-dots.svg" alt="Loading...">
+    </div>
+</div>
 </div>

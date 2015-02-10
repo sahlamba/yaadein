@@ -122,13 +122,13 @@
     </div>
     </div>
 
-    <div id="centered" class="center-content" scrollable>
-        <div class="fade" ng-view>
+    <div id="centered" class="center-content">
+        <div class="fade" ng-view autoscroll>
         </div>
     </div>
 
     <div class="right-sidebar" id="ticker">
-        <div class="ticker-content" scrollable>
+        <div class="ticker-content" scrollable scrollend="addToTicker();">
             <a ng-href="/profile/{{tick.enrolmentNo}}" class="ticker-element" ng-repeat="tick in ticks">
                 <div class="user-image-container">
                 <div>
@@ -139,6 +139,9 @@
                 <p>{{tick.name}} posted a new memory</p>
                 </div>
             </a>
+            <div class="loader" style="padding-top:20px; text-align:center;">
+                <img src="images/svg-loaders/three-dots.svg" alt="Loading..." style="height:10px;">
+            </div>
         </div>
         <div class="credits">
             <a href="http://img.channeli.in/" target="_blank">
@@ -163,7 +166,6 @@
     <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
-    <script src="bower_components/angular-nanoscroller/scrollable.js"></script>
     <script src="bower_components/ng-nanoscroller/scrollable.js"></script>
     <!-- endbower -->
     <!-- endbuild -->

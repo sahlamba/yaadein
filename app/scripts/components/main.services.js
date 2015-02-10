@@ -4,7 +4,7 @@ var app = angular.module('yaadeinApp');
 
 app.service('dataTicker', ['$http', '$q', function ($http, $q) {
 	var deferred = $q.defer();
-	$http.get('http://beta.json-generator.com/api/json/get/OJgO6ee')
+	$http.get('http://beta.json-generator.com/api/json/get/N8gcdPq')
 		.success(function (d) {
 			deferred.resolve(d);
 		});

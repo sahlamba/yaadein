@@ -68,29 +68,15 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 			'name': 'Gallery',
 			'navItem': 'default',
 			'iconClass': 'icon icon-device-camera',
-			'url': '/gallery'
+			'url': '/gallery/'
 		},
 		{
 			'id': 'settings',
 			'name': 'Settings',
 			'navItem': 'default',
 			'iconClass': 'icon icon-settings-1',
-			'url': '/settings'
+			'url': '/settings/'
 		},
-		{
-			'id': 'test1',
-			'name': 'test1',
-			'navItem': 'search',
-			'iconClass': 'icon icon-torsos-all',
-			'url': '/'
-		},
-		{
-			'id': 'test2',
-			'name': 'test2',
-			'navItem': 'search',
-			'iconClass': 'icon icon-torso',
-			'url': '/'
-		}
 	];
 
 	$scope.user = {
@@ -105,13 +91,24 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 		'gallery': ['images/gallery.png', 'images/gallery.png']
 	};
 
+	//Append enrolment number to profile and gallery URLs
 	$scope.moreOptions[1].url += $scope.user.enrolmentNo.toString();
+	$scope.moreOptions[2].url += $scope.user.enrolmentNo.toString();
 
 	$scope.ticks = [];
 	var tickPromise = dataTicker.getTicks();
 	tickPromise.then(function (d) {
 		$scope.ticks = d;
 	});
+
+	$scope.addToTicker = function () {
+		$http.get('http://beta.json-generator.com/api/json/get/N8gcdPq')
+			.success(function (ds) {
+				for(var i = 0; i < ds.length; i += 1) {
+					$scope.ticks.push(ds[i]);
+				}
+		});
+	};
 
 }]);
 
@@ -127,16 +124,16 @@ app.controller('HomeController', ['$scope', '$http', 'dataPosts', function ($sco
 	$scope.addToFeed = function () {
 		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
 			.success(function (ds) {
-				angular.forEach(ds, function (d) {
-		    	$scope.posts.push(d);
-		  });
+				for(var i = 0; i < ds.length; i += 1) {
+					$scope.posts.push(ds[i]);
+				}
 		});
 	};
 
 }]);
 
-app.controller('ProfileController', ['$routeParams', '$scope', '$sce', '$http', '$resource', '$interpolate', 'dataPosts', 'dataUsers', 
-	function ($routeParams, $scope, $sce, $http, $resource, $interpolate, dataPosts, dataUsers) {
+app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataPosts', 'dataUsers', 
+	function ($routeParams, $scope, $http, dataPosts, dataUsers) {
 
 	$scope.posts = [];
 	var dataPromise = dataPosts.getPosts();
@@ -155,12 +152,20 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$sce', '$http', 
  		}
 	});
 
-	$scope.degreeSnippet = $interpolate('<i class="fa fa-graduation-cap"></i> {{currentUser.course}} ({{currentUser.branch}}) {{currentUser.year}} Year')($scope);
-	$scope.renderSnippet = $sce.trustAsHtml($scope.degreeSnippet);
+	$scope.addToFeed = function () {
+		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
+			.success(function (ds) {
+				for(var i = 0; i < ds.length; i += 1) {
+					console.log(ds[i]);
+					$scope.posts.push(ds[i]);
+				}
+		});
+	};
 
 }]);
 
-app.controller('GalleryController', ['$scope', function ($scope) {
+app.controller('GalleryController', ['$routeParams', '$scope', 
+	function ($routeParams, $scope) {
 }]);
 
 app.controller('SettingsController', ['$scope', function ($scope) {
