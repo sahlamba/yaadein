@@ -123,7 +123,7 @@
     </div>
 
     <div id="centered" class="center-content" scrollable>
-        <div class="fade" ng-view autoscroll>
+        <div class="fade" ng-view>
         </div>
     </div>
 
@@ -164,6 +164,7 @@
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
     <script src="bower_components/angular-nanoscroller/scrollable.js"></script>
+    <script src="bower_components/ng-nanoscroller/scrollable.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->
@@ -180,6 +181,5 @@
         $('#centered').css('height', window.innerHeight);
         $('#year').html(new Date().getFullYear());
     </script>
-    <script type="text/javascript" src="scripts/vendor/jquery.scrollmagic.min.js"></script>
 </body>
 </html>

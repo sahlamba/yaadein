@@ -124,14 +124,14 @@ app.controller('HomeController', ['$scope', '$http', 'dataPosts', function ($sco
 		$scope.posts = d;
 	});
 
-	// $scope.addToFeed = function () {
-	// 	$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
-	// 		.success(function (ds) {
-	// 			angular.forEach(ds, function (d) {
-	// 	    	$scope.posts.push(d);
-	// 	  });
-	// 	});
-	// };
+	$scope.addToFeed = function () {
+		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
+			.success(function (ds) {
+				angular.forEach(ds, function (d) {
+		    	$scope.posts.push(d);
+		  });
+		});
+	};
 
 }]);
 
