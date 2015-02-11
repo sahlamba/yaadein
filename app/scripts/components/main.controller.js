@@ -101,13 +101,17 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 		$scope.ticks = d;
 	});
 
+	$scope.isLoading = false;
+
 	$scope.addToTicker = function () {
+		$scope.isLoading = true;
 		$http.get('http://beta.json-generator.com/api/json/get/N8gcdPq')
 			.success(function (ds) {
 				for(var i = 0; i < ds.length; i += 1) {
 					$scope.ticks.push(ds[i]);
 				}
 		});
+		$scope.isLoading = false;
 	};
 
 }]);

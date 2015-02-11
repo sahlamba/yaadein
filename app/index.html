@@ -129,7 +129,7 @@
 
     <div class="right-sidebar" id="ticker">
         <div class="ticker-content" scrollable scrollend="addToTicker();">
-            <a ng-href="/profile/{{tick.enrolmentNo}}" class="ticker-element" ng-repeat="tick in ticks">
+            <a ng-href="/profile/{{tick.enrolmentNo}}" class="ticker-element" ng-repeat="tick in ticks | limitTo: 50">
                 <div class="user-image-container">
                 <div>
                     <div class="user-image" ng-style="{ 'background-image': 'url(' + tick.profilePic + ')' }"></div>
@@ -139,7 +139,7 @@
                 <p>{{tick.name}} posted a new memory</p>
                 </div>
             </a>
-            <div class="loader" style="padding-top:20px; text-align:center;">
+            <div class="loader" style="padding-top:20px; text-align:center;" ng-if="isLoading">
                 <img src="images/svg-loaders/three-dots.svg" alt="Loading..." style="height:10px;">
             </div>
         </div>
