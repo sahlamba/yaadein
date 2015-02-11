@@ -114,6 +114,8 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 		$scope.isLoading = false;
 	};
 
+
+
 }]);
 
 app.controller('HomeController', ['$scope', '$http', 'dataPosts', function ($scope, $http, dataPosts) {
@@ -160,7 +162,6 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataPos
 		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
 			.success(function (ds) {
 				for(var i = 0; i < ds.length; i += 1) {
-					console.log(ds[i]);
 					$scope.posts.push(ds[i]);
 				}
 		});
@@ -168,8 +169,22 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataPos
 
 }]);
 
-app.controller('GalleryController', ['$routeParams', '$scope', 
-	function ($routeParams, $scope) {
+app.controller('GalleryController', ['$routeParams', '$scope', 'dataUsers', 
+	function ($routeParams, $scope, dataUsers) {
+
+	$scope.currentUser = {};
+	var userPromise = dataUsers.getUsers();
+	userPromise.then(function (d) {
+		for(var i = 0; i < d.length; i += 1) {
+			if(d[i].enrolmentNo === parseInt($routeParams.enrolmentNo)) {
+				$scope.currentUser = d[i];
+				break;
+			}
+ 		}
+	});
+
+	
+
 }]);
 
 app.controller('SettingsController', ['$scope', function ($scope) {

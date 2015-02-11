@@ -8,7 +8,7 @@
     "profilePic": "images/user.png",
     "coverPic": "images/cover.png",
     "url": "/profile/10115001",
-    "gallery": ["images/gallery.png", "images/gallery.png"]
+    "gallery": [{"url": "images/gallery.png"}, {"url":"images/gallery.png"}]
   },
   {
     "name": "Sahil Lamba",
@@ -19,14 +19,11 @@
     "profilePic": "images/user.png",
     "coverPic": "images/gallery.png",
     "url": "/profile/13117060",
-    "gallery": ["images/gallery.png", "images/gallery.png"]
+    "gallery": [{"url": "images/gallery.png"}, {"url": "images/gallery.png"}, {"url": "images/user.png"}, {"url": "images/cover.png"}, {"url": "images/users/1.jpg"}, {"url": "images/users/2.jpg"}, {"url": "images/users/3.jpg"}, {"url": "images/users/4.jpg"}]
   },
   {
     "taggable": false,
     "gallery": [
-      {
-        "url": "images/gallery.png"
-      },
       {
         "url": "images/gallery.png"
       },
@@ -58,14 +55,11 @@
     "branch": "BT",
     "year": 4,
     "name": "Alston Powell",
-    "enrolmentNo": 13111556
+    "enrolmentNo": 13119692
   },
   {
     "taggable": true,
     "gallery": [
-      {
-        "url": "images/gallery.png"
-      },
       {
         "url": "images/gallery.png"
       },

@@ -563,6 +563,26 @@ body {
   }
 }
 
+.gallery-image-container {
+  font-size: 0;
+  display: flex;
+  flex-flow: row wrap;
+  overflow: hidden;
+  text-align: center;
+
+  * {
+    flex: auto;
+    width: 32%;
+    margin: 0.5%;
+    border-radius: 3px;
+  }
+
+  * img {
+    width: 100%;
+    height: auto;
+  }
+}
+
 .right-sidebar {
   position: fixed;
   right: 0;
