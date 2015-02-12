@@ -114,7 +114,7 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 		$scope.isLoading = false;
 	};
 
-
+	$scope.searchQuery = {};
 
 }]);
 

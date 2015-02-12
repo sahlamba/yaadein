@@ -69,24 +69,22 @@
             </div>
 
             <div ng-switch-when="search" class="slide ng-cloak search-container" ng-cloak>
-                <!-- <angucomplete-alt id="predictive-search"
-                                  placeholder="Search spots, people..."
-                                  pause="100"
-                                  selected-object="selectedReceiver"
-                                  remote-url="http://beta.json-generator.com/api/json/get/BflDVyA?searchstr="
-                                  search-fields="name"
-                                  title-field="name"
-                                  minlength="1"
-                                  template-url="/views/autocomplete.html"
-                                  input-class="input"
-                                  description-field="details"
-                                  field-required="true"
-                                  match-class="matched"
-                                  image-field="image"
-                                  class="search-bar">
-                </angucomplete-alt> -->
+                <angucomplete-alt id="search-people"
+                    placeholder="Search people"
+                    pause="100"
+                    selected-object="searchQuery"
+                    remote-url="http://beta.json-generator.com/api/json/get/H_C2KqA?searchstr="
+                    search-fields="name"
+                    title-field="name"
+                    image-field="profilePic"
+                    input-class="search-bar"
+                    minlength="1"
+                    show-focus="true"
+                    match-class="matched"
+                    field-required="true"
+                    template-url="/views/autocomplete.html"/>
                 <div class="icon icon-search-1"></div>
-                <input type="text" placeholder="Search people, groups..." class="search-bar" show-focus="true">
+                <!-- <input type="text" placeholder="Search people, groups..." class="search-bar" show-focus="true"> -->
                 <a ng-href="" class="search-result">
                     <div class="user-image-container">
                     <div>
