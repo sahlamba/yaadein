@@ -1,5 +1,9 @@
 <div scrollable scrollend="addToFeed();">
 <div class="padded">
+    <!-- <div class="toggle-feed-container">
+        <div>
+        </div>
+    </div> -->
     <div class="feed-container" ng-repeat="post in posts">
     <div>
         <div class="user-data pull-left">
@@ -9,7 +13,7 @@
             </a>
             <p class="info"><i class="fa fa-graduation-cap"></i> {{post.author.course}} ({{post.author.branch}}) {{post.author.year | romanNumber}} Year</p>
             <p class="info"><i class="fa fa-map-marker"></i> {{post.spot}}</p>
-            <p class="info"><i class="fa fa-calendar-o"></i> {{post.date}}</p>
+            <p class="info"><i class="fa fa-clock-o"></i> <span am-time-ago="post.date"></span></p>
         </div>
         </div>
         <div class="post-data pull-left">

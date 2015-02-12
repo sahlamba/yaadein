@@ -112,7 +112,7 @@
                     </div>
                     </div>
                     <div class="notif-details">
-                    <p>{{tick.name}} posted on your wall</p>
+                    <p>{{tick.name}} posted on your wall<br><span am-time-ago="tick.time" style="color:#ccc;"></span></p>
                     </div>
                 </a>
             </div>
@@ -129,14 +129,14 @@
 
     <div class="right-sidebar" id="ticker">
         <div class="ticker-content" scrollable scrollend="addToTicker();">
-            <a ng-href="/profile/{{tick.enrolmentNo}}" class="ticker-element" ng-repeat="tick in ticks | limitTo: 50">
+            <a ng-href="/profile/{{tick.enrolmentNo}}" class="ticker-element" ng-repeat="tick in ticks | limitTo: 50 | orderBy: '-tick.time'">
                 <div class="user-image-container">
                 <div>
                     <div class="user-image" ng-style="{ 'background-image': 'url(' + tick.profilePic + ')' }"></div>
                 </div>
                 </div>
                 <div class="ticker-details">
-                <p>{{tick.name}} posted a new memory</p>
+                <p>{{tick.name}} posted a new memory<br><span am-time-ago="tick.time" style="color:#ccc;"></span></p>
                 </div>
             </a>
             <div class="loader" style="padding-top:20px; text-align:center;" ng-if="isLoading">
@@ -164,20 +164,8 @@
     <script src="bower_components/moment/moment.js"></script>
     <script src="bower_components/angular-moment/angular-moment.js"></script>
     <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
-    <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
     <script src="bower_components/ng-nanoscroller/scrollable.js"></script>
-    <script src="bower_components/get-style-property/get-style-property.js"></script>
-    <script src="bower_components/get-size/get-size.js"></script>
-    <script src="bower_components/eventie/eventie.js"></script>
-    <script src="bower_components/doc-ready/doc-ready.js"></script>
-    <script src="bower_components/eventEmitter/EventEmitter.js"></script>
-    <script src="bower_components/matches-selector/matches-selector.js"></script>
-    <script src="bower_components/outlayer/item.js"></script>
-    <script src="bower_components/outlayer/outlayer.js"></script>
-    <script src="bower_components/masonry/masonry.js"></script>
-    <script src="bower_components/imagesloaded/imagesloaded.js"></script>
-    <script src="bower_components/angular-masonry/angular-masonry.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->

@@ -105,7 +105,7 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 
 	$scope.addToTicker = function () {
 		$scope.isLoading = true;
-		$http.get('http://beta.json-generator.com/api/json/get/N8gcdPq')
+		$http.get('http://beta.json-generator.com/api/json/get/HByxuXv')
 			.success(function (ds) {
 				for(var i = 0; i < ds.length; i += 1) {
 					$scope.ticks.push(ds[i]);
