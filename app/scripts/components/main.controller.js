@@ -8,30 +8,48 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 
 	$scope.navigationItems = [
 		{
-			'id': 'default',
-			'class': 'icon icon-three-bars'
+			'id': 'home',
+			'class': 'fa fa-home',
+			'url': '/',
+			'hint': 'Home'
+		},
+		{
+			'id': 'profile',
+			'class': 'fa fa-user',
+			'url': '/profile/',
+			'hint': 'My Profile'
 		},
 		{
 			'id': 'search',
-			'class': 'icon icon-search-1'
+			'class': 'fa fa-search',
+			'url': '#',
+			'hint': 'Search something'
 		},
 		{
 			'id': 'post',
-			'class': 'icon icon-compose'
+			'class': 'fa fa-pencil-square-o',
+			'url': '#',
+			'hint:': 'Post a memory'
 		},
 		{
 			'id': 'notifications',
-			'class': 'icon icon-store'
+			'class': 'fa fa-bell',
+			'url': '#',
+			'hint': 'notifications'
 		},
 		{
 			'id': 'signOut',
-			'class': 'icon icon-power'
+			'class': 'fa fa-sign-out',
+			'url': '/',
+			'hint': 'Log Out'
 		}
 	];
 
 	$scope.currentNavItem = $scope.navigationItems[0];
+	$scope.prevNavItem = $scope.navigationItems[0];
 
 	$scope.setCurrentNavItem = function (navItem) {
+		$scope.prevNavItem = $scope.currentNavItem;		
 		$scope.currentNavItem = navItem;
 	};
 
@@ -45,39 +63,13 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 
 	$scope.closePost = function () {
 		$('#postBox').fadeOut(300);
-		$scope.currentNavItem = $scope.navigationItems[0];
+		$scope.currentNavItem = $scope.prevNavItem;
 	};
 
-	$scope.moreOptions = [
-		{
-			'id': 'home',
-			'name': 'Home',
-			'navItem': 'default',
-			'iconClass': 'icon icon-torsos-all',
-			'url': '/'
-		},
-		{
-			'id': 'profile',
-			'name': 'Profile',
-			'navItem': 'default',
-			'iconClass': 'icon icon-torso',
-			'url': '/profile/'
-		},
-		{
-			'id': 'gallery',
-			'name': 'Gallery',
-			'navItem': 'default',
-			'iconClass': 'icon icon-device-camera',
-			'url': '/gallery/'
-		},
-		{
-			'id': 'settings',
-			'name': 'Settings',
-			'navItem': 'default',
-			'iconClass': 'icon icon-settings-1',
-			'url': '/settings/'
-		},
-	];
+	$scope.closeSearch = function () {
+		$('#searchBox').fadeOut(300);
+		$scope.currentNavItem = $scope.prevNavItem;
+	};
 
 	$scope.user = {
 		'name': 'Sahil Lamba',
@@ -92,8 +84,7 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 	};
 
 	//Append enrolment number to profile and gallery URLs
-	$scope.moreOptions[1].url += $scope.user.enrolmentNo.toString();
-	$scope.moreOptions[2].url += $scope.user.enrolmentNo.toString();
+	$scope.navigationItems[1].url += $scope.user.enrolmentNo.toString();
 
 	$scope.ticks = [];
 	var tickPromise = dataTicker.getTicks();

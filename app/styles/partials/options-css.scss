@@ -1,0 +1,231 @@
+.options {
+      position: relative;
+      width: 210px;
+      height: 100vh;
+      margin-right: 2px;
+      margin-left: 51px;
+      background: rgba(250, 250, 250, 0.8);
+      z-index: 999;
+      overflow: hidden;
+
+      .sidebar-container {
+        width: 100%;
+        height: 100vh;
+        overflow: auto;
+
+        //Default Options
+        .options-profile-pic {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          display: block;
+
+          div {
+            padding: 20px;
+            text-align: center;
+            overflow: hidden;
+
+            .img {
+              width: 70px;
+              height: 70px;
+              margin: 0 auto;
+              background: $dark-grey;
+              background-repeat: no-repeat !important;
+              background-position: center !important;
+              background-size: cover !important;
+              border-radius: 100%;
+              border: 3px solid $black;
+            }
+          }
+        }
+
+        a.option-link {
+          display: block;
+          width: 186px;
+          padding-top: 15px;
+          padding-bottom: 15px;
+          padding-left: 14px;
+          padding-right: 10px;
+          @include transition(all 250ms ease-out);
+          font-size: $small;
+          text-overflow: ellipsis;
+          text-transform: capitalize;
+
+          &:hover {
+            border-color: $primary;
+            border-right-width: 4px;
+            border-right-style: solid;
+            background: $white;
+            padding-left: 20px;
+            width: 176px;
+          }
+
+          div.icon {
+            font-size: $med;
+            line-height: 1.5;
+            margin-right: 10px;
+          }
+        }
+
+        //Search
+        .search-container {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          text-align: center;
+
+          .search-bar {
+            width: 71%;
+            line-height: 19px;
+            height: 19px;
+            font-weight: 300;
+            border: 1px solid $grey;
+            border-radius: 3px;
+            padding-left: 6%;
+            padding-right: 11%;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            color: $black;
+            @include transition(all 300ms ease-out);
+
+            &:focus {
+              border-radius: 15px;
+              border-color: $primary;
+            }
+          }
+
+          .icon.icon-search-1 {
+            position: absolute;
+            right: 18px;
+            top: 28px;
+            color: $dark-grey;
+          }
+
+          a.search-result {
+            display: block;
+            width: 180px;
+            height: 40px;
+            overflow: hidden;
+            background: $white;
+            margin-bottom: 1px;
+            padding: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            color: $black;
+            cursor: pointer;
+            @include transition (all 150ms ease-out);
+
+            &:hover {
+              color: $white;
+              background: $primary;
+            }
+
+            .user-image-container {
+              position: relative;
+              float: left;
+              width: 40px;
+
+              .user-image {
+                width: 40px;
+                height: 40px;
+                margin: 0 auto;
+                background: $dark-grey;
+                background-repeat: no-repeat !important;
+                background-position: center !important;
+                background-size: cover !important;
+                border-radius: 50%;
+              }
+            }
+
+            .result-details {
+              position: relative;
+              overflow: hidden;
+              float: left;
+              width: 130px;
+              padding-left: 10px;
+              padding-top: 3px;
+              padding-bottom: 3px;
+              text-align: left;
+
+              $line-height: 1.4;
+              $lines-to-show: 2;
+
+              p {
+                height: $tiny * $line-height * $lines-to-show;
+                font-size: $tiny;
+                line-height: $line-height;
+                overflow: hidden;
+                text-overflow: ellipsis;
+              }
+            }
+
+          }
+        }
+
+        .notifs-header {
+          width: 160px;
+          padding: 25px;
+          text-align: center;
+          color: $dark-grey;
+        }
+
+        a.notification {
+          display: block;
+          width: 180px;
+          height: 50px;
+          overflow: hidden;
+          background: $white;
+          margin-bottom: 1px;
+          padding: 15px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          color: $black;
+          cursor: pointer;
+          @include transition (all 150ms ease-out);
+
+          &:hover {
+            color: $white;
+            background: $primary;
+          }
+
+          .user-image-container {
+            position: relative;
+            float: left;
+            width: 40px;
+
+            .user-image {
+              width: 40px;
+              height: 40px;
+              margin: 0 auto;
+              background: $dark-grey;
+              background-repeat: no-repeat !important;
+              background-position: center !important;
+              background-size: cover !important;
+              border-radius: 100%;
+            }
+          }
+
+          .notif-details {
+            position: relative;
+            overflow: hidden;
+            float: left;
+            width: 130px;
+            padding-left: 10px;
+            text-align: left;
+
+            $line-height: 1.4;
+            $lines-to-show: 3;
+
+            p {
+              height: $tiny * $line-height * $lines-to-show;
+              font-size: $tiny;
+              line-height: $line-height;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
+      }
+    }

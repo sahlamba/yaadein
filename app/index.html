@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="bower_components/ng-emoticons/ng-emoticons.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/nanoscroller/bin/css/nanoscroller.css" />
+    <link rel="stylesheet" href="bower_components/hint.css/hint.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -33,7 +34,11 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div id="postBox" class="post-lightbox fade" ng-if="getCurrentNavItem() === 'post'">
+    <div id="searchBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'search'">
+        <div class="close-lightbox icon icon-cancel" ng-click="closeSearch()"></div>
+    </div>
+
+    <div id="postBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'post'">
         <div class="close-lightbox icon icon-cancel" ng-click="closePost()"></div>
         <div>
             <form>
@@ -47,7 +52,7 @@
     <div class="left-sidebar">
     <div>
         <div class="nav">
-            <a href="" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
+            <a ng-href="{~{navItem.url}~}" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
               <div id="{~{navItem.id}~}" class="{~{navItem.class}~}" ng-class="{ 'active': isCurrentNavItem(navItem) }"></div>
             </a>
             <a href="/"><div class="yaadein-title" ng-bind="appname"></div></a>

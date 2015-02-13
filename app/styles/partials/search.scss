@@ -1,0 +1,75 @@
+.angucomplete-holder.angucomplete-dropdown-visible {
+  height: calc(100vh);
+}
+
+.angucomplete-dropdown {
+  width: 100%;
+  overflow-y: auto;
+  max-height: calc(100vh - 71px); //Subtract height of search input
+  margin-top: 0;
+  border: 0;
+  padding: 0;
+  color: #777;
+  background: #fff;
+  .angucomplete-searching {
+    color: #777;
+    background: #fff;
+    padding: 5px 10px;
+  }
+  .angucomplete-row {
+    display: block;
+    width: 180px;
+    height: 40px;
+    overflow: hidden;
+    background: $white;
+    margin-bottom: 1px;
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: $black;
+    cursor: pointer;
+    @include transition (all 150ms ease-out);
+
+    &:hover, &:focus {
+      color: $white;
+      background: $primary;
+    }
+
+    .angucomplete-image-holder {
+      position: relative;
+      float: left;
+      width: 40px;
+
+      .angucomplete-image {
+        width: 40px;
+        height: 40px;
+        margin: 0 auto;
+        border-radius: 50%;
+        overflow: hidden;
+      }
+    }
+
+    .angucomplete-title {
+      position: relative;
+      overflow: hidden;
+      float: left;
+      width: 130px;
+      padding-left: 10px;
+      padding-top: 3px;
+      padding-bottom: 3px;
+      text-align: left;
+      color: $black;
+
+      $line-height: 1.4;
+      $lines-to-show: 1;
+
+      height: $tiny * $line-height * $lines-to-show;
+      font-size: $tiny;
+      line-height: $line-height;
+      text-overflow: ellipsis;
+    }
+  }
+}
+.highlight {
+  color: $primary;
+}
