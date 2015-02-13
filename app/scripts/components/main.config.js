@@ -39,3 +39,7 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
 	$locationProvider.html5Mode(true).hashPrefix('!');
 	
 }]);
+
+app.config(['$interpolateProvider', function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('{~{').endSymbol('}~}');
+}]);

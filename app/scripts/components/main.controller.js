@@ -114,7 +114,15 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 		$scope.isLoading = false;
 	};
 
-	$scope.searchQuery = {};
+	$scope.selectedObject = {};
+
+	$scope.usersList = [];
+	$http.get('data/users.json')
+		.success(function (ds) {
+			for(var i = 0; i < ds.length; i += 1) {
+				$scope.usersList.push(ds[i]);
+			}
+	});
 
 }]);
 

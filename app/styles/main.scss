@@ -89,7 +89,7 @@ body {
     cursor: pointer;
     @include transition (all 150ms ease-out);
 
-    &:hover {
+    &:hover, &:focus {
       color: $white;
       background: $primary;
     }
@@ -104,6 +104,7 @@ body {
         height: 40px;
         margin: 0 auto;
         border-radius: 50%;
+        overflow: hidden;
       }
     }
 
@@ -119,7 +120,7 @@ body {
       color: $black;
 
       $line-height: 1.4;
-      $lines-to-show: 2;
+      $lines-to-show: 1;
 
       height: $tiny * $line-height * $lines-to-show;
       font-size: $tiny;
@@ -127,6 +128,9 @@ body {
       text-overflow: ellipsis;
     }
   }
+}
+.highlight {
+  color: $primary;
 }
 
 .left-sidebar {

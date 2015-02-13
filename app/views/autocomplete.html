@@ -1,11 +1,13 @@
 <div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+  <div class="icon icon-search-1"></div>
   <input id="search-people_value"
     ng-model="searchStr"
     ng-disabled="disableInput"
     type="text"
-    placeholder="Search people..."
+    placeholder="{~{placeholder}~}"
     ng-focus="onFocusHandler()"
-    class="search-bar ng-dirty ng-valid-parse ng-touched"
+    class="{~{inputClass}~}"
+    ng-focus="resetHideResults()"
     ng-blur="hideResults($event)"
     autocapitalize="off"
     autocorrect="off"
@@ -14,11 +16,12 @@
     <div id="search-people_dropdown" class="angucomplete-dropdown ng-hide" ng-show="showDropdown">
       <div class="angucomplete-searching" ng-show="searching" ng-bind="textSearching"></div>
       <div class="angucomplete-searching" ng-show="!searching && (!results || results.length == 0)" ng-bind="textNoResults"></div>
-      <div class="angucomplete-row ng-scope ng-animate angucomplete-selected-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
-        <div ng-if="imageField" class="angucomplete-image-holder ng-scope">
-          <img ng-if="result.image &amp;&amp; result.image != ''" ng-src="{{result.profilePic}}" class="angucomplete-image ng-scope">
+      <div class="angucomplete-row" ng-repeat="result in results" ng-click="selectResult(result)" ng-mouseenter="hoverRow($index)" ng-class="{'angucomplete-selected-row': $index == currentIndex}">
+        <div ng-if="imageField" class="angucomplete-image-holder">
+          <img ng-if="result.image && result.image != ''" ng-src="{~{result.profilePic}~}" class="angucomplete-image">
         </div>
-        <div class="angucomplete-title ng-binding ng-scope" ng-if="matchClass" ng-bind-html="result.title"></div>
+        <div class="angucomplete-title" ng-if="matchClass" ng-bind-html="result.title"></div>
+        <div class="angucomplete-title" ng-if="!matchClass">{~{result.title}~}</div>
       </div>
     </div>
 </div>
