@@ -21,7 +21,7 @@
             <a ng-href="/profile/{~{post.author.enrolmentNo}~}"><h1 ng-bind="post.author.name"></h1></a>
             <h2>With 
                 <span ng-repeat="taggedUser in post.taggedUsers">
-                    <span ng-if="$last"> and </span><a ng-href="/profile/{~{taggedUser.enrolmentNo}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
+                    <span ng-if="$last && $index != 0"> and </span><a ng-href="/profile/{~{taggedUser.enrolmentNo}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
                 </span>
             </h2>
             <p>{~{post.message}~}</p>

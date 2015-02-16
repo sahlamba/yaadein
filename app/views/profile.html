@@ -1,5 +1,5 @@
 <div scrollable scrollend="addToFeed();">
-<div class="cover-pic" ng-style="{ 'background-image': 'url(' + currentUser.coverPic + ')' }">
+<div skrollr id="cover" class="cover-pic" ng-style="{ 'background-image': 'url(' + currentUser.coverPic + ')' }" data-0="background-position: 50% 0" data-500="background-position: 50% -300px" data-anchor-tag="#cover">
     <div class="profile-user-details">
         <h1 ng-bind="currentUser.name"></h1>
         <p><i class="fa fa-graduation-cap"></i> {~{currentUser.course}~} ({~{currentUser.branch}~}) {~{currentUser.year | romanNumber}~} Year</p>
@@ -23,7 +23,7 @@
             <a ng-href="/profile/{~{post.author.enrolmentNo}~}"><h1 ng-bind="post.author.name"></h1></a>
             <h2>With 
                 <span ng-repeat="taggedUser in post.taggedUsers">
-                    <span ng-if="$last"> and </span><a ng-href="/profile/{~{taggedUser.enrolmentNo}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
+                    <span ng-if="$last && $index != 0"> and </span><a ng-href="/profile/{~{taggedUser.enrolmentNo}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
                 </span>
             </h2>
             <p>{~{post.message}~}</p>
