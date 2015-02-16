@@ -156,14 +156,9 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataPos
 	});
 
 	$scope.currentUser = {};
-	var userPromise = dataUsers.getUsers();
+	var userPromise = dataUsers.getUser($routeParams.enrolmentNo);
 	userPromise.then(function (d) {
-		for(var i = 0; i < d.length; i += 1) {
-			if(d[i].enrolmentNo === parseInt($routeParams.enrolmentNo)) {
-				$scope.currentUser = d[i];
-				break;
-			}
- 		}
+			$scope.currentUser = d;
 	});
 
 	$scope.addToFeed = function () {
