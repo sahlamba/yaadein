@@ -81,7 +81,7 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 
 	$scope.user = {
 		'name': 'Sahil Lamba',
-		'enrolmentNo': 13117060,
+		'enrolmentNo': 13114068,
 		'year': 2,
 		'course': 'B.Tech',
 		'branch': 'ME',
@@ -159,6 +159,7 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataPos
 	var userPromise = dataUsers.getUser($routeParams.enrolmentNo);
 	userPromise.then(function (d) {
 			$scope.currentUser = d;
+      console.log(d);
 	});
 
 	$scope.addToFeed = function () {

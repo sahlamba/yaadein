@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var baseURL = 'http://172.25.55.156:60004/yaadein/';
+var baseURL = 'http://172.25.55.156:60006/yaadein/';
 
 app.service('dataTicker', ['$http', '$q', function ($http, $q) {
 	var deferred = $q.defer();
@@ -40,7 +40,7 @@ app.service('dataUsers', ['$http', '$q', function ($http, $q) {
 
 	this.getUser = function (enrolmentNo) {
 		var def = $q.defer();
-		var url = baseURL + 'user/' + enrolmentNo.toString();
+		var url = baseURL + 'user/' + enrolmentNo.toString() + '/';
 		console.log(url);
 		$http.get(url)
 			.success(function (x) {
@@ -49,30 +49,4 @@ app.service('dataUsers', ['$http', '$q', function ($http, $q) {
 		return def.promise;
 	};
 
-	// this.getUser = function (enrolmentNo) {
-	// 	var def = $q.defer();
-	// 	$http.get('data/users.json?enrolmentNo=' + enrolmentNo)
-	// 		.success(function (x) {
-	// 			def.resolve(x);
-	// 		});
-	// 	return def.promise;
-	// };
-
-	// var User = function(data) {
-	// 	if (data) {
-	// 		angular.copy(data, this);
-	// 	}
-	// };
-
-	// this.getCover = function(enrolmentNo) {
-	// 	return deferred.promise.then(function(d) {
-	// 		var result = null;
-	// 		angular.forEach(d, function(d) {
-	// 			if (d.enrolmentNo === enrolmentNo) {
-	// 				result = new User(d);
-	// 			}
-	// 		});
-	// 		return result;
-	// 	});
-	// };
 }]);
