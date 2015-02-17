@@ -1,6 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
+var originURL = 'http://172.25.55.156:60008';
 
 app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function ($scope, $http, dataTicker) {
 
@@ -159,6 +160,16 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataPos
 	var userPromise = dataUsers.getUser($routeParams.enrolmentNo);
 	userPromise.then(function (d) {
 			$scope.currentUser = d;
+      $scope.currentUser.profilePic = originURL + $scope.currentUser.profilePic;
+      $scope.currentUser.coverPic = originURL + $scope.currentUser.coverPic;
+      $scope.user.profilePic = $scope.currentUser.profilePic;
+      var posts = $scope.currentUser.posts_data;
+      for (var i = 0; i < posts.length; i += 1) {
+        posts[i].post_owner_pic = originURL + posts[i].post_owner_pic;
+        for (var j = 0; j < posts[i].image_url.length; j += 1) {
+          posts[i].image_url[j] = originURL + posts[i].image_url[j];
+        }
+      }
       console.log(d);
 	});
 

@@ -2,34 +2,34 @@
 <div class="cover-pic" ng-style="{ 'background-image': 'url(' + currentUser.coverPic + ')' }">
     <div class="profile-user-details">
         <h1 ng-bind="currentUser.name"></h1>
-        <p><i class="fa fa-graduation-cap"></i> {~{currentUser.course}~} ({~{currentUser.branch}~}) {~{currentUser.year | romanNumber}~} Year</p>
+        <p><i class="fa fa-graduation-cap"></i> {~{currentUser.label}~}</p>
     </div>
 </div>
 <div class="padded">
-    <div class="feed-container" ng-repeat="post in posts | orderBy: 'date'">
+    <div class="feed-container" ng-repeat="post in currentUser.posts_data | orderBy: 'date'">
     <div>
         <div class="user-data pull-left">
         <div>
-            <a ng-href="/profile/{~{post.author.enrolmentNo}~}">
-                <div class="user-image" ng-style="{ 'background-image': 'url(' + post.author.profilePic + ')' }"></div>
+            <a ng-href="/profile/{~{post.post_owner_enrol}~}">
+                <div class="user-image" ng-style="{ 'background-image': 'url(' + post.post_owner_pic + ')' }"></div>
             </a>
-            <p class="info"><i class="fa fa-graduation-cap"></i> {~{post.author.course}~} ({~{post.author.branch}~}) {~{post.author.year | romanNumber}~} Year</p>
+            <p class="info"><i class="fa fa-graduation-cap"></i> {~{post.post_owner_branch}~}</p>
             <p class="info"><i class="fa fa-map-marker"></i> {~{post.spot}~}</p>
-            <p class="info"><i class="fa fa-calendar-o"></i> <span am-time-ago="post.date"></span></p>
+            <p class="info"><i class="fa fa-calendar-o"></i> <span am-time-ago="post.time"></span></p>
         </div>
         </div>
         <div class="post-data pull-left">
         <div>
-            <a ng-href="/profile/{~{post.author.enrolmentNo}~}"><h1 ng-bind="post.author.name"></h1></a>
+            <a ng-href="/profile/{~{post.post_owner_enrol}~}"><h1 ng-bind="post.post_owner"></h1></a>
             <h2>With 
                 <span ng-repeat="taggedUser in post.taggedUsers">
                     <span ng-if="$last"> and </span><a ng-href="/profile/{~{taggedUser.enrolmentNo}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
                 </span>
             </h2>
-            <p>{~{post.message}~}</p>
+            <p>{~{post.post_text}~}</p>
             <div class="images-container">
-                <a href="#" ng-repeat="image in post.images" ng-click="enlargeImage(image.url)">
-                    <div class="image" ng-style="{ 'background-image': 'url(' + image.url + ')' }"></div>
+                <a href="#" ng-repeat="image in post.image_url" ng-click="enlargeImage(image.url)">
+                    <div class="image" ng-style="{ 'background-image': 'url(' + image + ')' }"></div>
                 </a>
             </div>
         </div>
