@@ -1,8 +1,8 @@
 <div scrollable scrollend="addToFeed();">
-<div skrollr id="cover" class="cover-pic" ng-style="{ 'background-image': 'url(' + currentUser.coverPic + ')' }" data-0="background-position: 50% 0" data-500="background-position: 50% -300px" data-anchor-tag="#cover">
+<div id="cover" class="cover-pic" ng-style="{ 'background-image': 'url(' + currentUser.coverPic + ')' }">
     <div class="profile-user-details">
         <h1 ng-bind="currentUser.name"></h1>
-        <p><i class="fa fa-graduation-cap"></i> {~{currentUser.course}~} ({~{currentUser.branch}~}) {~{currentUser.year | romanNumber}~} Year</p>
+        <p><i class="fa fa-graduation-cap"></i> {~{currentUser.label}~}</p>
     </div>
 </div>
 <div class="padded">
