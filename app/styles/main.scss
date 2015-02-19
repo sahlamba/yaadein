@@ -89,6 +89,28 @@ body {
     }
   }
 
+  .big-input {
+    @extend .small-input;
+    width: 80%;
+    height: 34px;
+    padding: 7px 14px;
+
+    &:focus {
+      height: 120px;
+    }
+  }
+
+  .file-upload-bttn {
+    position: relative;
+    float: right;
+    width: auto;
+    overflow: hidden;
+    padding: 14px 20px;
+    border-radius: 3px;
+    background: $primary;
+    color: $white;
+  }
+
   .close-lightbox {
     color: $white;
     position: absolute;
@@ -97,34 +119,6 @@ body {
     font-size: $massive;
     cursor: pointer;
   }
-}
-
-.file-upload-bttn {
-  width: auto;
-  padding: 20px;
-  border-radius: 3px;
-}
-
-.button {
-  -moz-appearance: button;
-  /* Firefox */
-  -webkit-appearance: button;
-  /* Safari and Chrome */
-  padding: 10px;
-  margin: 10px;
-  width: 70px;
-}
-.drop-box {
-  background: #F8F8F8;
-  border: 5px dashed #DDD;
-  width: 200px;
-  height: 65px;
-  text-align: center;
-  padding-top: 25px;
-  margin: 10px;
-}
-.dragover {
-  border: 5px dashed blue;
 }
 
 .progress {

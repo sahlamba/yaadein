@@ -42,8 +42,8 @@
                 <input class="small-input" type="text" name="usertags" placeholder="Tag friends here" show-focus="true">
                 <i class="inline fa fa-map-marker"></i>
                 <input class="small-input" type="text" name="location" placeholder="Spot">
-                <textarea placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
-                <span class="file-upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-multiple="true"></span>
+                <textarea class="big-input" placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
+                <div class="file-upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-multiple="true"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Add Photos</div>
                 <ul>
                   <li ng-repeat="f in files" style="font:smaller; color: white;">{~{f.name}~}</li>
                 </ul>
