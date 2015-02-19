@@ -1,9 +1,9 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var originURL = 'http://172.25.55.156:60008';
+var originURL = 'http://172.25.55.156:60007';
 
-app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function ($scope, $http, dataTicker) {
+app.controller('YaadeinController', ['$scope', '$http', '$upload', 'dataTicker', function ($scope, $http, $upload, dataTicker) {
 
 	$scope.appname = 'Yaadein';
 
@@ -83,13 +83,9 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 	$scope.user = {
 		'name': 'Sahil Lamba',
 		'enrolmentNo': 13114068,
-		'year': 2,
-		'course': 'B.Tech',
-		'branch': 'ME',
+		'label': 'B.Tech. ME II Year',
 		'profilePic': 'images/users/1.jpg',
-		'coverPic': 'images/cover.png',
-		'url': '/profile/13117060',
-		'gallery': ['images/gallery.png', 'images/gallery.png']
+		'coverPic': 'images/cover.png'
 	};
 
 	//Append enrolment number to profile and gallery URLs
@@ -124,6 +120,42 @@ app.controller('YaadeinController', ['$scope', '$http', 'dataTicker', function (
 				$scope.usersList.push(ds[i]);
 			}
 	});
+
+  $scope.newPost = {
+    'post_owner': $scope.user.name,
+    'post_owner_enrol': $scope.user.enrolmentNo.toString(),
+    'post_owner_branch': $scope.user.label,
+    'post_owner_pic': $scope.user.profilePic,
+    'time': '',
+    'image_url': [],
+    'post_text': ''
+  };
+
+  $scope.$watch('files', function () {
+      $scope.upload($scope.files);
+  });
+
+  $scope.upload = function (files) {
+    if (files && files.length) {
+      console.log($scope.newPost.post_text);
+      for(var i = 0; i < files.length; i += 1) {
+        var file = files[i];
+        $upload.upload({
+          url: originURL + '/yaadein/post/' + $scope.newPost.post_owner_enrol + '/',
+          //url: 'https://angular-file-upload-cors-srv.appspot.com/upload', 
+          fields: {
+            'post_text': $scope.newPost.post_text
+          },
+          file: file
+        }).progress(function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
+        }).success(function (data, status, headers, config) {
+          console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data)); 
+        });
+      }
+    }
+  };
 
 }]);
 

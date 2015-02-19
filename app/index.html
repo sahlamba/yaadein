@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="bower_components/ng-emoticons/ng-emoticons.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/nanoscroller/bin/css/nanoscroller.css" />
+    <link rel="stylesheet" href="bower_components/ngActivityIndicator/css/ngActivityIndicator.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -28,7 +29,7 @@
     <!-- endbuild -->
 
   </head>
-  <body ng-cloak class="ng-cloak">
+  <body ng-cloak class="ng-cloak" ng-activity-indicator>
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -36,10 +37,22 @@
     <div id="postBox" class="post-lightbox fade" ng-if="getCurrentNavItem() === 'post'">
         <div class="close-lightbox icon icon-cancel" ng-click="closePost()"></div>
         <div>
-            <form>
-                <input type="text" name="usertags" placeholder="Tag friends here">
-                <input type="text" name="location" placeholder="Spot">
-                <textarea placeholder="Type memory here" style="resize:none;"></textarea>
+            <form class="post-form">
+                <i class="inline fa fa-qq"></i>
+                <input class="small-input" type="text" name="usertags" placeholder="Tag friends here" show-focus="true">
+                <i class="inline fa fa-map-marker"></i>
+                <input class="small-input" type="text" name="location" placeholder="Spot">
+                <textarea placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
+                <span class="file-upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-multiple="true"></span>
+                <ul>
+                  <li ng-repeat="f in files" style="font:smaller; color: white;">{~{f.name}~}</li>
+                </ul>
+                <button ng-click="upload(files)">upload</button>
+                <img ng-show="files[0].dataUrl != null" ng-src="{~{files[0].dataUrl}~}" class="thumb">
+                <span class="progress" ng-show="files[0].progress >= 0">
+                  <div class="ng-binding" style="width:{~{files[0].progress}~}%" ng-bind="files[0].progress + '%'"></div>
+                </span>
+                <span ng-show="files[0].result">Upload Successful</span>
             </form>
         </div>
     </div>
@@ -175,6 +188,8 @@
     <script src="bower_components/angular-filter/dist/angular-filter.js"></script>
     <script src="bower_components/nanoscroller/bin/javascripts/jquery.nanoscroller.js"></script>
     <script src="bower_components/ng-nanoscroller/scrollable.js"></script>
+    <script src="bower_components/ngActivityIndicator/ngActivityIndicator.js"></script>
+    <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->
