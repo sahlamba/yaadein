@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var originURL = 'http://172.25.55.156:60007';
+var originURL = 'http://172.25.55.156:60000';
 
 app.controller('YaadeinController', ['$scope', '$http', '$upload', 'dataTicker', function ($scope, $http, $upload, dataTicker) {
 
@@ -138,22 +138,25 @@ app.controller('YaadeinController', ['$scope', '$http', '$upload', 'dataTicker',
   $scope.upload = function (files) {
     if (files && files.length) {
       console.log($scope.newPost.post_text);
-      for(var i = 0; i < files.length; i += 1) {
-        var file = files[i];
+      //for(var i = 0; i < files.length; i += 1) {
+        //var file = files[i];
         $upload.upload({
           url: originURL + '/yaadein/post/' + $scope.newPost.post_owner_enrol + '/',
-          //url: 'https://angular-file-upload-cors-srv.appspot.com/upload', 
-          fields: {
-            'post_text': $scope.newPost.post_text
+          //url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+          headers: {'Content-Type':'multipart/form-data'}, 
+          method: 'POST',
+          data: {
+            post_text: $scope.newPost.post_text
           },
-          file: file
+          file: files,
+          withCredentials: false,
         }).progress(function (evt) {
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
           console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
         }).success(function (data, status, headers, config) {
           console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data)); 
         });
-      }
+     //}
     }
   };
 
