@@ -9,29 +9,7 @@
       "course": "B.Tech",
       "profilePic": "images/cover.png",
       "coverPic": "images/cover.png",
-      "gallery": [
-        {
-          "url": "images/gallery.png"
-        },
-        {
-          "url": "images/gallery.png"
-        },
-        {
-          "url": "images/gallery.png"
-        },
-        {
-          "url": "images/gallery.png"
-        },
-        {
-          "url": "images/gallery.png"
-        },
-        {
-          "url": "images/gallery.png"
-        },
-        {
-          "url": "images/gallery.png"
-        }
-      ],
+      "gallery": [{"url": "images/gallery.png"}, {"url": "images/gallery.png"}, {"url": "images/user.png"}, {"url": "images/cover.png"}, {"url": "images/users/1.jpg"}, {"url": "images/users/2.jpg"}, {"url": "images/users/3.jpg"}, {"url": "images/users/4.jpg"}],
       "taggable": true
     },
     "taggedUsers": [
@@ -49,35 +27,7 @@
     ],
     "message": "Excepteur qui nostrud ipsum amet aliquip.",
     "stars": 4,
-    "images": [
-      {
-        "url": "images/gallery.png"
-      },
-      {
-        "url": "images/gallery.png"
-      },
-      {
-        "url": "images/gallery.png"
-      },
-      {
-        "url": "images/gallery.png"
-      },
-      {
-        "url": "images/gallery.png"
-      },
-      {
-        "url": "images/gallery.png"
-      },
-      {
-        "url": "images/gallery.png"
-      },
-      {
-        "url": "images/gallery.png"
-      },
-      {
-        "url": "images/gallery.png"
-      }
-    ],
+    "images": [{"url": "images/gallery.png"}, {"url": "images/gallery.png"}, {"url": "images/user.png"}, {"url": "images/cover.png"}, {"url": "images/users/1.jpg"}, {"url": "images/users/2.jpg"}, {"url": "images/users/3.jpg"}, {"url": "images/users/4.jpg"}],
     "spot": "Twilight, Guyana",
     "date": "Oct 3rd 2014",
     "privacy": "public"

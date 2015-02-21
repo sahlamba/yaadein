@@ -123,29 +123,29 @@ body {
 
 .progress {
     display: inline-block;
-              width: 100px; 
-                      border: 3px groove #CCC;
+	width: 100px;
+	border: 3px groove #CCC;
 }
 
 .progress div {
-    font-size: smaller;
-      background: orange;
-                    width: 0;
+	font-size: smaller;
+	background: orange;
+	width: 0;
 }
 
 .thumb {
-    float: left;
-            width: 18px;
-                    height: 18px;
-                              padding-right: 10px;
+	float: left;
+	width: 18px;
+	height: 18px;
+	padding-right: 10px;
 }
 
 form .thumb {
     width: 24px;
-            height: 24px;
-                      float: none;
-                              position: relative;
-                                          top: 7px;
+	height: 24px;
+	float: none;
+	position: relative;
+	top: 7px;
 }
 
 form .progress {
@@ -231,7 +231,7 @@ form .progress {
 .highlight {
   color: $primary;
 }
-
+//begin -- .left-sidebar
 .left-sidebar {
   position: fixed;
   left: 0;
@@ -527,344 +527,64 @@ form .progress {
       }
     }
   }
-}
-
+}//end -- .left-sidebar
 .nano > .nano-pane {
-  width: 8px;
-  background: rgba(0, 0, 0, 0);
+	width: 8px;
+	background: rgba(0, 0, 0, 0);
 }
 .nano > .nano-pane > .nano-slider {
-  background: rgba(0, 0, 0, 0.4);
+	background: rgba(0, 0, 0, 0.4);
 }
-
 .loader > img {
-  height: 15px;
+	height: 12px;
 }
-
+//begin -- .center-content
 .center-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 800;
-  margin-left: 260px;
-  margin-right: 220px;
-
-  div.padded {
-    padding: 20px;
-  }
-
-  & > div {
-    padding: 0;
-    text-align: center;
-
-    //For the scrollable attribute div of different views
-    & > div {
-      @include calc(height, 100%);
-    }
-
-    .cover-pic {
-      position: relative;
-      width: 100%;
-      height: 254px;
-      background: $dark-grey;
-      background-repeat: no-repeat !important;
-      background-position: 50% !important;
-      background-size: 100% !important;
-
-      .profile-user-details {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        overflow: hidden;
-        text-align: left;
-        padding: 20px 35px;
-        @include background-image( linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) 130%) );
-
-        h1 {
-          font-size: 22px;
-          margin: 0;
-          text-shadow: 0 1px 1px #333;
-          font-weight: 700;
-          letter-spacing: 0.04em;
-          color: $white;
-        }
-
-        p {
-          font-size: 14px;
-          color: $white;
-        }
-
-      }
-    }
-
-    .feed-container {
-      position: relative;
-      width: 100%;
-      max-width: 850px;
-      overflow: hidden;
-      margin: 20px auto;
-      border-radius: 3px;
-      background: $white;
-      box-shadow: 0 1px 1px 0 #ccc;
-      @include transition(300ms ease-out all);
-
-      &:hover {
-        box-shadow: 0 1px 8px 0 #aaa;
-      }
-
-      & > div {
-        padding: 19px;
-        border: 1px solid $white;
-        overflow: hidden;
-        border-radius: 3px;
-
-        p.stars {
-          position: absolute;
-          right: 20px;
-          bottom: 15px;
-          color: #ffd700;
-          font-size: $big;
-          cursor: pointer;
-
-          & > i {
-            color: #ffd700;
-          }
-        }
-
-        .user-data {
-          position: relative;
-          width: 30%;
-          overflow: hidden;
-          background: $white;
-
-          & > div {
-            padding-right: 15px;
-
-            .user-image {
-              width: 70px;
-              height: 70px;
-              margin: 0 auto;
-              background: $dark-grey;
-              background-repeat: no-repeat !important;
-              background-position: center !important;
-              background-size: cover !important;
-              border-radius: 50%;
-            }
-
-            p.info {
-              margin-top: 5px;
-              text-align: center;
-              font-weight: normal;
-              font-size: $tiny;
-              color: $dark-grey;
-
-              &:nth-of-type(1) {
-                margin-top: 20px;
-              }
-            }
-          }
-        }
-
-        .post-data {
-          width: 70%;
-          overflow: hidden;
-          background: $white;
-
-          & > div {
-            padding-left: 20px;
-            border-left: 1px solid $grey;
-            position: relative;
-
-            * {
-              text-align: left;
-              font-weight: normal;
-              color: $black;
-            }
-
-            h1 {
-              font-size: $big;
-              margin: 0;
-              text-shadow: 0 1px 1px #ccc;
-              font-weight: 500;
-            }
-
-            h2 {
-              font-size: $small;
-              color: $dark-grey;
-
-              span {
-                color: inherit;
-                font-size: inherit;
-              }
-
-              a {
-                font-size: inherit;
-                color: inherit;
-
-                &:hover {
-                  text-decoration: underline;
-                }
-              }
-            }
-
-            p {
-              margin-top: 20px;
-              font-size: 16px;
-            }
-
-            .images-container {
-              position: relative;
-              overflow: hidden;
-              margin-top: 20px;
-              margin-bottom: 20px;
-
-              .image {
-                width: 100px;
-                height: 100px;
-                margin: 1px;
-                border-radius: 2px;
-                background: $dark-grey;
-                background-repeat: no-repeat !important;
-                background-position: center !important;
-                background-size: cover !important;
-                float: left;
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-}
-
-// .gallery-image-container {
-//   font-size: 0;
-//   display: flex;
-//   flex-flow: row wrap;
-//   overflow: hidden;
-//   text-align: center;
-
-//   * {
-//     flex: auto;
-//     width: 32%;
-//     margin: 0.5%;
-//     border-radius: 3px;
-//   }
-
-//   * img {
-//     width: 100%;
-//     height: auto;
-//   }
-// }
-
-
-//Dyanmic CSS Column Layout
-.gallery-image-container {
-  column-width: 275px;
-  column-gap: 8px;
-  width: inherit;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  * {
-    -webkit-column-break-inside: avoid;
-    display: inline-block;
-    border-radius: 3px;
-    margin-bottom: 2px;
-  }
-
-  * img {
-    width: 100%;
-    height: auto;
-    border-radius: 3px;
-  }
-}
-
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 800;
+	margin-left: 260px;
+	margin-right: 220px;
+	div.padded {
+		padding: 20px;
+	}
+	//For padding in % width containers
+	& > div {
+		padding: 0;
+		text-align: center;
+		//For the scrollable attribute div of different views
+		& > div {
+			@include calc(height, 100%);
+			
+			/*======= Put view styles here =======*/
+			@import "partials/feed";
+			@import "partials/profile";
+			@import "partials/gallery";
+		}
+	}
+}//end -- .center_content
+//begin -- .right-sidebar
 .right-sidebar {
-  position: fixed;
-  right: 0;
-  top: 0;
-  width: 220px;
-  height: 100vh;
-  z-index: 900;
-  background: $white;
-
-  .credits {
-    width: 190px;
-    padding: 15px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    font-size: 9px;
-    background: $white;
-    text-align: center;
-  }
-
-  .ticker-content {
-    position: relative;
-    width: 100%;
-    height: calc(100vh - 43px); // Subtract height of .credits div
-    overflow: auto;
-
-    a.ticker-element {
-      display: block;
-      width: 190px;
-      height: 50px;
-      overflow: hidden;
-      background: $white;
-      padding: 15px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid $grey;
-      color: $black;
-      cursor: pointer;
-      @include transition (all 150ms ease-out);
-
-      &:hover {
-        color: $white;
-        background: $primary;
-      }
-
-      .user-image-container {
-        position: relative;
-        float: left;
-        width: 40px;
-        padding: 0;
-
-        .user-image {
-          width: 40px;
-          height: 40px;
-          margin: 0 auto;
-          background: $dark-grey;
-          background-repeat: no-repeat !important;
-          background-position: center !important;
-          background-size: cover !important;
-          border-radius: 2px;
-        }
-      }
-
-      .ticker-details {
-        position: relative;
-        overflow: hidden;
-        float: left;
-        width: 140px;
-        padding-left: 10px;
-        text-align: left;
-
-        $line-height: 1.4;
-        $lines-to-show: 3;
-
-        p {
-          height: $tiny * $line-height * $lines-to-show;
-          font-size: $tiny;
-          line-height: $line-height;
-          overflow: hidden;
-          text-overflow: ellipsis;
-        }
-      }
-    }
-  }
-}
+	position: fixed;
+	right: 0;
+	top: 0;
+	width: 220px;
+	height: 100vh;
+	z-index: 900;
+	background: $white;
+	//Development Credits to IMG
+	.credits {
+		width: 190px;
+		padding: 15px;
+		position: absolute;
+		bottom: 0;
+		right: 0;
+		font-size: 9px;
+		background: $white;
+		text-align: center;
+	}
+	@import "partials/ticker";
+}//end -- .right-sidebar

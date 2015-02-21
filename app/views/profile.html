@@ -23,13 +23,13 @@
             <a ng-href="/profile/{~{post.post_owner_enrol}~}"><h1 ng-bind="post.post_owner"></h1></a>
             <h2>With 
                 <span ng-repeat="taggedUser in post.taggedUsers">
-                    <span ng-if="$last"> and </span><a ng-href="/profile/{~{taggedUser.enrolmentNo}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
+                    <span ng-if="$last and $index"> and </span><a ng-href="/profile/{~{taggedUser.enrolmentNo}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
                 </span>
             </h2>
             <p>{~{post.post_text}~}</p>
             <div class="images-container">
                 <a href="#" ng-repeat="image in post.image_url" ng-click="enlargeImage(image.url)">
-                    <div class="image" ng-style="{ 'background-image': 'url(' + image + ')' }"></div>
+                    <div ng-style="{'background':'url(' + image.url + ')'}" alt="{~{$index}~}"></div>
                 </a>
             </div>
         </div>
