@@ -34,499 +34,88 @@ body {
   outline: none;
 }
 
-.post-lightbox {
-  position: fixed;
-  width: calc(100vw - 51px);
-  height: 100vh;
-  top: 0;
-  left: 51px;
-  background: rgba(0, 0, 0, 0.9);
-  z-index: 1001;
+@import "partials/compose";
 
-  .post-form {
-    position: relative;
-    width: 800px;
-    margin: 0 auto;
-    max-height: 100%;
-    text-align: center;
-  }
-
-  ::-webkit-input-placeholder {
-    color: $grey;
-  }
-
-  :-moz-placeholder { /* Firefox 18- */
-    color: $grey;
-  }
-
-  ::-moz-placeholder {  /* Firefox 19+ */
-    color: $grey;
-  }
-
-  :-ms-input-placeholder {
-    color: $grey;
-  }
-
-  i.inline {
-    color: $dark-grey;
-    margin-right: -55px;
-  }
-
-  .small-input {
-    position: relative;
-    width: 32%;
-    background: rgba(255, 255, 255, 0);
-    color: $white;
-    line-height: 34px;
-    padding: 7px 14px 7px 28px;
-    margin: 35px;
-    border-bottom: 3px solid $grey;
-    font-size: $med;
-    @include transition(all 300ms ease-out);
-
-    &:focus {
-      border-bottom: 3px solid $primary;
-    }
-  }
-
-  .big-input {
-    @extend .small-input;
-    width: 80%;
-    height: 34px;
-    padding: 7px 14px;
-
-    &:focus {
-      height: 120px;
-    }
-  }
-
-  .file-upload-bttn {
-    position: relative;
-    float: right;
-    width: auto;
-    overflow: hidden;
-    padding: 14px 20px;
-    border-radius: 3px;
-    background: $primary;
-    color: $white;
-  }
-
-  .close-lightbox {
-    color: $white;
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: $massive;
-    cursor: pointer;
-  }
-}
-
-.progress {
-    display: inline-block;
-	width: 100px;
-	border: 3px groove #CCC;
-}
-
-.progress div {
-	font-size: smaller;
-	background: orange;
-	width: 0;
-}
-
-.thumb {
-	float: left;
-	width: 18px;
-	height: 18px;
-	padding-right: 10px;
-}
-
-form .thumb {
-    width: 24px;
-	height: 24px;
-	float: none;
-	position: relative;
-	top: 7px;
-}
-
-form .progress {
-    line-height: 15px;
-}
-
-#search-people {
-  overflow: hidden;
-}
-
-.angucomplete-holder.angucomplete-dropdown-visible {
-  height: calc(100vh);
-}
-
-.angucomplete-dropdown {
-  width: 100%;
-  overflow-y: auto;
-  max-height: calc(100vh - 71px); //Subtract height of search input
-  margin-top: 0;
-  border: 0;
-  padding: 0;
-  color: #777;
-  background: #fff;
-  .angucomplete-searching {
-    color: #777;
-    background: #fff;
-    padding: 5px 10px;
-  }
-  .angucomplete-row {
-    display: block;
-    width: 180px;
-    height: 40px;
-    overflow: hidden;
-    background: $white;
-    margin-bottom: 1px;
-    padding: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: $black;
-    cursor: pointer;
-    @include transition (all 150ms ease-out);
-
-    &:hover, &:focus {
-      color: $white;
-      background: $primary;
-    }
-
-    .angucomplete-image-holder {
-      position: relative;
-      float: left;
-      width: 40px;
-
-      .angucomplete-image {
-        width: 40px;
-        height: 40px;
-        margin: 0 auto;
-        border-radius: 50%;
-        overflow: hidden;
-      }
-    }
-
-    .angucomplete-title {
-      position: relative;
-      overflow: hidden;
-      float: left;
-      width: 130px;
-      padding-left: 10px;
-      padding-top: 3px;
-      padding-bottom: 3px;
-      text-align: left;
-      color: $black;
-
-      $line-height: 1.4;
-      $lines-to-show: 1;
-
-      height: $tiny * $line-height * $lines-to-show;
-      font-size: $tiny;
-      line-height: $line-height;
-      text-overflow: ellipsis;
-    }
-  }
-}
-.highlight {
-  color: $primary;
-}
 //begin -- .left-sidebar
 .left-sidebar {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 260px;
-  height: 100vh;
-  overflow: hidden;
-  z-index: 1000;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 260px;
+	height: 100vh;
+	overflow: hidden;
+	z-index: 1000;
+	//For padding in % width containers
+	div {
+		padding: 0;
+		//begin -- .nav
+		.nav {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 50px;
+			height: 100vh;
+			background: $white;
+			border-right: 1px solid $grey;
+			z-index: 1000;
+			a.nav-link {
+				display: block;
+				div.icon {
+					width: 100%;
+					overflow: hidden;
+					padding-top: 13px;
+					padding-bottom: 13px;
+					text-align: center;
+					border-right: 0;
+					font-size: $big;
+					@include transition(all 100ms ease-out);
+					&:hover, &:focus {
+						color: $primary;
+					}
+					&.active {
+						color: $white;
+						background: $primary;
+					}
+				}
+			}
+			//App Title
+			.yaadein-title {
+				display: block;
+				position: absolute;
+				right: 50%;
+				margin-right: -22px;
+				bottom: 110px;
+				font-family: $script-font;
+				@include transform(rotate(-90deg));
+				@include transform-origin(right bottom 0);
+				color: $primary;
+				background: $white;
+				font-size: $massive;
+				text-transform: lowercase;
+				z-index: 1001;
+			}
+		}//end -- .nav
+		//More options - Level 2 Navigation
+		.options {
+			position: relative;
+			width: 210px;
+			height: 100vh;
+			margin-right: 2px;
+			margin-left: 51px;
+			background: rgba(250, 250, 250, 0.8);
+			z-index: 999;
+			overflow: hidden;
+			.sidebar-container {
+				width: 100%;
+				height: 100vh;
+				overflow: auto;
 
-  div {
-    padding: 0;
-
-    .nav {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 50px;
-      height: 100vh;
-      background: $white;
-      border-right: 1px solid $grey;
-      z-index: 1000;
-
-      a.nav-link {
-        display: block;
-
-        div.icon {
-          width: 100%;
-          overflow: hidden;
-          padding-top: 13px;
-          padding-bottom: 13px;
-          text-align: center;
-          border-right: 0;
-          font-size: $big;
-          @include transition(all 100ms ease-out);
-
-          &:hover, &:focus {
-            color: $primary;
-          }
-
-          &.active {
-            color: $white;
-            background: $primary;
-          }
-        }
-      }
-
-      .yaadein-title {
-        display: block;
-        position: absolute;
-        right: 50%;
-        margin-right: -22px;
-        bottom: 110px;
-        font-family: $script-font;
-        @include transform(rotate(-90deg));
-        @include transform-origin(right bottom 0);
-        color: $primary;
-        background: $white;
-        font-size: $massive;
-        text-transform: lowercase;
-        z-index: 1001;
-      }
-    }
-
-    .options {
-      position: relative;
-      width: 210px;
-      height: 100vh;
-      margin-right: 2px;
-      margin-left: 51px;
-      background: rgba(250, 250, 250, 0.8);
-      z-index: 999;
-      overflow: hidden;
-
-      .sidebar-container {
-        width: 100%;
-        height: 100vh;
-        overflow: auto;
-
-        //Default Options
-        .options-profile-pic {
-          position: relative;
-          width: 100%;
-          overflow: hidden;
-          display: block;
-
-          div {
-            padding: 20px;
-            text-align: center;
-            overflow: hidden;
-
-            .img {
-              width: 70px;
-              height: 70px;
-              margin: 0 auto;
-              background: $dark-grey;
-              background-repeat: no-repeat !important;
-              background-position: center !important;
-              background-size: cover !important;
-              border-radius: 100%;
-              border: 3px solid $black;
-            }
-          }
-        }
-
-        a.option-link {
-          display: block;
-          width: 186px;
-          padding-top: 15px;
-          padding-bottom: 15px;
-          padding-left: 14px;
-          padding-right: 10px;
-          @include transition(all 250ms ease-out);
-          font-size: $small;
-          text-overflow: ellipsis;
-          text-transform: capitalize;
-
-          &:hover {
-            border-color: $primary;
-            border-right-width: 4px;
-            border-right-style: solid;
-            background: $white;
-            padding-left: 20px;
-            width: 176px;
-          }
-
-          div.icon {
-            font-size: $med;
-            line-height: 1.5;
-            margin-right: 10px;
-          }
-        }
-
-        //Search
-        .search-container {
-          position: relative;
-          width: 100%;
-          overflow: hidden;
-          text-align: center;
-
-          .search-bar {
-            width: 71%;
-            line-height: 19px;
-            height: 19px;
-            font-weight: 300;
-            border: 1px solid $grey;
-            border-radius: 3px;
-            padding-left: 6%;
-            padding-right: 11%;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            color: $black;
-            @include transition(all 300ms ease-out);
-
-            &:focus {
-              border-radius: 15px;
-              border-color: $primary;
-            }
-          }
-
-          .icon.icon-search-1 {
-            position: absolute;
-            right: 18px;
-            top: 28px;
-            color: $dark-grey;
-          }
-
-          a.search-result {
-            display: block;
-            width: 180px;
-            height: 40px;
-            overflow: hidden;
-            background: $white;
-            margin-bottom: 1px;
-            padding: 15px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-            color: $black;
-            cursor: pointer;
-            @include transition (all 150ms ease-out);
-
-            &:hover {
-              color: $white;
-              background: $primary;
-            }
-
-            .user-image-container {
-              position: relative;
-              float: left;
-              width: 40px;
-
-              .user-image {
-                width: 40px;
-                height: 40px;
-                margin: 0 auto;
-                background: $dark-grey;
-                background-repeat: no-repeat !important;
-                background-position: center !important;
-                background-size: cover !important;
-                border-radius: 50%;
-              }
-            }
-
-            .result-details {
-              position: relative;
-              overflow: hidden;
-              float: left;
-              width: 130px;
-              padding-left: 10px;
-              padding-top: 3px;
-              padding-bottom: 3px;
-              text-align: left;
-
-              $line-height: 1.4;
-              $lines-to-show: 2;
-
-              p {
-                height: $tiny * $line-height * $lines-to-show;
-                font-size: $tiny;
-                line-height: $line-height;
-                overflow: hidden;
-                text-overflow: ellipsis;
-              }
-            }
-
-          }
-        }
-
-        .notifs-header {
-          width: 160px;
-          padding: 25px;
-          text-align: center;
-          color: $dark-grey;
-        }
-
-        a.notification {
-          display: block;
-          width: 180px;
-          height: 50px;
-          overflow: hidden;
-          background: $white;
-          margin-bottom: 1px;
-          padding: 15px;
-          padding-top: 10px;
-          padding-bottom: 10px;
-          color: $black;
-          cursor: pointer;
-          @include transition (all 150ms ease-out);
-
-          &:hover {
-            color: $white;
-            background: $primary;
-          }
-
-          .user-image-container {
-            position: relative;
-            float: left;
-            width: 40px;
-
-            .user-image {
-              width: 40px;
-              height: 40px;
-              margin: 0 auto;
-              background: $dark-grey;
-              background-repeat: no-repeat !important;
-              background-position: center !important;
-              background-size: cover !important;
-              border-radius: 100%;
-            }
-          }
-
-          .notif-details {
-            position: relative;
-            overflow: hidden;
-            float: left;
-            width: 130px;
-            padding-left: 10px;
-            text-align: left;
-
-            $line-height: 1.4;
-            $lines-to-show: 3;
-
-            p {
-              height: $tiny * $line-height * $lines-to-show;
-              font-size: $tiny;
-              line-height: $line-height;
-              overflow: hidden;
-              text-overflow: ellipsis;
-            }
-          }
-        }
-      }
-    }
-  }
+				@import "partials/default-options";
+				@import "partials/search";
+				@import "partials/notifications";
+			}
+		}
+	}
 }//end -- .left-sidebar
 .nano > .nano-pane {
 	width: 8px;

@@ -1,0 +1,57 @@
+/*======= Notification Styles =======*/
+.notifs-header {
+	width: 160px;
+	padding: 25px;
+	text-align: center;
+	color: $dark-grey;
+}
+a.notification {
+	display: block;
+	width: 180px;
+	height: 50px;
+	overflow: hidden;
+	background: $white;
+	margin-bottom: 1px;
+	padding: 15px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	color: $black;
+	cursor: pointer;
+	@include transition (all 150ms ease-out);
+	&:hover {
+		color: $white;
+		background: $primary;
+	}
+	.user-image-container {
+		position: relative;
+		float: left;
+		width: 40px;
+		.user-image {
+			width: 40px;
+			height: 40px;
+			margin: 0 auto;
+			background: $dark-grey;
+			background-repeat: no-repeat !important;
+			background-position: center !important;
+			background-size: cover !important;
+			border-radius: 100%;
+		}
+	}
+	.notif-details {
+		position: relative;
+		overflow: hidden;
+		float: left;
+		width: 130px;
+		padding-left: 10px;
+		text-align: left;
+		p {
+			$line-height: 1.4;
+			$lines-to-show: 3;
+			height: $tiny * $line-height * $lines-to-show;
+			font-size: $tiny;
+			line-height: $line-height;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+	}//end -- .notif-details
+}//end -- a.notification

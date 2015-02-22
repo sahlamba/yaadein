@@ -43,11 +43,11 @@
                 <i class="inline fa fa-map-marker"></i>
                 <input class="small-input" type="text" name="location" placeholder="Spot">
                 <textarea class="big-input" placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
-                <div class="file-upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-multiple="true"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Add Photos</div>
-                <ul>
+                <div class="upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-multiple="true"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Add Photos</div>
+                <button class="upload-bttn" ng-click="upload(files)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Post</button>
+				<ul>
                   <li ng-repeat="f in files" style="font:smaller; color: white;">{~{f.name}~}</li>
                 </ul>
-                <button ng-click="upload(files)">upload</button>
                 <img ng-show="files[0].dataUrl != null" ng-src="{~{files[0].dataUrl}~}" class="thumb">
                 <span class="progress" ng-show="files[0].progress >= 0">
                   <div class="ng-binding" style="width:{~{files[0].progress}~}%" ng-bind="files[0].progress + '%'"></div>
