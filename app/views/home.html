@@ -26,8 +26,11 @@
             </h2>
             <p>{~{post.message}~}</p>
             <div class="images-container">
-                <a href="#" ng-repeat="image in post.images" ng-click="enlargeImage(image.url)">
-					<div ng-style="{'background':'url(' + image.url + ')'}" alt="{~{$index}~}"></div>
+                <a href="#" ng-if="post.images.length > 1" ng-repeat="image in post.images" ng-click="enlargeImage(image.url)">
+					<div ng-style="{'background':'url(' + image.url + ')'}"></div>
+                </a>
+				<a href="#" class="single-image" ng-if="post.images.length === 1" ng-repeat="image in post.images" ng-click="enlargeImage(image.url)">
+					<img ng-src="{~{image.url}~}" alt="{~{$index}~}">
                 </a>
             </div>
         </div>
