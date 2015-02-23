@@ -111,9 +111,15 @@
 						color: $primary;
 						border-bottom: 0;
 						&:hover {
-							border-bottom: 1px dashed $primary;
+							border-bottom: 1px dotted $primary;
+						}
+						&.hash {
+							color: $hashtag;
+							&:hover {
+								border-bottom: 1px dotted $hashtag;
+							}
+						}
 					}
-          }
 				}
 				//FlexBox Images Layout
 				.images-container {

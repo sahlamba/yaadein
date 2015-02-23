@@ -233,8 +233,26 @@ app.controller('GalleryController', ['$routeParams', '$scope', 'dataUsers',
  		}
 	});
 
-	
+}]);
 
+app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'dataPosts', 
+	function ($routeParams, $scope, $http, dataPosts) {
+	
+	$scope.posts = [];
+	var dataPromise = dataPosts.getPosts();
+	dataPromise.then(function (d) {
+		$scope.posts = d;
+	});
+
+	$scope.addToFeed = function () {
+		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
+			.success(function (ds) {
+				for(var i = 0; i < ds.length; i += 1) {
+					$scope.posts.push(ds[i]);
+				}
+		});
+	};
+	
 }]);
 
 app.controller('SettingsController', ['$scope', function ($scope) {

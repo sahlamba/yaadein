@@ -27,6 +27,11 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
 		controller: 'GalleryController',
 		resolve: resolve
 	})
+	.when('/hashtag/:hashtag', {
+		templateUrl: '/views/hashtag.html',
+		controller: 'HashtagController',
+		resolve: resolve
+	})
 	.when('/settings', {
 		templateUrl: '/views/settings.html',
 		controller: 'SettingsController',
