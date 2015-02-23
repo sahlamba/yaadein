@@ -106,6 +106,13 @@
 				p {
 					margin-top: 20px;
 					font-size: 16px;
+          a {
+            color: $primary;
+            border-bottom: 0;
+            &:hover {
+              border-bottom: 1px dashed $primary;
+            }
+          }
 				}
 				//FlexBox Images Layout
 				.images-container {

@@ -19,7 +19,8 @@
     "angular-filter": "~0.5.2",
     "ng-nanoscroller": "*",
     "ngActivityIndicator": "~0.1.10",
-    "ng-file-upload": "~3.0.7"
+    "ng-file-upload": "~3.0.7",
+    "angular-emoji-filter": "~0.0.2"
   },
   "resolutions": {
     "angular": "~1.3.8",

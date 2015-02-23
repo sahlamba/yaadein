@@ -24,7 +24,7 @@
                     <span ng-if="$last && $index"> and </span><a ng-href="/profile/{~{taggedUser.enrolmentNo}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
                 </span>
             </h2>
-            <p>{~{post.message}~}</p>
+            <p ng-bind-html="post.message | linky:'_blank' | emoji"></p>
             <div class="images-container">
                 <a href="#" ng-if="post.images.length > 1" ng-repeat="image in post.images" ng-click="enlargeImage(image.url)">
 					<div ng-style="{'background':'url(' + image.url + ')'}"></div>

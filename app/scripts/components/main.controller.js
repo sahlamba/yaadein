@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var originURL = 'http://172.25.55.156:60000';
+var originURL = 'http://172.25.55.156:60003';
 
 app.controller('YaadeinController', ['$scope', '$http', '$upload', 'dataTicker', function ($scope, $http, $upload, dataTicker) {
 
@@ -141,7 +141,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$upload', 'dataTicker',
       //for(var i = 0; i < files.length; i += 1) {
         //var file = files[i];
         $upload.upload({
-          url: originURL + '/yaadein/post/' + $scope.newPost.post_owner_enrol + '/',
+          url: originURL + '/yaadein/post/13117060/',
           //url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
           headers: {'Content-Type':'multipart/form-data'}, 
           method: 'POST',
