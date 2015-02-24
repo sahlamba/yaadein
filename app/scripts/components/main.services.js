@@ -50,3 +50,18 @@ app.service('dataUsers', ['$http', '$q', function ($http, $q) {
 	};
 
 }]);
+
+app.service('HashtagService', ['$http', '$q', function ($http, $q) {
+
+    this.getHashtaggedPosts = function (tag) {
+        var deferred = $q.defer();
+        var url = baseURL + 'tag/' + tag + '/';
+        console.log(url);
+        $http.get(url)
+          .success(function (x) {
+            deferred.resolve(x);
+          });
+        return deferred.promise;
+    };
+
+}]);

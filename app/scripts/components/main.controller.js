@@ -3,7 +3,7 @@
 var app = angular.module('yaadeinApp');
 var originURL = 'http://172.25.55.156:60003';
 
-app.controller('YaadeinController', ['$scope', '$http', '$upload', 'dataTicker', function ($scope, $http, $upload, dataTicker) {
+app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTicker', function ($scope, $http, $q, $upload, dataTicker) {
 
 	$scope.appname = 'Yaadein';
 
@@ -159,6 +159,32 @@ app.controller('YaadeinController', ['$scope', '$http', '$upload', 'dataTicker',
      //}
     }
   };
+  
+  $scope.predictEmoji = function(term) {
+    var emojiList = [];
+    return $http.get('data/emojis.json').
+      then(function (response) {
+          angular.forEach(response.data, function(item) {
+            if (item.name.toUpperCase().indexOf(term.toUpperCase()) >= 0) {
+              emojiList.push(item);
+              console.log(emojiList);
+            }
+          });
+      $scope.emojis = emojiList;
+      return $q.when(emojiList);
+   });
+  };
+
+  $scope.getEmojiTextRaw = function(item) {
+    return ':' + item.name + ':';
+  };
+
+  $scope.macros = {
+                'brb': 'Be right back',
+                            'omw': 'On my way',
+                                        '(smile)' : '<img src="http://a248.e.akamai.net/assets.github.com/images/icons/emoji/smile.png"' +
+                                                          ' height="20" width="20">'
+                                                                  };
 
 }]);
 
@@ -235,23 +261,16 @@ app.controller('GalleryController', ['$routeParams', '$scope', 'dataUsers',
 
 }]);
 
-app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'dataPosts', 
-	function ($routeParams, $scope, $http, dataPosts) {
-	
-	$scope.posts = [];
-	var dataPromise = dataPosts.getPosts();
+app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'HashtagService', 
+	function ($routeParams, $scope, $http, HashtagService) {
+
+  $scope.hash = $routeParams.hashtag;  
+	$scope.posts = {};
+	var dataPromise = HashtagService.getHashtaggedPosts($routeParams.hashtag);
 	dataPromise.then(function (d) {
 		$scope.posts = d;
-	});
-
-	$scope.addToFeed = function () {
-		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
-			.success(function (ds) {
-				for(var i = 0; i < ds.length; i += 1) {
-					$scope.posts.push(ds[i]);
-				}
-		});
-	};
+    console.log($scope.posts);
+  });
 	
 }]);
 

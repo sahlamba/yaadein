@@ -42,7 +42,16 @@
                 <input class="small-input" type="text" name="usertags" placeholder="Tag friends here" show-focus="true">
                 <i class="inline fa fa-map-marker"></i>
                 <input class="small-input" type="text" name="location" placeholder="Spot">
-                <textarea class="big-input" placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
+                <textarea mentio
+                  mentio-macros="macros"
+                  mentio-trigger-char="':'"
+                  mentio-items="emojis"
+                  mentio-template-url="views/emoji-predictions.tpl"
+                  mentio-search="predictEmoji(term)"
+                  mentio-select="getEmojiTextRaw(item)"
+                  mentio-typed-term="typedTerm"
+
+                  class="big-input" placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
                 <div class="upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-multiple="true"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Add Photos</div>
                 <button class="upload-bttn" ng-click="upload(files)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Post</button>
 				<ul>
