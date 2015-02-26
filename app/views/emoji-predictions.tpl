@@ -1,7 +1,6 @@
-<ul class="list-group user-search">
+<ul class="list-group emoji-search scrollable-menu">
   <li mentio-menu-item="emoji" ng-repeat="emoji in items" class="list-group-item">
-    <img ng-src="{{emoji.imageUrl}}" class="user-photo">
-    <span class="text-primary" ng-bind-html="emoji.name | mentioHighlight:typedTerm:'menu-highlighted' | unsafe"></span>
-    <em class="text-muted" ng-bind="emoji.bio"></em>
+    <div class="emoji-photo"><img ng-src="{{emoji.imageUrl}}"></div>
+    <div class="text-primary" ng-bind-html="emoji.name | mentioHighlight:typedTerm:'menu-highlighted' | unsafe"></div>
   </li>
 </ul>

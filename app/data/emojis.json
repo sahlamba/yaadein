@@ -1,7 +1,12 @@
 [
-  {
-    "name":"smiley",
-    "bio":"Test bio only, remove afterwards.",
-    "imageUrl":"http://www.emoji-cheat-sheet.com/graphics/emojis/smiley.png"
-  }
+	{
+		"name":"smiley",
+		"bio":"Test bio only, remove afterwards.",
+		"imageUrl":"http://www.emoji-cheat-sheet.com/graphics/emojis/smiley.png"
+	},
+	{
+		"name":"grin",
+		"bio":"Test bio only, remove afterwards.",
+		"imageUrl":"http://www.emoji-cheat-sheet.com/graphics/emojis/grin.png"
+	}
 ]
