@@ -2,16 +2,28 @@
 //begin -- .emoji-search
 .emoji-search {
 	box-shadow: 0 5px 15px rgba(0,0,0,.5);
-	border-radius: 4px;
 	box-shadow: 0 3px 9px rgba(0,0,0,.5);
+	border-radius: 4px;
 	outline: 0;
 	background: $white;
+	list-style-type: none;
 	&:hover {
 		cursor: pointer;
 	}
 	& .list-group-item {
+		position: relative;
+		display: block;
 		padding: 5px;
 		height: 24px;
+		&.clearfix {
+			&:before {
+				content: " ";
+				display: table;
+			}
+			&:after {
+				clear: both;
+			}
+		}
 		& .text-primary {
 			color: $black;
 			min-width: 60px;
@@ -40,6 +52,7 @@
 }//end -- .emoji-search
 
 .scrollable-menu {
+	
 	height: auto;
 	max-height: 300px;
 	overflow-y: auto;
