@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var baseURL = 'http://172.25.55.156:60002/yaadein/';
+var baseURL = 'http://172.25.55.156:60000/yaadein/';
 
 app.service('dataTicker', ['$http', '$q', function ($http, $q) {
 	var deferred = $q.defer();

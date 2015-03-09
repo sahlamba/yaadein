@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var originURL = 'http://172.25.55.156:60002';
+var originURL = 'http://172.25.55.156:60000';
 
 app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTicker', function ($scope, $http, $q, $upload, dataTicker) {
 
@@ -263,10 +263,16 @@ app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'Hashtag
 	function ($routeParams, $scope, $http, HashtagService) {
 
   $scope.hash = $routeParams.hashtag;  
-	$scope.posts = {};
+	$scope.posts = [];
 	var dataPromise = HashtagService.getHashtaggedPosts($routeParams.hashtag);
 	dataPromise.then(function (d) {
-		$scope.posts = d;
+    for(var i = 0; i < d.posts_data.length; i += 1) {
+      d.posts_data[i].post_owner_pic = originURL + d.posts_data[i].post_owner_pic;
+      for(var j = 0; j < d.posts_data[i].image_url.length; j += 1) {
+        d.posts_data[i].image_url[j] = originURL + d.posts_data[i].image_url[j];
+      }
+    }
+    $scope.posts = d.posts_data;
     console.log($scope.posts);
   });
 	
