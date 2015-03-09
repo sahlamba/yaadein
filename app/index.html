@@ -140,11 +140,9 @@
         <!-- endbuild -->
 
     <script type="text/javascript">
-        $('#centered').css('width', window.innerWidth - $('.right-sidebar').innerWidth() - $('.left-sidebar').innerWidth());
-        $('#centered').css('height', window.innerHeight);
+        $('#centered').css('width', $(window).innerWidth() - $('.right-sidebar').innerWidth() - $('.left-sidebar').innerWidth());
+        $('#centered').css('height', $(window).innerHeight());
         $('#year').html(new Date().getFullYear());
     </script>
-    <script src="scripts/vendor/skrollr.min.js"></script>
-    <script src="scripts/vendor/skrollr.directive.js"></script>
 </body>
 </html>

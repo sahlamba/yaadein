@@ -36,7 +36,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
 			'id': 'notifications',
 			'class': 'fa fa-bell',
 			'url': '#',
-			'hint': 'notifications'
+			'hint': 'Notifications'
 		},
 		{
 			'id': 'signOut',
@@ -52,6 +52,13 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
 	$scope.setCurrentNavItem = function (navItem) {
 		$scope.prevNavItem = $scope.currentNavItem;		
 		$scope.currentNavItem = navItem;
+		if ($scope.currentNavItem.id === 'search' || $scope.currentNavItem.id === 'post') {
+			$('#centered').addClass('blur-back');
+			$('.right-sidebar').addClass('blur-back');
+		} else {
+			$('#centered').removeClass('blur-back');
+			$('.right-sidebar').removeClass('blur-back');
+		}
 	};
 
 	$scope.isCurrentNavItem = function (navItem) {
@@ -63,6 +70,8 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
 	};
 
 	$scope.closePost = function () {
+		$('#centered').removeClass('blur-back');
+		$('.right-sidebar').removeClass('blur-back');
 		$('#postBox').fadeOut(300);
 		$scope.currentNavItem = $scope.prevNavItem;
 	};
@@ -171,16 +180,14 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
   };
 
   $scope.macros = {
-                'brb': 'Be right back',
-                            'omw': 'On my way',
-                                        '(smile)' : '<img src="http://a248.e.akamai.net/assets.github.com/images/icons/emoji/smile.png"' +
-                                                          ' height="20" width="20">'
-                                                                  };
-
+	'brb': 'Be right back',
+	'omw': 'On my way',
+	'(smile)' : '<img src="http://a248.e.akamai.net/assets.github.com/images/icons/emoji/smile.png"' +
+	' height="20" width="20">'
+  };
 }]);
 
 app.controller('HomeController', ['$scope', '$http', 'dataPosts', function ($scope, $http, dataPosts) {
-
 
 	$scope.posts = [];
 	var dataPromise = dataPosts.getPosts();
