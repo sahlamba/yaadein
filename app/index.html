@@ -34,7 +34,11 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div id="postBox" class="post-lightbox fade" ng-if="getCurrentNavItem() === 'post'">
+    <div id="searchBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'search'">
+        <div class="close-lightbox icon icon-cancel" ng-click="closeSearch()"></div>
+    </div>
+
+    <div id="postBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'post'">
         <div class="close-lightbox icon icon-cancel" ng-click="closePost()"></div>
         <div>
             <form class="post-form">
@@ -70,86 +74,10 @@
     <div class="left-sidebar">
     <div>
         <div class="nav">
-            <a href="" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
+            <a ng-href="{~{navItem.url}~}" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
               <div id="{~{navItem.id}~}" class="{~{navItem.class}~}" ng-class="{ 'active': isCurrentNavItem(navItem) }"></div>
             </a>
             <a href="/"><div class="yaadein-title" ng-bind="appname"></div></a>
-        </div>
-
-        <div class="options">
-        <div class="sidebar-container" ng-switch on="getCurrentNavItem()" scrollable>
-
-            <div ng-switch-when="default" class="slide ng-cloak" ng-cloak>
-                <div class="options-profile-pic">
-                <div>
-                    <div class="img" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                </div>
-                </div>
-                <a ng-repeat="option in moreOptions | filter:{navItem:currentNavItem.id}" class="option-link" ng-href="{~{option.url}~}">
-                    <div class="{~{option.iconClass}~} pull-left"></div>
-                    <div ng-bind="option.name"></div>
-                </a>
-            </div>
-
-            <div ng-switch-when="search" class="slide ng-cloak search-container" ng-cloak>
-                <!-- <angucomplete-alt id="search-people"
-                    placeholder="Search people..."
-                    pause="100"
-                    selected-object="selectedObject"
-                    remote-url="http://beta.json-generator.com/api/json/get/H_C2KqA?searchStr="
-                    remote-url-data-field="results"
-                    search-fields="name"
-                    title-field="name"
-                    image-field="profilePic"
-                    input-class="search-bar"
-                    minlength="1"
-                    match-class="highlight"
-                    field-required="true"
-                    template-url="/views/autocomplete.html"/> -->
-                <angucomplete-alt id="search-people"
-                    placeholder="Search people..."
-                    pause="100"
-                    selected-object="selectedObject"
-                    local-data="usersList"
-                    search-fields="name"
-                    title-field="name"
-                    image-field="profilePic"
-                    input-class="search-bar"
-                    minlength="1"
-                    match-class="highlight"
-                    field-required="true"
-                    template-url="/views/autocomplete.html"/>
-                <!-- <a ng-href="" class="search-result">
-                    <div class="user-image-container">
-                    <div>
-                        <div class="user-image" ng-style="{ 'background-image': 'url(' + user.profilePic + ')' }"></div>
-                    </div>
-                    </div>
-                    <div class="result-details">
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-                    </div>
-                </a> -->
-            </div>
-
-            <div ng-switch-when="post" class="ng-cloak" ng-cloak></div>
-
-            <div ng-switch-when="notifications" class="slide ng-cloak" ng-cloak>
-                <div class="notifs-header">
-                    <div>Notification Center</div>
-                </div>
-                <a ng-href="/profile/{~{tick.enrolmentNo}~}" class="notification" ng-repeat="tick in ticks">
-                    <div class="user-image-container">
-                    <div>
-                        <div class="user-image" ng-style="{ 'background-image': 'url(' + tick.profilePic + ')' }"></div>
-                    </div>
-                    </div>
-                    <div class="notif-details">
-                    <p>{~{tick.name}~} posted on your wall<br><span am-time-ago="tick.time" style="color:#ccc;"></span></p>
-                    </div>
-                </a>
-            </div>
-
-        </div>
         </div>
     </div>
     </div>
@@ -216,5 +144,7 @@
         $('#centered').css('height', window.innerHeight);
         $('#year').html(new Date().getFullYear());
     </script>
+    <script src="scripts/vendor/skrollr.min.js"></script>
+    <script src="scripts/vendor/skrollr.directive.js"></script>
 </body>
 </html>

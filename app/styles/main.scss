@@ -39,6 +39,7 @@ mentio-menu {
 }
 
 @import "partials/compose";
+@import "partials/search";
 @import "partials/emoji-predictions";
 
 //begin -- .left-sidebar
@@ -116,7 +117,6 @@ mentio-menu {
 				overflow: auto;
 
 				@import "partials/default-options";
-				@import "partials/search";
 				@import "partials/notifications";
 			}
 		}
@@ -167,6 +167,7 @@ mentio-menu {
 	}
 }//end -- .center_content
 //begin -- .right-sidebar
+
 .right-sidebar {
 	position: fixed;
 	right: 0;
