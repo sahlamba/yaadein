@@ -1,12 +1,12 @@
 /*======= Compose Post Styles =======*/
-//begin -- .post-lightbox
-.post-lightbox {
+//begin -- .lightbox
+.lightbox {
 	position: fixed;
 	width: calc(100vw - 51px);
 	height: 100vh;
 	top: 0;
 	left: 51px;
-	background: rgba(0, 0, 0, 0.9);
+	background: rgba(255, 255, 255, 0.4);
 	z-index: 1001;
 	.post-form {
 		position: relative;
@@ -79,7 +79,7 @@
 	font-size: $massive;
 	cursor: pointer;
 	}
-}//end -- .post-lightbox
+}//end -- .lightbox
 
 .progress {
 	display: inline-block;

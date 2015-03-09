@@ -39,14 +39,19 @@ mentio-menu {
 }
 
 @import "partials/compose";
+@import "partials/search";
 @import "partials/emoji-predictions";
+
+.blur-back {
+	filter: blur(12px);
+}
 
 //begin -- .left-sidebar
 .left-sidebar {
 	position: fixed;
 	left: 0;
 	top: 0;
-	width: 260px;
+	width: 51px;
 	height: 100vh;
 	overflow: hidden;
 	z-index: 1000;
@@ -65,7 +70,7 @@ mentio-menu {
 			z-index: 1000;
 			a.nav-link {
 				display: block;
-				div.icon {
+				div.icon, div.fa {
 					width: 100%;
 					overflow: hidden;
 					padding-top: 13px;
@@ -116,7 +121,6 @@ mentio-menu {
 				overflow: auto;
 
 				@import "partials/default-options";
-				@import "partials/search";
 				@import "partials/notifications";
 			}
 		}
@@ -140,8 +144,9 @@ mentio-menu {
 	right: 0;
 	bottom: 0;
 	z-index: 800;
-	margin-left: 260px;
+	margin-left: 51px;
 	margin-right: 220px;
+	@include transition(all 150ms ease-out);
 	div.padded {
 		padding: 20px;
 		h2.page-title {
@@ -167,6 +172,7 @@ mentio-menu {
 	}
 }//end -- .center_content
 //begin -- .right-sidebar
+
 .right-sidebar {
 	position: fixed;
 	right: 0;
@@ -175,6 +181,7 @@ mentio-menu {
 	height: 100vh;
 	z-index: 900;
 	background: $white;
+	@include transition(all 150ms ease-out);
 	//Development Credits to IMG
 	.credits {
 		width: 190px;
