@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var originURL = 'http://172.25.55.156:60003';
+var originURL = 'http://172.25.55.156:60002';
 
 app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTicker', function ($scope, $http, $q, $upload, dataTicker) {
 
