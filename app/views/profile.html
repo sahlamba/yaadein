@@ -3,10 +3,15 @@
     <div class="profile-user-details">
         <h1 ng-bind="currentUser.name"></h1>
         <p><i class="fa fa-graduation-cap"></i> {~{currentUser.label}~}</p>
+<div class="upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="coverpic" ng-accept="'image/*'" ng-multiple="false"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Select Cover Pic</div>
+                <button class="upload-bttn" ng-click="uploadCover(coverpic)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Upload</button>
+				<ul>
+                  <li ng-repeat="f in files" style="font:smaller; color: white;">{~{f.name}~}</li>
+                </ul>
     </div>
 </div>
 <div class="padded">
-    <div class="feed-container" ng-repeat="post in currentUser.posts_data | orderBy: 'date'">
+    <div class="feed-container" ng-repeat="post in currentUser.posts_data">
     <div>
         <div class="user-data pull-left">
         <div>

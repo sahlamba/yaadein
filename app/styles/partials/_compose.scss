@@ -16,20 +16,20 @@
 		text-align: center;
 	}
 	::-webkit-input-placeholder {
-		color: $grey;
+		color: $dark-grey;
 	}
 	:-moz-placeholder { /* Firefox 18- */
-		color: $grey;
+		color: $dark-grey;
 	}
 	::-moz-placeholder {  /* Firefox 19+ */
-		color: $grey;
+		color: $dark-grey;
 	}
 	:-ms-input-placeholder {
-		color: $grey;
+		color: $dark-grey;
 	}
 	//Icons beside input
 	i.inline {
-		color: $dark-grey;
+		color: $black;
 		margin-right: -55px;
 	}
 	//Single line input
@@ -37,11 +37,11 @@
 		position: relative;
 		width: 32%;
 		background: rgba(255, 255, 255, 0);
-		color: $white;
+		color: $black;
 		line-height: 34px;
 		padding: 7px 14px 7px 28px;
 		margin: 35px;
-		border-bottom: 3px solid $grey;
+		border-bottom: 3px solid $med-grey;
 		font-size: $med;
 		@include transition(all 300ms ease-out);
 		&:focus {
@@ -69,6 +69,10 @@
 		background: $primary;
 		color: $white;
 		cursor: pointer;
+    @include transition(all 300ms ease-out);
+		&:focus {
+      background: $black;
+		}
 	}
 	//Close lightbox icon
 	.close-lightbox {

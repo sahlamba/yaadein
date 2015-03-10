@@ -36,6 +36,26 @@
 
     <div id="searchBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'search'">
         <div class="close-lightbox icon icon-cancel" ng-click="closeSearch()"></div>
+        <div>
+          <div angucomplete-alt
+              id="person-search"
+              placeholder="Search people..."
+              pause="50"
+              selected-object="personSelected"
+              remote-url="http://172.25.55.156:60007/yaadein/search/?q="
+              search-fields="value"
+              remote-url-data-field="results"
+              remote-url-response-formatter="addOriginToImageUrl"
+              title-field="value"
+              description-field="label"
+              image-field="profile_pic"
+              minlength="1"
+              match-class="highlight"
+              template-url="views/autocomplete.html"
+              text-searching="Searching for people..."
+              text-no-results="Don't know anyone by that name">
+          </div>
+        </div>
     </div>
 
     <div id="postBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'post'">

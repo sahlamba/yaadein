@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var originURL = 'http://172.25.55.156:60000';
+var originURL = 'http://172.25.55.156:60007';
 
 app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTicker', function ($scope, $http, $q, $upload, dataTicker) {
 
@@ -83,7 +83,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
 
 	$scope.user = {
 		'name': 'Sahil Lamba',
-		'enrolmentNo': 13114068,
+		'enrolmentNo': 13117060,
 		'label': 'B.Tech. ME II Year',
 		'profilePic': 'images/users/1.jpg',
 		'coverPic': 'images/cover.png'
@@ -109,17 +109,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
 				}
 		});
 		$scope.isLoading = false;
-	};
-
-	$scope.selectedObject = {};
-
-	$scope.usersList = [];
-	$http.get('data/users.json')
-		.success(function (ds) {
-			for(var i = 0; i < ds.length; i += 1) {
-				$scope.usersList.push(ds[i]);
-			}
-	});
+	}; 
 
   $scope.newPost = {
     'post_owner': $scope.user.name,
@@ -135,13 +125,17 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
       $scope.upload($scope.files);
   });
 
+  $scope.$watch('coverpic', function () {
+      $scope.upload($scope.coverpic);
+  });
+
   $scope.upload = function (files) {
     if (files && files.length) {
       console.log($scope.newPost.post_text);
       //for(var i = 0; i < files.length; i += 1) {
         //var file = files[i];
         $upload.upload({
-          url: originURL + '/yaadein/post/13117060/',
+          url: originURL + '/yaadein/user/' + $scope.user.enrolmentNo.toString() + '/',
           //url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
           headers: {'Content-Type':'multipart/form-data'}, 
           method: 'POST',
@@ -155,6 +149,29 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
           console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
         }).success(function (data, status, headers, config) {
           console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data)); 
+        });
+     //}
+    }
+  };
+
+$scope.uploadCover = function (files) {
+    if (files && files.length === 1) {
+      //for(var i = 0; i < files.length; i += 1) {
+        //var file = files[i];
+        $upload.upload({
+          url: originURL + '/yaadein/cover/upload/',
+          headers: {'Content-Type':'multipart/form-data'}, 
+          method: 'POST',
+          data: {
+          },
+          file: files,
+          withCredentials: false,
+        }).progress(function (evt) {
+          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+          console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
+        }).success(function (data, status, headers, config) {
+          console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data)); 
+          location.reload();
         });
      //}
     }
@@ -187,33 +204,28 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
   };
 }]);
 
-app.controller('HomeController', ['$scope', '$http', 'dataPosts', function ($scope, $http, dataPosts) {
+app.controller('HomeController', ['$scope', '$http', 'HomeService', function ($scope, $http, HomeService) {
 
-	$scope.posts = [];
-	var dataPromise = dataPosts.getPosts();
-	dataPromise.then(function (d) {
-		$scope.posts = d;
+	$scope.loggedUser = {};
+	var userPromise = HomeService.getLoggedUser();
+	userPromise.then(function (d) {
+		  $scope.currentUser = d;
+      console.log(d);
 	});
 
-	$scope.addToFeed = function () {
-		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
-			.success(function (ds) {
-				for(var i = 0; i < ds.length; i += 1) {
-					$scope.posts.push(ds[i]);
-				}
-		});
-	};
+	//$scope.addToFeed = function () {
+		//$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
+			//.success(function (ds) {
+				//for(var i = 0; i < ds.length; i += 1) {
+					//$scope.posts.push(ds[i]);
+				//}
+		//});
+	//};
 
 }]);
 
-app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataPosts', 'dataUsers', 
-	function ($routeParams, $scope, $http, dataPosts, dataUsers) {
-
-	$scope.posts = [];
-	var dataPromise = dataPosts.getPosts();
-	dataPromise.then(function (d) {
-		$scope.posts = d;
-	});
+app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataUsers', 
+	function ($routeParams, $scope, $http, dataUsers) {
 
 	$scope.currentUser = {};
 	var userPromise = dataUsers.getUser($routeParams.enrolmentNo);
