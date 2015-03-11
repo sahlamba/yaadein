@@ -65,7 +65,9 @@
         <div>
             <form class="post-form">
                 <i class="inline fa fa-qq"></i>
-                <input class="small-input" type="text" name="usertags" placeholder="Tag friends here" show-focus="true">
+                <tags-input ng-model="newPost.user_tags" class="small-input" display-property="value" placeholder="Tag friends here" add-from-autocomplete-only="true" show-focus="true">
+                   <auto-complete source="loadTags($query)" min-length="1" select-first-match="true" highlight-matched-text="true"></auto-complete>
+                </tags-input>
                 <i class="inline fa fa-map-marker"></i>
                 <input class="small-input" type="text" name="location" placeholder="Spot">
                 <textarea mentio

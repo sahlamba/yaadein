@@ -135,7 +135,17 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     'post_owner_pic': $scope.user.profilePic,
     'time': '',
     'image_url': [],
-    'post_text': ''
+    'post_text': '',
+    'user_tags': [{'profile_pic': '/static/images/nucleus/default_dp.png', 'id': '13117060', 'value': 'Sahil Lamba', 'label': 'B.Tech. ECE II Year'}]
+  };
+
+  $scope.loadTags = function (query) {
+    var defer = $q.defer();
+    $http.get(originURL + '/yaadein/search/?q=' + query)
+      .success(function (d) {
+          defer.resolve(d.results);
+    });
+    return defer.promise;
   };
 
   $scope.$watch('files', function () {
