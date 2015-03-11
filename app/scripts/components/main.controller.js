@@ -1,9 +1,9 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var originURL = 'http://172.25.55.156:60007';
+var originURL = 'http://172.25.55.156:60003';
 
-app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTicker', function ($scope, $http, $q, $upload, dataTicker) {
+app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location','dataTicker', function ($scope, $http, $q, $upload, $location, dataTicker) {
 
 	$scope.appname = 'Yaadein';
 
@@ -77,9 +77,26 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', 'dataTi
 	};
 
 	$scope.closeSearch = function () {
+    $('#centered').removeClass('blur-back');
+		$('.right-sidebar').removeClass('blur-back');
 		$('#searchBox').fadeOut(300);
 		$scope.currentNavItem = $scope.prevNavItem;
 	};
+
+  $scope.addOriginToImageUrl = function (resp) {
+    var results = resp.results;
+    for(var i = 0; i < results.length; i += 1) {
+      results[i].profile_pic = originURL + results[i].profile_pic;
+      results.id;
+      console.log(results[i].profile_pic);
+    }
+    return resp;
+  };
+
+  $scope.personSelected = function(selected) {
+    $location.path('/profile/' + selected.originalObject.id);
+    $scope.setCurrentNavItem($scope.navigationItems[1]);
+  };
 
 	$scope.user = {
 		'name': 'Sahil Lamba',

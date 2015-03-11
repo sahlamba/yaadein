@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="bower_components/nanoscroller/bin/css/nanoscroller.css" />
     <link rel="stylesheet" href="bower_components/ngActivityIndicator/css/ngActivityIndicator.css" />
+    <link rel="stylesheet" href="bower_components/ng-tags-input/ng-tags-input.min.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -42,7 +43,7 @@
               placeholder="Search people..."
               pause="50"
               selected-object="personSelected"
-              remote-url="http://172.25.55.156:60007/yaadein/search/?q="
+              remote-url="http://172.25.55.156:60003/yaadein/search/?q="
               search-fields="value"
               remote-url-data-field="results"
               remote-url-response-formatter="addOriginToImageUrl"
@@ -51,6 +52,7 @@
               image-field="profile_pic"
               minlength="1"
               match-class="highlight"
+              input-class="search-input"
               template-url="views/autocomplete.html"
               text-searching="Searching for people..."
               text-no-results="Don't know anyone by that name">
@@ -148,6 +150,7 @@
     <script src="bower_components/ngActivityIndicator/ngActivityIndicator.js"></script>
     <script src="bower_components/ng-file-upload/angular-file-upload.js"></script>
     <script src="bower_components/angular-emoji-filter/dist/emoji.min.js"></script>
+    <script src="bower_components/ng-tags-input/ng-tags-input.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->

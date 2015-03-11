@@ -6,7 +6,7 @@
 	height: 100vh;
 	top: 0;
 	left: 51px;
-	background: rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, 0.8);
 	z-index: 1001;
 	.post-form {
 		position: relative;
@@ -15,18 +15,18 @@
 		max-height: 100%;
 		text-align: center;
 	}
-	::-webkit-input-placeholder {
-		color: $dark-grey;
-	}
-	:-moz-placeholder { /* Firefox 18- */
-		color: $dark-grey;
-	}
-	::-moz-placeholder {  /* Firefox 19+ */
-		color: $dark-grey;
-	}
-	:-ms-input-placeholder {
-		color: $dark-grey;
-	}
+	//::-webkit-input-placeholder {
+		//color: $dark-grey;
+	//}
+	//:-moz-placeholder { /* Firefox 18- */
+		//color: $dark-grey;
+	//}
+	//::-moz-placeholder {  /* Firefox 19+ */
+		//color: $dark-grey;
+	//}
+	//:-ms-input-placeholder {
+		//color: $dark-grey;
+	//}
 	//Icons beside input
 	i.inline {
 		color: $black;
@@ -76,7 +76,7 @@
 	}
 	//Close lightbox icon
 	.close-lightbox {
-	color: $white;
+	color: $black;
 	position: absolute;
 	top: 15px;
 	right: 15px;
