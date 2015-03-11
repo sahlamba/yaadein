@@ -1,9 +1,10 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var originURL = 'http://172.25.55.156:60003';
+var originURL = 'http://172.25.55.156:60010';
 
-app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location','dataTicker', function ($scope, $http, $q, $upload, $location, dataTicker) {
+app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location', '$routeParams', 'dataTicker', 
+    function ($scope, $http, $q, $upload, $location, $routeParams, dataTicker) {
 
 	$scope.appname = 'Yaadein';
 
@@ -136,7 +137,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     'time': '',
     'image_url': [],
     'post_text': '',
-    'user_tags': [{'profile_pic': '/static/images/nucleus/default_dp.png', 'id': '13117060', 'value': 'Sahil Lamba', 'label': 'B.Tech. ECE II Year'}]
+    'user_tags': []
   };
 
   $scope.loadTags = function (query) {
@@ -157,17 +158,23 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
   });
 
   $scope.upload = function (files) {
+    var uploadUrl = originURL + '/yaadein/user/' + $scope.user.enrolmentNo.toString() + '/';
+    if ($routeParams && $routeParams.enrolmentNo) {
+      console.log($routeParams.enrolmentNo);
+      uploadUrl = originURL + '/yaadein/user/' + $routeParams.enrolmentNo + '/';
+    }
     if (files && files.length) {
       console.log($scope.newPost.post_text);
+      console.log($scope.newPost.user_tags);
       //for(var i = 0; i < files.length; i += 1) {
         //var file = files[i];
         $upload.upload({
-          url: originURL + '/yaadein/user/' + $scope.user.enrolmentNo.toString() + '/',
-          //url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
+          url: uploadUrl,
           headers: {'Content-Type':'multipart/form-data'}, 
           method: 'POST',
           data: {
-            post_text: $scope.newPost.post_text
+            post_text: $scope.newPost.post_text,
+            user_tags: $scope.newPost.user_tags
           },
           file: files,
           withCredentials: false,
