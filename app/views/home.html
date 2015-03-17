@@ -19,9 +19,9 @@
         <div class="post-data pull-left">
         <div>
             <a ng-href="/profile/{~{post.post_owner_enrol}~}"><h1 ng-bind="post.post_owner"></h1></a>
-            <h2>With 
+            <h2 ng-show="post.taggedUsers">With 
                 <span ng-repeat="taggedUser in post.taggedUsers">
-                    <span ng-if="$last && $index"> and </span><a ng-href="/profile/{~{taggedUser.enrolmentNo}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
+                    <span ng-if="$last && $index"> and </span><a ng-href="/profile/{~{taggedUser.username}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
                 </span>
             </h2>
             <p ng-bind-html="post.post_text | linky:'_blank' | emoji | hashtags"></p>
@@ -35,7 +35,7 @@
             </div>
         </div>
         </div>
-        <p class="info stars" ng-click="">{~{post.stars}~} <i class="fa fa-star"></i></p>
+        <!--<p class="info stars" ng-click="">{~{post.stars}~} <i class="fa fa-star"></i></p>-->
     </div>
     </div>
     <!-- <div class="loader">

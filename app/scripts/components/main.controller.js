@@ -307,10 +307,28 @@ app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'Hashtag
       }
     }
     $scope.posts = d.posts_data;
-    console.log($scope.posts);
   });
 	
 }]);
 
-app.controller('SettingsController', ['$scope', function ($scope) {
+app.controller('PostController', ['$routeParams', '$scope', '$q', '$http', function ($routeParams, $scope, $q, $http) {
+    var defer = $q.defer();
+    var url = originURL + '/yaadein/post_disp/' + $routeParams.postId + '/';
+    $scope.getPostData = function () {
+      $http.get(url)
+        .success(function (x) {
+          defer.resolve(x);
+        });
+     return defer.promise;
+   };
+
+   $scope.post = {};
+   var postData = $scope.getPostData();
+   postData.then(function (d) {
+    for(var j = 0; j < d.image_url.length; j += 1) {
+      d.image_url[j] = originURL + d.image_url[j];
+    }
+    d.post_owner_pic = originURL + d.post_owner_pic;
+    $scope.post = d;
+   });
 }]);

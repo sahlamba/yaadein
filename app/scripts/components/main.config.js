@@ -32,9 +32,9 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
 		controller: 'HashtagController',
 		resolve: resolve
 	})
-	.when('/settings', {
-		templateUrl: '/views/settings.html',
-		controller: 'SettingsController',
+	.when('/post/:postId', {
+		templateUrl: '/views/post.html',
+		controller: 'PostController',
 		resolve: resolve
 	})
 	.otherwise({
