@@ -35,7 +35,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <div id="searchBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'search'">
+    <div id="searchBox" class="lightbox fade" ng-show="getCurrentNavItem() === 'search'">
         <div class="close-lightbox icon icon-cancel" ng-click="closeSearch()"></div>
         <div>
           <div angucomplete-alt
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div id="postBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'post'">
+    <div id="postBox" class="lightbox fade" ng-show="getCurrentNavItem() === 'post'">
         <div class="close-lightbox icon icon-cancel" ng-click="closePost()"></div>
         <div>
             <form class="post-form">
