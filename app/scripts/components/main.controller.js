@@ -48,16 +48,16 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
 	];
 
 	$scope.currentNavItem = $scope.navigationItems[1];
+  $scope.lastNavItem = $scope.navigationItems[1];
 
 	$scope.setCurrentNavItem = function (navItem) {
-    if (!navItem) {
-      return;
-    }
+    $scope.lastNavItem = $scope.currentNavItem;
 		$scope.currentNavItem = navItem;
 		if ($scope.currentNavItem.id === 'search' || $scope.currentNavItem.id === 'post') {
 			$('#centered').addClass('blur-back');
 			$('.right-sidebar').addClass('blur-back');
 		} else {
+      $location.path(navItem.url);
 			$('#centered').removeClass('blur-back');
 			$('.right-sidebar').removeClass('blur-back');
 		}
@@ -75,14 +75,14 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
 		$('#centered').removeClass('blur-back');
 		$('.right-sidebar').removeClass('blur-back');
 		$('#postBox').fadeOut(300);
-		$scope.currentNavItem = $scope.navigationItems[1];
+		$scope.setCurrentNavItem($scope.navigationItems[1]);
 	};
 
 	$scope.closeSearch = function () {
     $('#centered').removeClass('blur-back');
 		$('.right-sidebar').removeClass('blur-back');
 		$('#searchBox').fadeOut(300);
-    $scope.currentNavItem = $scope.navigationItems[1];
+    $scope.setCurrentNavItem($scope.navigationItems[1]);
 	};
 
   $scope.addOriginToImageUrl = function (resp) {
@@ -96,8 +96,8 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
   };
 
   $scope.personSelected = function(selected) {
+    $scope.setCurrentNavItem($scope.navigationItems[0])
     $location.path('/profile/' + selected.originalObject.id);
-    $scope.setCurrentNavItem();
   };
 
 	$scope.user = {
