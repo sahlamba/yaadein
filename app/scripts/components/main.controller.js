@@ -185,7 +185,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
             spot: $scope.newPost.spot
           },
           file: files,
-          withCredentials: true,
+          withCredentials: true
         }).progress(function (evt) {
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
           console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
@@ -207,7 +207,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
         data: {
         },
         file: files,
-        withCredentials: true,
+        withCredentials: true
       }).progress(function (evt) {
         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
         console.log('progress: ' + progressPercentage + '% ' + evt.config.file[0].name);

@@ -3,8 +3,8 @@
     <div class="profile-user-details">
         <h1 ng-bind="currentUser.name"></h1>
         <p><i class="fa fa-graduation-cap"></i> {~{currentUser.label}~}</p>
-<div ng-if="isLoggedUserProfile()" class="upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="coverpic" ng-accept="'image/*'" ng-multiple="false"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Select Cover Pic</div>
-                <button ng-if="isLoggedUserProfile()" class="upload-bttn" ng-click="uploadCover(coverpic)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Upload</button>
+<div ng-show="isLoggedUserProfile()" class="upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="coverpic" ng-accept="'image/*'" ng-multiple="false"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Select Cover Pic</div>
+                <button ng-show="isLoggedUserProfile()" class="upload-bttn" ng-click="uploadCover(coverpic)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Upload</button>
 				<ul>
                   <li ng-repeat="f in files" style="font:smaller; color: white;">{~{f.name}~}</li>
                 </ul>
