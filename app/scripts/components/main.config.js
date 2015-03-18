@@ -45,6 +45,7 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
 	
 }]);
 
-app.config(['$interpolateProvider', function ($interpolateProvider) {
+app.config(['$interpolateProvider', '$httpProvider', function ($interpolateProvider, $httpProvider) {
     $interpolateProvider.startSymbol('{~{').endSymbol('}~}');
+    $httpProvider.defaults.withCredentials = true;
 }]);

@@ -131,7 +131,8 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     'time': '',
     'image_url': [],
     'post_text': '',
-    'user_tags': []
+    'user_tags': [],
+    'spot': []
   };
 
   $scope.clearNewPostData = function () {
@@ -149,6 +150,15 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     return defer.promise;
   };
 
+  $scope.loadSpots = function (query) {
+    var defer = $q.defer();
+    $http.get(originURL + '/yaadein/search/2/?q=' + query)
+      .success(function (d) {
+          defer.resolve(d.results);
+    });
+    return defer.promise;
+  };
+
   $scope.$watch('files', function () {
       $scope.upload($scope.files);
   });
@@ -160,7 +170,6 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
   $scope.upload = function (files) {
     var uploadUrl = originURL + '/yaadein/user/' + $scope.user.enrolmentNo + '/';
     if ($routeParams && $routeParams.enrolmentNo) {
-      console.log($routeParams.enrolmentNo);
       uploadUrl = originURL + '/yaadein/user/' + $routeParams.enrolmentNo + '/';
     }
     if (files && files.length) {
@@ -172,10 +181,11 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
           method: 'POST',
           data: {
             post_text: $scope.newPost.post_text,
-            user_tags: $scope.newPost.user_tags
+            user_tags: $scope.newPost.user_tags,
+            spot: $scope.newPost.spot
           },
           file: files,
-          withCredentials: false,
+          withCredentials: true,
         }).progress(function (evt) {
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
           console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
@@ -197,7 +207,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
         data: {
         },
         file: files,
-        withCredentials: false,
+        withCredentials: true,
       }).progress(function (evt) {
         var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
         console.log('progress: ' + progressPercentage + '% ' + evt.config.file[0].name);
@@ -218,7 +228,6 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
           angular.forEach(response.data, function(item) {
             if (item.name.toUpperCase().indexOf(term.toUpperCase()) >= 0) {
               emojiList.push(item);
-              console.log(emojiList);
             }
           });
       $scope.emojis = emojiList;
@@ -270,6 +279,10 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserSer
         }
       }
 	});
+
+  $scope.isLoggedUserProfile = function () {
+    return $scope.user.enrolmentNo === $scope.currentUser.enrolmentNo;
+  };
 
 	$scope.addToFeed = function () {
 		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')

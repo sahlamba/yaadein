@@ -68,8 +68,10 @@
                 <tags-input ng-model="newPost.user_tags" class="" display-property="value" placeholder="Tag friends here" add-from-autocomplete-only="true" show-focus="true">
                    <auto-complete source="loadTags($query)" min-length="1" select-first-match="true" highlight-matched-text="true"></auto-complete>
                 </tags-input>
-                <i class="inline fa fa-map-marker"></i>
-                <input class="small-input" type="text" name="location" placeholder="Spot">
+                <i class="inline fa fa-map-marker"></i>i
+                <tags-input ng-model="newPost.spot" class="" display-property="value" placeholder="Spot" add-from-autocomplete-only="true" max-tags="1">
+                  <auto-complete source="loadSpots($query)" min-length="1" select-first-match="true" highlight-matched-text="true"></auto-complete>
+                </tags-input>
                 <textarea mentio
 				  mentio-id="'postMessageInput'"
                   mentio-macros="macros"

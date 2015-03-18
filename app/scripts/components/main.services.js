@@ -43,12 +43,16 @@ app.service('HomeService', ['$http', '$q', function ($http, $q) {
 app.service('UserService', ['$http', '$q', function ($http, $q) {
 
 	this.getUser = function (enrolmentNo) {
-		var def = $q.defer();
-		var url = baseURL + '/user/' + enrolmentNo.toString() + '/';
-		$http.get(url)
-			.success(function (x) {
-				def.resolve(x);
-			});
+		var def = $q.defer(), url;
+    if (!isNaN(enrolmentNo)) {
+		  url = baseURL + '/user/' + enrolmentNo.toString() + '/';
+    } else {
+      url = baseURL + '/spot/' + enrolmentNo.toString() + '/';
+    }
+    $http.get(url)
+      .success(function (x) {
+        def.resolve(x);
+    });
 		return def.promise;
 	};
 
