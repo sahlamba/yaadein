@@ -3,8 +3,8 @@
 var app = angular.module('yaadeinApp');
 var originURL = 'http://172.25.55.156:60020';
 
-app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService',
-    function ($scope, $http, $q, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService) {
+app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService', 'PostService',
+    function ($scope, $http, $q, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService, PostService) {
 
     ngNotify.config({
       theme: 'pure',
@@ -49,7 +49,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
 		{
 			'id': 'signOut',
 			'class': 'fa fa-sign-out',
-			'url': '/',
+			'url': '/logout/',
 			'hint': 'Log Out'
 		}
 	];
@@ -220,6 +220,17 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     }
   };
 
+  $scope.deletePost = function (id) {
+    var flag = PostService.deletePost(id);
+    flag.then(function (d) {
+        if (d === 'True') {
+          ngNotify.set('Post deleted successfully!', 'success');
+        } else {
+          ngNotify.set('Could not delete post!', 'error');
+        }
+    });
+  };
+
   //Emoji Service
   $scope.predictEmoji = function(term) {
     var emojiList = [];
@@ -282,6 +293,10 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserSer
 
   $scope.isLoggedUserProfile = function () {
     return $scope.user.enrolmentNo === $scope.currentUser.enrolmentNo;
+  };
+
+  $scope.isLoggedUserPost = function (id) {
+    return $scope.user.enrolmentNo === id;
   };
 
 	$scope.addToFeed = function () {

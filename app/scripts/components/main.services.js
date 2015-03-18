@@ -80,7 +80,17 @@ app.service('PostService', ['$http', '$q', function ($http, $q) {
       $http.get(url)
         .success(function (x) {
           def.resolve(x);
-        });
+      });
+      return def.promise;
+    };
+
+    this.deletePost = function(id) {
+      var def = $q.defer();
+      var url = baseURL + '/delete/' + id + '/';
+      $http.get(url)
+        .success(function (x) {
+          def.resolve(x);
+      });
       return def.promise;
     };
 }]);
