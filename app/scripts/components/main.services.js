@@ -3,7 +3,8 @@
 var app = angular.module('yaadeinApp');
 var baseURL = 'http://172.25.55.156:60020/yaadein';
 
-app.service('dataTicker', ['$http', '$q', function ($http, $q) {
+app.service('TickerService', ['$http', '$q', function ($http, $q) {
+
 	var deferred = $q.defer();
 	$http.get('http://beta.json-generator.com/api/json/get/HByxuXv')
 		.success(function (d) {
@@ -18,10 +19,11 @@ app.service('dataTicker', ['$http', '$q', function ($http, $q) {
 app.service('HomeService', ['$http', '$q', function ($http, $q) {
 	var deferred = $q.defer();
   var url = baseURL + '/home/';
-  console.log(url);
 	$http.get(url)
 		.success(function (d) {
 			deferred.resolve(d);
+
+      //Add baseURL to image URLs
       d.profilePic = baseURL + d.profilePic;
       d.coverPic = originURL + d.coverPic;
       var posts = d.posts_data;
@@ -38,21 +40,11 @@ app.service('HomeService', ['$http', '$q', function ($http, $q) {
 	};
 }]);
 
-app.service('dataUsers', ['$http', '$q', function ($http, $q) {
-
-	this.getUsers = function () {
-		var deferred = $q.defer();
-		$http.get('/data/users.json')
-			.success(function (d) {
-				deferred.resolve(d);
-			});
-		return deferred.promise;
-	};
+app.service('UserService', ['$http', '$q', function ($http, $q) {
 
 	this.getUser = function (enrolmentNo) {
 		var def = $q.defer();
 		var url = baseURL + '/user/' + enrolmentNo.toString() + '/';
-		console.log(url);
 		$http.get(url)
 			.success(function (x) {
 				def.resolve(x);
@@ -67,7 +59,6 @@ app.service('HashtagService', ['$http', '$q', function ($http, $q) {
     this.getHashtaggedPosts = function (tag) {
         var deferred = $q.defer();
         var url = baseURL + '/tag/' + tag + '/';
-        console.log(url);
         $http.get(url)
           .success(function (x) {
             deferred.resolve(x);
@@ -75,4 +66,17 @@ app.service('HashtagService', ['$http', '$q', function ($http, $q) {
         return deferred.promise;
     };
 
+}]);
+
+app.service('PostService', ['$http', '$q', function ($http, $q) {
+
+    this.getPost = function(id) {
+      var def = $q.defer();
+      var url = baseURL + '/post_disp/' + id + '/';
+      $http.get(url)
+        .success(function (x) {
+          def.resolve(x);
+        });
+      return def.promise;
+    };
 }]);

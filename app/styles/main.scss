@@ -34,6 +34,10 @@ body {
   outline: none;
 }
 
+.ngn {
+  z-index: 9999 !important;
+}
+
 mentio-menu {
 	z-index: 1200 !important;
 }

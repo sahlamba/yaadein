@@ -32,10 +32,22 @@
 		color: $black;
 		margin-right: -55px;
 	}
+  tags-input {
+    width: 374px;
+    .host {
+      margin: 0;
+    }
+    .tags {
+      padding: 0;
+      background-color: rgba(255,255,255,0);
+      border: 0;
+      box-shadow: 0 0 0 0 $white;
+    }
+  }
 	//Single line input
 	.small-input {
 		position: relative;
-		width: 32%;
+		width: 202px;
 		background: rgba(255, 255, 255, 0);
 		color: $black;
 		line-height: 34px;

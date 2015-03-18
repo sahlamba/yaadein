@@ -43,7 +43,7 @@
               placeholder="Search people..."
               pause="50"
               selected-object="personSelected"
-              remote-url="http://172.25.55.156:60020/yaadein/search/?q="
+              remote-url="http://172.25.55.156:60020/yaadein/search/3/?q="
               search-fields="value"
               remote-url-data-field="results"
               remote-url-response-formatter="addOriginToImageUrl"
@@ -65,7 +65,7 @@
         <div>
             <form class="post-form">
                 <i class="inline fa fa-qq"></i>
-                <tags-input ng-model="newPost.user_tags" class="small-input" display-property="value" placeholder="Tag friends here" add-from-autocomplete-only="true" show-focus="true">
+                <tags-input ng-model="newPost.user_tags" class="" display-property="value" placeholder="Tag friends here" add-from-autocomplete-only="true" show-focus="true">
                    <auto-complete source="loadTags($query)" min-length="1" select-first-match="true" highlight-matched-text="true"></auto-complete>
                 </tags-input>
                 <i class="inline fa fa-map-marker"></i>

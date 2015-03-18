@@ -3,8 +3,15 @@
 var app = angular.module('yaadeinApp');
 var originURL = 'http://172.25.55.156:60020';
 
-app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location', '$routeParams', 'dataTicker', 
-    function ($scope, $http, $q, $upload, $location, $routeParams, dataTicker) {
+app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService',
+    function ($scope, $http, $q, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService) {
+
+    ngNotify.config({
+      theme: 'pure',
+      position: 'top',
+      duration: 2000,
+      sticky: false
+    });
 
 	$scope.appname = 'Yaadein';
 
@@ -76,6 +83,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
 		$('.right-sidebar').removeClass('blur-back');
 		$('#postBox').fadeOut(300);
 		$scope.setCurrentNavItem($scope.navigationItems[1]);
+    $scope.clearNewPostData();
 	};
 
 	$scope.closeSearch = function () {
@@ -90,7 +98,6 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     for(var i = 0; i < results.length; i += 1) {
       results[i].profile_pic = originURL + results[i].profile_pic;
       results.id;
-      console.log(results[i].profile_pic);
     }
     return resp;
   };
@@ -100,26 +107,25 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     $location.path('/profile/' + selected.originalObject.id);
   };
 
-	$scope.user = {
-		'name': 'Sahil Lamba',
-		'enrolmentNo': 13117060,
-		'label': 'B.Tech. ME II Year',
-		'profilePic': 'images/users/1.jpg',
-		'coverPic': 'images/cover.png'
-	};
+	$scope.user = {};
+  var LoggedUserData = HomeService.getLoggedUser();
+  LoggedUserData.then(function (d) {
+      $scope.user = d;
+      $scope.navigationItems[0].url += $scope.user.enrolmentNo;
+  });
 
 	//Append enrolment number to profile and gallery URLs
-	$scope.navigationItems[0].url += $scope.user.enrolmentNo.toString();
+	//$scope.navigationItems[0].url += $scope.user.enrolmentNo;
 
 	$scope.ticks = [];
-	var tickPromise = dataTicker.getTicks();
+	var tickPromise = TickerService.getTicks();
 	tickPromise.then(function (d) {
 		$scope.ticks = d;
 	});
 
   $scope.newPost = {
     'post_owner': $scope.user.name,
-    'post_owner_enrol': $scope.user.enrolmentNo.toString(),
+    'post_owner_enrol': $scope.user.enrolmentNo,
     'post_owner_branch': $scope.user.label,
     'post_owner_pic': $scope.user.profilePic,
     'time': '',
@@ -128,9 +134,15 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     'user_tags': []
   };
 
+  $scope.clearNewPostData = function () {
+    $scope.newPost.post_text = '';
+    $scope.newPost.user_tags = [];
+    $scope.newPost.image_url = [];
+  };
+
   $scope.loadTags = function (query) {
     var defer = $q.defer();
-    $http.get(originURL + '/yaadein/search/?q=' + query)
+    $http.get(originURL + '/yaadein/search/1/?q=' + query)
       .success(function (d) {
           defer.resolve(d.results);
     });
@@ -146,14 +158,12 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
   });
 
   $scope.upload = function (files) {
-    var uploadUrl = originURL + '/yaadein/user/' + $scope.user.enrolmentNo.toString() + '/';
+    var uploadUrl = originURL + '/yaadein/user/' + $scope.user.enrolmentNo + '/';
     if ($routeParams && $routeParams.enrolmentNo) {
       console.log($routeParams.enrolmentNo);
       uploadUrl = originURL + '/yaadein/user/' + $routeParams.enrolmentNo + '/';
     }
     if (files && files.length) {
-      console.log($scope.newPost.post_text);
-      console.log($scope.newPost.user_tags);
       //for(var i = 0; i < files.length; i += 1) {
         //var file = files[i];
         $upload.upload({
@@ -170,35 +180,37 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
           var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
           console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
         }).success(function (data, status, headers, config) {
-          console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data)); 
+          console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data));
+          $scope.closePost();
+          ngNotify.set('Successfully posted!', 'success');
         });
      //}
     }
   };
 
-$scope.uploadCover = function (files) {
+  $scope.uploadCover = function (files) {
     if (files && files.length === 1) {
-      //for(var i = 0; i < files.length; i += 1) {
-        //var file = files[i];
-        $upload.upload({
-          url: originURL + '/yaadein/cover/upload/',
-          headers: {'Content-Type':'multipart/form-data'}, 
-          method: 'POST',
-          data: {
-          },
-          file: files,
-          withCredentials: false,
-        }).progress(function (evt) {
-          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-          console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
-        }).success(function (data, status, headers, config) {
-          console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data)); 
-          location.reload();
-        });
-     //}
+      $upload.upload({
+        url: originURL + '/yaadein/cover/upload/',
+        headers: {'Content-Type':'multipart/form-data'}, 
+        method: 'POST',
+        data: {
+        },
+        file: files,
+        withCredentials: false,
+      }).progress(function (evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        console.log('progress: ' + progressPercentage + '% ' + evt.config.file[0].name);
+      }).success(function (data, status, headers, config) {
+        console.log('File ' + config.file.name + ' uploaded. Response' + JSON.stringify(data));
+        console.log(config);
+        ngNotify.set('Cover photo updated successfully!', 'success');
+        location.reload();
+      });
     }
   };
-  
+
+  //Emoji Service
   $scope.predictEmoji = function(term) {
     var emojiList = [];
     return $http.get('data/emojis.json')
@@ -219,43 +231,37 @@ $scope.uploadCover = function (files) {
   };
 
   $scope.macros = {
-	'brb': 'Be right back',
-	'omw': 'On my way',
-	'(smile)' : '<img src="http://a248.e.akamai.net/assets.github.com/images/icons/emoji/smile.png"' +
-	' height="20" width="20">'
+	'brb': 'be right back',
+	'omw': 'on my way'
   };
 }]);
 
-app.controller('HomeController', ['$scope', '$http', 'HomeService', function ($scope, $http, HomeService) {
+app.controller('HomeController', ['$scope', '$http', 'HomeService', 
+    function ($scope, $http, HomeService) {
 
-	$scope.loggedUser = {};
-	var userPromise = HomeService.getLoggedUser();
-	userPromise.then(function (d) {
-		  $scope.currentUser = d;
-      console.log(d);
-	});
-
-	//$scope.addToFeed = function () {
-		//$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
-			//.success(function (ds) {
-				//for(var i = 0; i < ds.length; i += 1) {
-					//$scope.posts.push(ds[i]);
-				//}
-		//});
-	//};
+	$scope.addToFeed = function () {
+		$http.get('http://beta.json-generator.com/api/json/get/CHdvIym')
+			.success(function (ds) {
+				for(var i = 0; i < ds.length; i += 1) {
+					$scope.posts.push(ds[i]);
+				}
+		});
+	};
 
 }]);
 
-app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataUsers', 
-	function ($routeParams, $scope, $http, dataUsers) {
+app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserService',
+	function ($routeParams, $scope, $http, UserService) {
 
 	$scope.currentUser = {};
-	var userPromise = dataUsers.getUser($routeParams.enrolmentNo);
+	var userPromise = UserService.getUser($routeParams.enrolmentNo);
 	userPromise.then(function (d) {
 			$scope.currentUser = d;
+
+      //Add originURL to image URLs
       $scope.currentUser.profilePic = originURL + $scope.currentUser.profilePic;
       $scope.currentUser.coverPic = originURL + $scope.currentUser.coverPic;
-      $scope.user.profilePic = $scope.currentUser.profilePic;
+
       var posts = $scope.currentUser.posts_data;
       for (var i = 0; i < posts.length; i += 1) {
         posts[i].post_owner_pic = originURL + posts[i].post_owner_pic;
@@ -263,7 +269,6 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataUse
           posts[i].image_url[j] = originURL + posts[i].image_url[j];
         }
       }
-      console.log(d);
 	});
 
 	$scope.addToFeed = function () {
@@ -277,18 +282,13 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'dataUse
 
 }]);
 
-app.controller('GalleryController', ['$routeParams', '$scope', 'dataUsers', 
-	function ($routeParams, $scope, dataUsers) {
+app.controller('GalleryController', ['$routeParams', '$scope', 'dataUserService',
+	function ($routeParams, $scope, UserService) {
 
 	$scope.currentUser = {};
-	var userPromise = dataUsers.getUsers();
-	userPromise.then(function (d) {
-		for(var i = 0; i < d.length; i += 1) {
-			if(d[i].enrolmentNo === parseInt($routeParams.enrolmentNo)) {
-				$scope.currentUser = d[i];
-				break;
-			}
- 		}
+	var userData = UserService.getUser($routeParams.enrolmentNo);
+	userData.then(function (d) {
+    $scope.currentUser = d;
 	});
 
 }]);
@@ -300,6 +300,8 @@ app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'Hashtag
 	$scope.posts = [];
 	var dataPromise = HashtagService.getHashtaggedPosts($routeParams.hashtag);
 	dataPromise.then(function (d) {
+
+    //Add originURL to image URLs
     for(var i = 0; i < d.posts_data.length; i += 1) {
       d.posts_data[i].post_owner_pic = originURL + d.posts_data[i].post_owner_pic;
       for(var j = 0; j < d.posts_data[i].image_url.length; j += 1) {
@@ -308,27 +310,23 @@ app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'Hashtag
     }
     $scope.posts = d.posts_data;
   });
-	
+
 }]);
 
-app.controller('PostController', ['$routeParams', '$scope', '$q', '$http', function ($routeParams, $scope, $q, $http) {
-    var defer = $q.defer();
-    var url = originURL + '/yaadein/post_disp/' + $routeParams.postId + '/';
-    $scope.getPostData = function () {
-      $http.get(url)
-        .success(function (x) {
-          defer.resolve(x);
-        });
-     return defer.promise;
-   };
+app.controller('PostController', ['$routeParams', '$scope', '$q', '$http', 'PostService',  
+   function ($routeParams, $scope, $q, $http, PostService) {
 
    $scope.post = {};
-   var postData = $scope.getPostData();
+   var postData = PostService.getPost($routeParams.postId);
    postData.then(function (d) {
-    for(var j = 0; j < d.image_url.length; j += 1) {
+
+     //Add originURL to image URLs
+     for(var j = 0; j < d.image_url.length; j += 1) {
       d.image_url[j] = originURL + d.image_url[j];
-    }
-    d.post_owner_pic = originURL + d.post_owner_pic;
-    $scope.post = d;
+     }
+
+     d.post_owner_pic = originURL + d.post_owner_pic;
+     $scope.post = d;
    });
+
 }]);
