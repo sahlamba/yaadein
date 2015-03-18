@@ -49,7 +49,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
 		{
 			'id': 'signOut',
 			'class': 'fa fa-sign-out',
-			'url': '/logout/',
+			'url': originURL+'/logout/',
 			'hint': 'Log Out'
 		}
 	];
