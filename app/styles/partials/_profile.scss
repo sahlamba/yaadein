@@ -8,6 +8,29 @@
 	background-repeat: no-repeat !important;
 	background-position: 50% !important;
 	background-size: 100% !important;
+  #cover-upload {
+    cursor: pointer;
+    color: $white;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    overflow: hidden;
+    font-size: $huge;
+    text-shadow: 0px 0px 7px $black;
+    text-align: center;
+    padding: 0 8px;
+  }
+  #cover-upload-hint {
+    color: $white;
+    position: absolute;
+    right: 30px;
+    top: 58px;
+    background: lighten($black, 5%);
+    border: 1px black solid;
+    border-radius: 3px;
+    padding: 4px 8px;
+    display: none;
+  }
 	//begin -- .user-details
 	.profile-user-details {
 		position: absolute;

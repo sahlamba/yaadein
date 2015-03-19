@@ -75,6 +75,15 @@
 				padding-left: 20px;
 				border-left: 1px solid $grey; //Divider
 				position: relative;
+        .delete-post-bttn {
+          position: absolute;
+          top: 0;
+          right: 0;
+          background: $white;
+          &:hover i.fa {
+            color: $danger;
+          }
+        }
 				//Common typographic styles
 				* {
 					text-align: left;

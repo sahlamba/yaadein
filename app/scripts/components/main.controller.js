@@ -93,6 +93,14 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     $scope.setCurrentNavItem($scope.navigationItems[1]);
 	};
 
+  $scope.showCoverHint = function () {
+    $('#cover-upload-hint').fadeIn(150);
+  };
+
+  $scope.hideCoverHint = function () {
+    $('#cover-upload-hint').fadeOut(150);
+  };
+
   $scope.addOriginToImageUrl = function (resp) {
     var results = resp.results;
     for(var i = 0; i < results.length; i += 1) {
@@ -163,8 +171,22 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
       $scope.upload($scope.files);
   });
 
-  $scope.$watch('coverpic', function () {
-      $scope.upload($scope.coverpic);
+  function generateThumbAndUpload(file) {
+    $scope.generateThumb(file);
+    $scope.uploadCover(file);
+  }
+
+  $scope.generateThumb = function (file) {
+    if (file !== null) {
+    }
+  };
+
+  $scope.$watch('coverpic', function (photo) {
+      if (photo !== null) {
+        (function(file){
+         $scope.uploadCover(file);
+        })(photo);
+      }
   });
 
   $scope.upload = function (files) {

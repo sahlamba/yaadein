@@ -12,7 +12,7 @@
                 <div class="user-image" ng-style="{ 'background-image': 'url(' + post.post_owner_pic + ')' }"></div>
             </a>
             <p class="info"><i class="fa fa-graduation-cap"></i> {~{post.post_owner_branch}~}</p>
-            <a ng-href="/profile/{~{post.spot[0].id}~}">
+            <a ng-href="/profile/{~{post.spot[0].id}~}" ng-show="post.spot[0]">
               <p class="info" style="margin-top:5px;"><i class="fa fa-map-marker"></i> {~{post.spot[0].name}~}</p>
             </a>
             <p class="info"><i class="fa fa-clock-o"></i> <span am-time-ago="post.time"></span></p>
