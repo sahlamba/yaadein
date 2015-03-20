@@ -3,8 +3,8 @@
 var app = angular.module('yaadeinApp');
 var originURL = 'http://172.25.55.156:60020';
 
-app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService', 'PostService',
-    function ($scope, $http, $q, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService, PostService) {
+app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService', 'PostService', 'Lightbox',
+    function ($scope, $http, $q, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService, PostService, Lightbox) {
 
     ngNotify.config({
       theme: 'pure',
@@ -77,6 +77,10 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
 	$scope.getCurrentNavItem = function () {
 		return $scope.currentNavItem.id;
 	};
+
+  $scope.enlargeImage = function (images, index) {
+    Lightbox.openModal(images, index);
+  }; 
 
 	$scope.closePost = function () {
 		$('#centered').removeClass('blur-back');

@@ -4,11 +4,12 @@
 	position: relative;
 	width: 100%;
 	height: 300px;
-	background: $dark-grey;
+	background: $med-grey;
 	background-repeat: no-repeat !important;
 	background-position: 50% !important;
 	background-size: 100% !important;
   overflow: visible;
+  @include transition(all 150ms ease-out);
   #cover-upload {
     cursor: pointer;
     color: $white;
@@ -16,16 +17,20 @@
     right: 20px;
     top: 20px;
     overflow: hidden;
-    font-size: $huge;
+    font-size: $massive;
     text-shadow: 0px 0px 7px $black;
     text-align: center;
     padding: 0 8px;
+    @include transition(all 150ms ease-out);
+    &:hover {
+      font-size: $huge;
+    }
   }
   #cover-upload-hint {
     color: $white;
     position: absolute;
-    right: 30px;
-    top: 58px;
+    right: 58px;
+    top: 24px;
     background: lighten($black, 5%);
     border: 1px black solid;
     border-radius: 3px;
@@ -60,17 +65,17 @@
         & > div {
           width: 120px;
           height: 120px;
-          border-radius: 50%;
+          //border-radius: 50%;
           .pic {
             width: 116px;
             height: 116px;
             border: 4px solid $white;
-            border-radius: 50%;
+            border-radius: 4px;
             background-color: $grey;
             background-size: cover;
             background-repeat: no-repeat;
             background-position: 50% 50%;
-            box-shadow: inset 0 1px 2px 1px $med-grey;
+            //box-shadow: inset 0 1px 2px 1px $med-grey;
           }
         }
       }

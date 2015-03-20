@@ -15,6 +15,15 @@ app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
 }]);
 
+app.config(['LightboxProvider', function (LightboxProvider) {
+
+    LightboxProvider.templateUrl = 'views/lightbox.html';
+
+    LightboxProvider.getImageUrl = function (imageUrl) {
+    return imageUrl;
+  };
+}]);
+
 app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 	$routeProvider
 	.when('/', {

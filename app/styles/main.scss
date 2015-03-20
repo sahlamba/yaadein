@@ -16,7 +16,7 @@ html {
 }
 
 body {
-  background: $grey;
+  background: #e9eaed;
   font-family: $font-stack;
   font-size: $small;
   color: $black;
@@ -35,8 +35,17 @@ body {
   outline: none;
 }
 
+a:link, a:visited, a:hover, a:active {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .ngn {
   z-index: 9999 !important;
+}
+
+.modal-content {
+  height: auto !important;
 }
 
 mentio-menu {

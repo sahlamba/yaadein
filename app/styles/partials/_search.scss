@@ -5,21 +5,45 @@
 	width: calc(100vw - 51px);
 	height: 100vh;
 	top: 0;
-	left: 51px;
-	background: rgba(255, 255, 255, 0.7);
+	left: 50px;
+	background: rgba(255, 255, 255, 0.85);
 	z-index: 1001;
 	//Close lightbox icon
 	.close-lightbox {
-	color: $black;
-	position: absolute;
-	top: 15px;
-	right: 15px;
-	font-size: $massive;
-	cursor: pointer;
+	  color: $black;
+	  position: absolute;
+	  top: 15px;
+	  right: 15px;
+	  font-size: $massive;
+	  cursor: pointer;
 	}
+
+::-webkit-input-placeholder {
+  color: $dark-grey;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: $dark-grey;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: $dark-grey;
+}
+
+:-ms-input-placeholder {
+  color: $dark-grey;
+}
 
 .angucomplete-holder {
   position: relative;
+  i.fa {
+    position: absolute;
+    font-size: $huge;
+    top: 58px;
+    left: 50%;
+    margin-left: 17%;
+    color: $dark-grey;
+  }
   .search-input {
     position: absolute;
     width: 40%;
@@ -28,7 +52,8 @@
     margin-left: -20%;
     font-size: $huge;
     padding: 14px;
-    border-bottom: 1px solid $med-grey;
+    padding-right: 48px;
+    border-bottom: 1px solid $dark-grey;
     background: rgba(0,0,0,0);
     color: $black;
   }
@@ -37,7 +62,7 @@
 .angucomplete-dropdown {
   overflow-y: auto;
   max-height: 500px;
-  width: calc(40% + 27px);
+  width: calc(40%);
   padding: 0;
   cursor: pointer;
   z-index: 9999;
@@ -134,145 +159,6 @@
 //top: 28px;
 //color: $dark-grey;
 //}
-//
-//a.search-result {
-//display: block;
-//width: 180px;
-//height: 40px;
-//overflow: hidden;
-//background: $white;
-//margin-bottom: 1px;
-//padding: 15px;
-//padding-top: 10px;
-//padding-bottom: 10px;
-//color: $black;
-//cursor: pointer;
-//@include transition (all 150ms ease-out);
-//
-//&:hover {
-//color: $white;
-//background: $primary;
-//}
-//
-//.user-image-container {
-//position: relative;
-//float: left;
-//width: 40px;
-//
-//.user-image {
-//width: 40px;
-//height: 40px;
-//margin: 0 auto;
-//background: $dark-grey;
-//background-repeat: no-repeat !important;
-//background-position: center !important;
-//background-size: cover !important;
-//border-radius: 50%;
-//}
-//}
-//
-//.result-details {
-//position: relative;
-//overflow: hidden;
-//float: left;
-//width: 130px;
-//padding-left: 10px;
-//padding-top: 3px;
-//padding-bottom: 3px;
-//text-align: left;
-//
-//$line-height: 1.4;
-//$lines-to-show: 2;
-//
-//p {
-//height: $tiny * $line-height * $lines-to-show;
-//font-size: $tiny;
-//line-height: $line-height;
-//overflow: hidden;
-//text-overflow: ellipsis;
-//}
-//}
-//
-//}
-//}
-//
-//#search-people {
-//overflow: hidden;
-//}
-//
-//.angucomplete-holder.angucomplete-dropdown-visible {
-//height: calc(100vh);
-//}
-//
-//.angucomplete-dropdown {
-//width: 100%;
-//overflow-y: auto;
-//max-height: calc(100vh - 71px); //Subtract height of search input
-//margin-top: 0;
-//border: 0;
-//padding: 0;
-//color: #777;
-//background: #fff;
-//.angucomplete-searching {
-//color: #777;
-//background: #fff;
-//padding: 5px 10px;
-//}
-//.angucomplete-row {
-//display: block;
-//width: 180px;
-//height: 40px;
-//overflow: hidden;
-//background: $white;
-//margin-bottom: 1px;
-//padding: 15px;
-//padding-top: 10px;
-//padding-bottom: 10px;
-//color: $black;
-//cursor: pointer;
-//@include transition (all 150ms ease-out);
-//
-//&:hover, &:focus {
-//color: $white;
-//background: $primary;
-//}
-//
-//.angucomplete-image-holder {
-//position: relative;
-//float: left;
-//width: 40px;
-//
-//.angucomplete-image {
-//width: 40px;
-//height: 40px;
-//margin: 0 auto;
-//border-radius: 50%;
-//overflow: hidden;
-//}
-//}
-//
-//.angucomplete-title {
-//position: relative;
-//overflow: hidden;
-//float: left;
-//width: 130px;
-//padding-left: 10px;
-//padding-top: 3px;
-//padding-bottom: 3px;
-//text-align: left;
-//color: $black;
-//
-//$line-height: 1.4;
-//$lines-to-show: 1;
-//
-//height: $tiny * $line-height * $lines-to-show;
-//font-size: $tiny;
-//line-height: $line-height;
-//text-overflow: ellipsis;
-//}
-//}
-//}
-//
 .highlight {
   color: $primary;
 }

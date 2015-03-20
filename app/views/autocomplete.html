@@ -1,4 +1,5 @@
-<div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}"> 
+<div class="angucomplete-holder" ng-class="{'angucomplete-dropdown-visible': showDropdown}">
+  <i class="fa fa-search"></i>
   <input ng-model="searchStr"
         type="text"
         placeholder="{~{placeholder}~}"
@@ -30,7 +31,7 @@
     <div ng-if="!matchClass && result.description && result.description != ''" class="angucomplete-description">{~{result.description}~}</div>
   </div>
   
-  <div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { name: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">
+  <!--<div class="angucomplete-row" ng-click="selectResult({title: searchStr, originalObject: { name: searchStr, custom: true }})" ng-mouseenter="hoverRow(results.length)" ng-class="{'angucomplete-selected-row': results.length == currentIndex}">-->
   </div>
   </div>
   </div>

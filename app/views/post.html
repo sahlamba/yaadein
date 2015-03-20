@@ -17,17 +17,17 @@
         <div class="post-data pull-left">
         <div>
             <a ng-href="/profile/{~{post.post_owner_enrol}~}"><h1 ng-bind="post.post_owner"></h1></a>
-            <h2 ng-show="post.taggedUsers">With 
+            <h2 ng-show="post.taggedUsers.length">With 
                 <span ng-repeat="taggedUser in post.taggedUsers">
-                    <span ng-if="$last && $index"> and </span><a ng-href="/profile/{~{taggedUser.username}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
+                    <span ng-show="$last && $index"> and </span><a ng-href="/profile/{~{taggedUser.username}~}">{~{taggedUser.name}~}</a><span ng-hide="(post.taggedUsers.length-1==$index)||(post.taggedUsers.length-2==$index)">, </span>
                 </span>
             </h2>
             <p ng-bind-html="post.post_text | linky:'_blank' | emoji | hashtags"></p>
             <div class="images-container">
-                <a href="#" ng-if="post.image_url.length > 1" ng-repeat="image in post.image_url" ng-click="enlargeImage(image)">
+                <a href="#" ng-if="post.image_url.length > 1" ng-repeat="image in post.image_url" ng-click="enlargeImage(post.image_url, $index)">
 					<div ng-style="{'background':'url(' + image + ')'}"></div>
                 </a>
-				<a href="#" class="single-image" ng-if="post.image_url.length === 1" ng-repeat="image in post.image_url" ng-click="enlargeImage(image)">
+				<a href="#" class="single-image" ng-if="post.image_url.length === 1" ng-repeat="image in post.image_url" ng-click="enlargeImage(post.image_url, $index)">
 					<img ng-src="{~{image}~}" alt="{~{$index}~}">
                 </a>
             </div>
