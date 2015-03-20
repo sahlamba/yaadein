@@ -3,6 +3,7 @@
 .ticker-content {
 	position: relative;
 	width: 100%;
+  top: 43px;
 	height: calc(100vh - 43px); // Subtract height of .credits div
 	overflow: auto;
 	//begin -- a.ticker-element

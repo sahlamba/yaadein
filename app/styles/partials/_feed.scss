@@ -41,6 +41,10 @@
 			& > div {
 				padding-right: 15px;
 				//User's profile pic
+         a {
+          display: table;
+          margin: 0 auto;
+         }
 				 a div.user-image {
 					width: 70px;
 					height: 70px;
@@ -53,6 +57,7 @@
 				}
 				//Extra info style
 				p.info {
+          margin: 0;
 					margin-top: 5px;
 					text-align: center;
 					font-weight: normal;
@@ -84,6 +89,10 @@
             color: $danger;
           }
         }
+        & > a {
+          display: table;
+          margin: 0;
+        }
 				//Common typographic styles
 				* {
 					text-align: left;
@@ -99,6 +108,8 @@
 				h2 {
 					font-size: $small;
 					color: $dark-grey;
+          margin: 0;
+          margin-top: 5px;
 					span {
 						color: inherit;
 						font-size: inherit;

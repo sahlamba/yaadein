@@ -3,8 +3,17 @@
     <div ng-show="isLoggedUserProfile()" id="cover-upload" type="file" ng-mouseover="showCoverHint()" ng-mouseleave="hideCoverHint()" ng-file-select ng-model="coverpic" ng-file-change="uploadCover(coverpic)" ng-accept="'image/*'" ng-multiple="false"><i class="fa fa-camera-retro"></i></div>
     <div id="cover-upload-hint">Update Cover Photo</div>
     <div class="profile-user-details">
-        <h1 ng-bind="currentUser.name"></h1>
-        <p><i class="fa fa-graduation-cap"></i> {~{currentUser.label}~}</p>
+    <div>
+        <div class="profile-pic">
+        <div>
+          <div class="pic" ng-style="{ 'background-image': 'url(' + currentUser.profilePic + ')' }"></div>
+        </div>
+        </div>
+        <div class="details">
+          <h1 ng-bind="currentUser.name"></h1>
+          <p><i class="fa fa-graduation-cap"></i> {~{currentUser.label}~}</p>
+        </div>
+    </div>
     </div>
 </div>
 <div class="padded">
@@ -26,9 +35,9 @@
         <div>
             <button class="delete-post-bttn" ng-if="isLoggedUserPost(post.post_owner_enrol)" ng-click="deletePost(post.post_id)"><i class="fa fa-close"></i></button>
             <a ng-href="/profile/{~{post.post_owner_enrol}~}"><h1 ng-bind="post.post_owner"></h1></a>
-            <h2 ng-show="post.taggedUsers">With 
+            <h2 ng-show="post.taggedUsers.length">With 
                 <span ng-repeat="taggedUser in post.taggedUsers">
-                    <span ng-if="$last && $index"> and </span><a ng-href="/profile/{~{taggedUser.username}~}">{~{taggedUser.name}~}</a><span ng-if="!$last">, </span>
+                    <span ng-show="$last && $index"> and </span><a ng-href="/profile/{~{taggedUser.username}~}">{~{taggedUser.name}~}</a><span ng-hide="(post.taggedUsers.length-1==$index)||(post.taggedUsers.length-2==$index)">, </span>
                 </span>
             </h2>
             <p ng-bind-html="post.post_text | linky:'_blank' | emoji | hashtags"></p>

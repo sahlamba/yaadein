@@ -10,6 +10,11 @@ var resolve = {
   }
 };
 
+app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.latencyThreshold = 0;
+    cfpLoadingBarProvider.includeSpinner = false;
+}]);
+
 app.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
 	$routeProvider
 	.when('/', {

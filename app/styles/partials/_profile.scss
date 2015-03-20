@@ -3,11 +3,12 @@
 .cover-pic {
 	position: relative;
 	width: 100%;
-	height: 254px;
+	height: 300px;
 	background: $dark-grey;
 	background-repeat: no-repeat !important;
 	background-position: 50% !important;
 	background-size: 100% !important;
+  overflow: visible;
   #cover-upload {
     cursor: pointer;
     color: $white;
@@ -34,24 +35,64 @@
 	//begin -- .user-details
 	.profile-user-details {
 		position: absolute;
+    height: 86px;
 		bottom: 0;
 		left: 0;
 		right: 0;
-		overflow: hidden;
+		overflow: visible;
 		text-align: left;
 		padding: 20px 35px;
 		@include background-image( linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) 130%) );
-		h1 {
-			font-size: 22px;
-			margin: 0;
-			text-shadow: 0 1px 1px #333;
-			font-weight: 700;
-			letter-spacing: 0.04em;
-			color: $white;
-		}
-		p {
-			font-size: 14px;
-			color: $white;
-		}
+    & > div {
+      position: relative;
+      width: 100%;
+      max-width: 850px;
+      margin: 0 auto;
+      height: 46px;
+      div.profile-pic {
+        width: 120px;
+        height: 120px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin-top: -34px;
+        z-index: 801;
+        & > div {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          .pic {
+            width: 116px;
+            height: 116px;
+            border: 4px solid $white;
+            border-radius: 50%;
+            background-color: $grey;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: 50% 50%;
+            box-shadow: inset 0 1px 2px 1px $med-grey;
+          }
+        }
+      }
+      div.details {
+        position: absolute;
+        top: 0;
+        left: 137px;
+		    h1 {
+			    font-size: 22px;
+			    margin: 0;
+			    text-shadow: 0 1px 1px #333;
+			    font-weight: 700;
+			    letter-spacing: 0.04em;
+			    color: $white;
+		    }
+		    p {
+			    font-size: 14px;
+			    color: $white;
+          margin: 0;
+          margin-top: 3px;
+		    }
+      }
+    }
 	}//end -- .user-details
 }//end -- .cover-pic

@@ -28,6 +28,7 @@ body {
   margin: 0;
   padding: 0;
   border: 0;
+  line-height: 1.4;
 }
 
 *:focus {
@@ -48,6 +49,16 @@ mentio-menu {
 
 .blur-back {
 	filter: blur(12px);
+  -moz-filter: blur(12px);
+}
+
+#loading-bar {
+  & .bar {
+    background: $primary;
+  }
+  & .peg {
+    box-shadow: $primary 1px 0 6px 1px;
+  }
 }
 
 //begin -- .left-sidebar
@@ -97,7 +108,7 @@ mentio-menu {
 				display: block;
 				position: absolute;
 				right: 50%;
-				margin-right: -22px;
+				margin-right: -16px;
 				bottom: 110px;
 				font-family: $script-font;
 				@include transform(rotate(-90deg));
@@ -188,7 +199,7 @@ mentio-menu {
 	@include transition(all 150ms ease-out);
 	//Development Credits to IMG
 	.credits {
-		width: 190px;
+		width: 100%;
 		padding: 15px;
 		position: absolute;
 		bottom: 0;
