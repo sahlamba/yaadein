@@ -246,6 +246,10 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     }
   };
 
+  $scope.isLoggedUserPost = function (id) {
+    return $scope.user.enrolmentNo === id;
+  };
+
   $scope.deletePost = function (id) {
     var flag = PostService.deletePost(id);
     flag.then(function (d) {
@@ -319,10 +323,6 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserSer
 
   $scope.isLoggedUserProfile = function () {
     return $scope.user.enrolmentNo === $scope.currentUser.enrolmentNo;
-  };
-
-  $scope.isLoggedUserPost = function (id) {
-    return $scope.user.enrolmentNo === id;
   };
 
 	$scope.addToFeed = function () {

@@ -20,6 +20,7 @@
         </div>
         <div class="post-data pull-left">
         <div>
+            <button class="delete-post-bttn" ng-if="isLoggedUserPost(post.post_owner_enrol)" ng-click="deletePost(post.post_id)"><i class="fa fa-close"></i></button>
             <a ng-href="/profile/{~{post.post_owner_enrol}~}"><h1 ng-bind="post.post_owner"></h1></a>
             <h2 ng-show="post.taggedUsers.length">With 
                 <span ng-repeat="taggedUser in post.taggedUsers">
