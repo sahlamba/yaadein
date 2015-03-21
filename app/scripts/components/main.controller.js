@@ -155,7 +155,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
 
   $scope.loadTags = function (query) {
     var defer = $q.defer();
-    $http.get(originURL + '/yaadein/search/1/?q=' + query)
+    $http.get(originURL + '/yaadein/search/1/?q=' + query, {ignoreLoadingBar: true})
       .success(function (d) {
           defer.resolve(d.results);
     });
@@ -164,7 +164,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
 
   $scope.loadSpots = function (query) {
     var defer = $q.defer();
-    $http.get(originURL + '/yaadein/search/2/?q=' + query)
+    $http.get(originURL + '/yaadein/search/2/?q=' + query, {ignoreLoadingBar: true})
       .success(function (d) {
           defer.resolve(d.results);
     });

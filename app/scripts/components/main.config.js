@@ -12,13 +12,12 @@ var resolve = {
 
 app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.latencyThreshold = 0;
-    cfpLoadingBarProvider.includeSpinner = false;
+    cfpLoadingBarProvider.includeBar = false;
+    cfpLoadingBarProvider.parentSelector = '#yaadein-title';
 }]);
 
 app.config(['LightboxProvider', function (LightboxProvider) {
-
     LightboxProvider.templateUrl = 'views/lightbox.html';
-
     LightboxProvider.getImageUrl = function (imageUrl) {
     return imageUrl;
   };

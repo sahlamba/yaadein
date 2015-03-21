@@ -4,7 +4,7 @@
 	position: relative;
 	width: 100%;
 	height: 300px;
-	background: $med-grey;
+	background: $white;
 	background-repeat: no-repeat !important;
 	background-position: 50% !important;
 	background-size: 100% !important;
@@ -48,6 +48,7 @@
 		text-align: left;
 		padding: 20px 35px;
 		@include background-image( linear-gradient( rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.6) 130%) );
+    z-index: 802;
     & > div {
       position: relative;
       width: 100%;
@@ -84,11 +85,10 @@
         top: 0;
         left: 137px;
 		    h1 {
-			    font-size: 22px;
+			    font-size: $huge;
 			    margin: 0;
 			    text-shadow: 0 1px 1px #333;
 			    font-weight: 700;
-			    letter-spacing: 0.04em;
 			    color: $white;
 		    }
 		    p {
