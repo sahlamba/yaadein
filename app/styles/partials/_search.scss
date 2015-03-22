@@ -18,21 +18,6 @@
 	  cursor: pointer;
 	}
 
-::-webkit-input-placeholder {
-  color: $dark-grey;
-}
-
-:-moz-placeholder { /* Firefox 18- */
-  color: $dark-grey;
-}
-
-::-moz-placeholder {  /* Firefox 19+ */
-  color: $dark-grey;
-}
-
-:-ms-input-placeholder {
-  color: $dark-grey;
-}
 
 .angucomplete-holder {
   position: relative;

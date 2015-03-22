@@ -10,65 +10,90 @@
 	z-index: 1001;
 	.post-form {
 		position: relative;
-		width: 800px;
+		width: 880px;
+    padding: 40px;
 		margin: 0 auto;
 		max-height: 100%;
 		text-align: center;
 	}
-	//::-webkit-input-placeholder {
-		//color: $dark-grey;
-	//}
-	//:-moz-placeholder { /* Firefox 18- */
-		//color: $dark-grey;
-	//}
-	//::-moz-placeholder {  /* Firefox 19+ */
-		//color: $dark-grey;
-	//}
-	//:-ms-input-placeholder {
-		//color: $dark-grey;
-	//}
-	//Icons beside input
-	i.inline {
-		color: $black;
-		margin-right: -55px;
-	}
-  tags-input {
-    width: 374px;
-    .host {
-      margin: 0;
+	.tag-input-box {
+    position: relative;
+    width: 385px;
+    float: left;
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-bottom: 2px solid $dark-grey;
+    &:nth-of-type(2) {
+      float: right;
     }
-    .tags {
-      padding: 0;
-      background-color: rgba(255,255,255,0);
-      border: 0;
-      box-shadow: 0 0 0 0 $white;
+	  i.inline {
+		  color: $dark-grey;
+      float: left;
+      font-size: $big;
+      padding: 13px;
+	  }
+    tags-input {
+      width: 327px;
+      float: left;
+      padding: 7px 0;
+      .autocomplete {
+        border-radius: 3px;
+        .suggestion-item {
+          padding: 7px 14px;
+          color: $black;
+          text-align: left;
+          &.selected {
+            color: $white;
+            background-color: $primary;
+            em {
+              background-color: $primary;
+            }
+          }
+        }
+      }
+      .host {
+        margin: 0;
+      }
+      .tags {
+        padding: 0;
+        background-color: rgba(255, 255, 255, 0);
+        border: 0;
+        box-shadow: 0 0 0 0 $white;
+        .input {
+          background: rgba(255, 255, 255, 0);
+          font-size: $med;
+          width: 130px !important;
+        }
+        .tag-item {
+          height: auto;
+          border: 1px solid darken($primary, 3);
+          background: $primary;
+          color: $white;
+          .remove-button {
+            color: $white;
+          }
+        }
+      }
     }
   }
-	//Single line input
-	.small-input {
-		position: relative;
-		width: 202px;
-		background: rgba(255, 255, 255, 0);
-		color: $black;
-		line-height: 34px;
-		padding: 7px 14px 7px 28px;
-		margin: 35px;
-		border-bottom: 3px solid $med-grey;
-		font-size: $med;
-		@include transition(all 300ms ease-out);
-		&:focus {
-			border-bottom: 3px solid $primary;
-		}
-	}
 	//Multiple line input
 	.big-input {
-		@extend .small-input;
-		width: 80%;
-		height: 34px;
-		padding: 7px 14px;
-		&:focus {
-			height: 120px;
-		}
+    position: relative;
+		width: 800px;
+		height: 150px;
+    margin: 35px auto;
+		padding: 7px 10px;
+    background-color: rgba(255, 255, 255, 0);
+    color: $black;
+    border: 2px solid rgba(255, 255, 255, 0);
+    border-bottom: 2px solid $dark-grey;
+    border-radius: 4px;
+    line-height: 1.4;
+    font-size: $med;
+    font-family: "Helvetica Neue", Helvetica, $font-stack; 
+		@include transition(all 300ms ease-out);
+    &:focus {
+      border-color: $primary;
+    }
 	}
 	//Form button styles
 	.upload-bttn {

@@ -40,6 +40,7 @@ a:link, a:visited, a:hover, a:active {
   cursor: pointer;
 }
 
+//Notifications
 .ngn {
   width: 40%;
   left: 50%;
@@ -61,13 +62,32 @@ a:link, a:visited, a:hover, a:active {
   opacity: 0.9;
 }
 
+//Lightbox
 .modal-content {
   height: auto !important;
 }
 
+//Predictions
 mentio-menu {
 	z-index: 1200 !important;
   width: 250px !important;
+}
+
+
+::-webkit-input-placeholder {
+  color: $dark-grey;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+  color: $dark-grey;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+  color: $dark-grey;
+}
+
+:-ms-input-placeholder {
+  color: $dark-grey;
 }
 
 @import "partials/compose";
@@ -79,6 +99,7 @@ mentio-menu {
   -moz-filter: blur(12px);
 }
 
+//Loaders
 #loading-bar {
   & .bar {
     background: $primary;
@@ -87,7 +108,6 @@ mentio-menu {
     box-shadow: $primary 1px 0 6px 1px;
   }
 }
-
 #loading-bar-spinner {
   display: block;
   position: absolute;
@@ -104,6 +124,7 @@ mentio-menu {
     border-left-color: lighten($primary, 7);
   }
 }
+
 //begin -- .left-sidebar
 .left-sidebar {
 	position: fixed;
