@@ -81,7 +81,7 @@
                 </tags-input>
               </div>
                 <textarea mentio
-				  mentio-id="'postMessageInput'"
+				          mentio-id="'postMessageInput'"
                   mentio-macros="macros"
                   mentio-trigger-char="':'"
                   mentio-items="emojis"
@@ -91,16 +91,14 @@
                   mentio-typed-term="typedTerm"
 
                   class="big-input" placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
-                <div class="upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-multiple="true"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Add Photos</div>
-                <button class="upload-bttn" ng-click="upload(files)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Post</button>
-				<ul>
-                  <li ng-repeat="f in files" style="text-align: left;">{~{f.name}~}</li>
-                </ul>
-                <img ng-show="files[0].dataUrl != null" ng-src="{~{files[0].dataUrl}~}" class="thumb">
-                <span class="progress" ng-show="files[0].progress >= 0">
-                  <div class="ng-binding" style="width:{~{files[0].progress}~}%" ng-bind="files[0].progress + '%'"></div>
-                </span>
-                <span ng-show="files[0].result">Upload Successful</span>
+                  <div>
+                    <div class="images-upload-container">
+                      <div class="thumb" ng-repeat="f in files" ng-show="f.dataUrl != null" ng-style="{ 'background-image': 'url(' + f.dataUrl + ')'}">
+                      </div>
+                      <div class="image-upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-file-change="generateThumb(files, $files)" ng-multiple="true"><i class="fa fa-camera-retro"></i><br>Add Photos</div>
+                    </div>
+                    <button class="upload-bttn" ng-click="upload(files)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Post</button>
+                </div>
             </form>
         </div>
     </div>

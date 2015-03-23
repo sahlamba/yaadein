@@ -3,8 +3,10 @@
 var app = angular.module('yaadeinApp');
 var originURL = 'http://172.25.55.156:60020';
 
-app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService', 'PostService', 'Lightbox',
-    function ($scope, $http, $q, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService, PostService, Lightbox) {
+app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService', 'PostService', 'Lightbox',
+    function ($scope, $http, $q, $timeout, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService, PostService, Lightbox) {
+
+    $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
 
     ngNotify.config({
       theme: 'pure',
@@ -171,17 +173,24 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     return defer.promise;
   };
 
-  $scope.$watch('files', function () {
-      $scope.upload($scope.files);
-  });
-
-  function generateThumbAndUpload(file) {
-    $scope.generateThumb(file);
-    $scope.uploadCover(file);
-  }
-
-  $scope.generateThumb = function (file) {
-    if (file !== null) {
+  $scope.generateThumb = function (files) {
+    for (var i = 0; i < files.length; i += 1) {
+      var file = files[i];
+      if (file !== null) {
+        console.log(i);
+        if($scope.fileReaderSupported && file.type.indexOf('image') > -1) {
+          $timeout(function() {
+              var fileReader = new FileReader();
+              fileReader.readAsDataURL(file);
+              fileReader.onload = function (e) {
+                $timeout(function() {
+                  file.dataUrl = e.target.result;
+                  console.log(file.dataUrl);
+                });
+              };
+          });
+        }
+      }
     }
   };
 
@@ -198,30 +207,28 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$upload', '$locat
     if ($routeParams && $routeParams.enrolmentNo) {
       uploadUrl = originURL + '/yaadein/user/' + $routeParams.enrolmentNo + '/';
     }
-    if (files && files.length) {
-      //for(var i = 0; i < files.length; i += 1) {
-        //var file = files[i];
-        $upload.upload({
-          url: uploadUrl,
-          headers: {'Content-Type':'multipart/form-data'}, 
-          method: 'POST',
-          data: {
-            post_text: $scope.newPost.post_text,
-            user_tags: $scope.newPost.user_tags,
-            spot: $scope.newPost.spot
-          },
-          file: files,
-          withCredentials: true
-        }).progress(function (evt) {
-          var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-          console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
-        }).success(function (data, status, headers, config) {
-          console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data));
-          $scope.closePost();
-          ngNotify.set('Successfully posted!', 'success');
-        });
-     //}
-    }
+    //for(var i = 0; i < files.length; i += 1) {
+    //var file = files[i];
+    $upload.upload({
+      url: uploadUrl,
+      headers: {'Content-Type':'multipart/form-data'}, 
+      method: 'POST',
+      data: {
+        post_text: $scope.newPost.post_text,
+        user_tags: $scope.newPost.user_tags,
+        spot: $scope.newPost.spot
+      },
+      file: files,
+      withCredentials: true
+    }).progress(function (evt) {
+      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+      console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
+    }).success(function (data, status, headers, config) {
+      console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data));
+      $scope.closePost();
+      ngNotify.set('Successfully posted!', 'success');
+    });
+    //}
   };
 
   $scope.uploadCover = function (files) {
