@@ -1,11 +1,11 @@
-<div scrollable scrollend="addToFeed();">
+<div scrollable>
 <div class="padded">
     <!-- <div class="toggle-feed-container">
         <div>
         </div>
     </div> -->
 	<h2 class="page-title">Trending posts with #{~{hash}~}</h2>
-    <div class="feed-container" ng-repeat="post in posts">
+    <div class="feed-container fade" ng-repeat="post in posts">
     <div>
         <div class="user-data pull-left">
         <div>
@@ -21,7 +21,7 @@
         </div>
         <div class="post-data pull-left">
         <div>
-            <button class="delete-post-bttn" ng-if="isLoggedUserPost(post.post_owner_enrol)" ng-click="deletePost(post.post_id)"><i class="fa fa-close"></i></button>
+            <button class="delete-post-bttn" ng-if="isLoggedUserPost(post.post_owner_enrol)" ng-click="deleteHashtagPost(post.post_id, $index)"><i class="fa fa-close"></i></button>
             <a ng-href="/profile/{~{post.post_owner_enrol}~}"><h1 ng-bind="post.post_owner"></h1></a>
             <h2 ng-show="post.taggedUsers.length">With
                 <span ng-repeat="taggedUser in post.taggedUsers">

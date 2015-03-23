@@ -185,7 +185,6 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
               fileReader.onload = function (e) {
                 $timeout(function() {
                   file.dataUrl = e.target.result;
-                  console.log(file.dataUrl);
                 });
               };
           });
@@ -221,10 +220,16 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
       file: files,
       withCredentials: true
     }).progress(function (evt) {
-      var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-      console.log('progress: ' + progressPercentage + '%' + evt.config.file.name);
     }).success(function (data, status, headers, config) {
-      console.log('file' + config.file.name + 'uploaded. Response' + JSON.stringify(data));
+      console.log('Response' + JSON.stringify(data));
+      var postPromise = PostService.getPost(data.posts_data[0].post_id);
+      postPromise.then(function (d) {
+        d.post_owner_pic = originURL + d.post_owner_pic;
+        for(var j = 0; j < d.image_url.length; j += 1) {
+          d.image_url[j] = originURL + d.image_url[j];
+        }
+        $scope.user.posts_data.unshift(d);
+      });
       $scope.closePost();
       ngNotify.set('Successfully posted!', 'success');
     });
@@ -257,11 +262,12 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
     return $scope.user.enrolmentNo === id;
   };
 
-  $scope.deletePost = function (id) {
+  $scope.deletePost = function (id, index) {
     var flag = PostService.deletePost(id);
     flag.then(function (d) {
         if (d === 'True') {
           ngNotify.set('Post deleted successfully!', 'success');
+          $scope.user.posts_data.splice(index, 1);
         } else {
           ngNotify.set('Could not delete post!', 'error');
         }
@@ -307,8 +313,8 @@ app.controller('HomeController', ['$scope', '$http', 'HomeService',
 
 }]);
 
-app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserService',
-	function ($routeParams, $scope, $http, UserService) {
+app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserService', 'PostService', 'ngNotify',
+	function ($routeParams, $scope, $http, UserService, PostService, ngNotify) {
 
 	$scope.currentUser = {};
 	var userPromise = UserService.getUser($routeParams.enrolmentNo);
@@ -328,6 +334,17 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserSer
       }
 	});
 
+  $scope.deleteProfilePost = function (id, index) {
+    var flag = PostService.deletePost(id);
+    flag.then(function (d) {
+        if (d === 'True') {
+          ngNotify.set('Post deleted successfully!', 'success');
+          $scope.currentUser.posts_data.splice(index, 1);
+        } else {
+          ngNotify.set('Could not delete post!', 'error');
+        }
+    });
+  };
   $scope.isLoggedUserProfile = function () {
     return $scope.user.enrolmentNo === $scope.currentUser.enrolmentNo;
   };
@@ -354,8 +371,8 @@ app.controller('GalleryController', ['$routeParams', '$scope', 'dataUserService'
 
 }]);
 
-app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'HashtagService', 
-	function ($routeParams, $scope, $http, HashtagService) {
+app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'HashtagService', 'PostService', 'ngNotify', 
+	function ($routeParams, $scope, $http, HashtagService, PostService, ngNotify) {
 
   $scope.hash = $routeParams.hashtag;  
 	$scope.posts = [];
@@ -372,6 +389,17 @@ app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'Hashtag
     $scope.posts = d.posts_data;
   });
 
+  $scope.deleteHashtagPost = function (id, index) {
+    var flag = PostService.deletePost(id);
+    flag.then(function (d) {
+        if (d === 'True') {
+          ngNotify.set('Post deleted successfully!', 'success');
+          $scope.posts.splice(index, 1);
+        } else {
+          ngNotify.set('Could not delete post!', 'error');
+        }
+    });
+  };
 }]);
 
 app.controller('PostController', ['$routeParams', '$scope', '$q', '$http', 'PostService',  

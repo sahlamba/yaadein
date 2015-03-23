@@ -95,7 +95,7 @@
                     <div class="images-upload-container">
                       <div class="thumb" ng-repeat="f in files" ng-show="f.dataUrl != null" ng-style="{ 'background-image': 'url(' + f.dataUrl + ')'}">
                       </div>
-                      <div class="image-upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-file-change="generateThumb(files, $files)" ng-multiple="true"><i class="fa fa-camera-retro"></i><br>Add Photos</div>
+                      <div class="image-upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-file-change="generateThumb(files)" ng-multiple="true"><i class="fa fa-camera-retro"></i><br>Add Photos</div>
                     </div>
                     <button class="upload-bttn" ng-click="upload(files)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Post</button>
                 </div>
