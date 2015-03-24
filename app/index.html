@@ -93,7 +93,10 @@
                   class="big-input" placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
                   <div>
                     <div class="images-upload-container">
-                      <div class="thumb" ng-repeat="f in files" ng-show="f.dataUrl != null" ng-style="{ 'background-image': 'url(' + f.dataUrl + ')'}">
+                      <!-- <div class="thumb" ng-repeat="f in files" ng-show="f.dataUrl != null" ng-style="{ 'background-image': 'url(' + f.dataUrl + ')'}"> -->
+                      <div class="thumb" ng-repeat="f in files">
+                        {~{f.name}~}
+                        <i class="fa fa-times-circle-o fa-lg"></i>
                       </div>
                       <div class="image-upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-file-change="generateThumb(files)" ng-multiple="true"><i class="fa fa-camera-retro"></i><br>Add Photos</div>
                     </div>

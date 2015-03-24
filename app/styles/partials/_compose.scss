@@ -113,11 +113,25 @@
     float: left;
     width: 80px;
     height: 80px;
-    color: $white;
+    color: $black;
+    overflow: hidden;
     margin: 5px;
     background-size: cover;
     background-position: 50% 50%;
     background-repeat: no-repeat;
+    i.fa {
+      color: $white;
+      border: 0;
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      @include transition(all 150ms ease-out);
+      text-shadow: 0 0 5px $black;
+      &:hover {
+        @include transform(scale(1.1));
+      }
+    }
   }
 	.upload-bttn {
 		position: relative;
