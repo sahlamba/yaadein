@@ -97,6 +97,32 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
     $scope.setCurrentNavItem($scope.navigationItems[1]);
 	};
 
+	$scope.showInviteBox = function () {
+		$('#inviteBox').fadeIn(150);
+    $('#centered').addClass('blur-back');
+		$('.right-sidebar').addClass('blur-back');
+    $scope.newPost.user_tags = [];
+	};
+
+	$scope.closeInvite = function () {
+    $('#centered').removeClass('blur-back');
+		$('.right-sidebar').removeClass('blur-back');
+		$('#inviteBox').fadeOut(300);
+    $scope.newPost.user_tags = [];
+	};
+
+  $scope.inviteUsers = function () {
+    var prom = TickerService.inviteUsers($scope.newPost.user_tags);
+    prom.then(function (x) {
+        if (x === 'True') {
+          ngNotify.set('Invites have been sent!', 'success');
+          $scope.closeInvite();
+        } else {
+          ngNotify.set('Could not send invites.', 'error');
+        }
+    });
+  };
+
   $scope.showCoverHint = function () {
     $('#cover-upload-hint').fadeIn(150);
   };
@@ -129,10 +155,10 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 	//Append enrolment number to profile and gallery URLs
 	//$scope.navigationItems[0].url += $scope.user.enrolmentNo;
 
-	$scope.ticks = [];
-	var tickPromise = TickerService.getTicks();
+	$scope.trending = [];
+	var tickPromise = TickerService.getTrending();
 	tickPromise.then(function (d) {
-		$scope.ticks = d;
+		$scope.trending = d.hashed;
 	});
 
   $scope.newPost = {
@@ -144,8 +170,23 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
     'image_url': [],
     'post_text': '',
     'user_tags': [],
-    'spot': []
+    'spot': [],
+    'post_type': 'A'
   };
+
+  //$scope.postStatus = false;
+
+  //$scope.$watch(function (scope) {
+  //      return scope.postStatus;
+  //    }, function (newValue, oldValue, scope) {
+  //    if(scope.postStatus) {
+  //      scope.newPost.post_type = 'B';
+  //      console.log(scope.newPost.post_type);
+  //    } else {
+  //      scope.newPost.post_type = 'A';
+  //      console.log(scope.newPost.post_type);
+  //    }
+  //});
 
   $scope.clearNewPostData = function () {
     $scope.newPost.post_text = '';
@@ -192,6 +233,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
   };
 
   $scope.upload = function (files) {
+    $('#uploadButton').prop('disabled', true);
     var uploadUrl = originURL + '/yaadein/user/' + $scope.user.enrolmentNo + '/';
     if ($routeParams && $routeParams.enrolmentNo) {
       uploadUrl = originURL + '/yaadein/user/' + $routeParams.enrolmentNo + '/';
@@ -205,7 +247,8 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
       data: {
         post_text: $scope.newPost.post_text,
         user_tags: $scope.newPost.user_tags,
-        spot: $scope.newPost.spot
+        spot: $scope.newPost.spot,
+        post_type: $scope.newPost.post_type
       },
       file: files,
       withCredentials: true
@@ -222,6 +265,9 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
       });
       $scope.closePost();
       ngNotify.set('Successfully posted!', 'success');
+    }).error(function(data, status, headers, config) {
+      ngNotify.set('Could not post!', 'error');
+      $('#uploadButton').prop('disabled', false);
     });
     //}
   };
@@ -300,7 +346,10 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 
   $scope.macros = {
 	'brb': 'be right back',
-	'omw': 'on my way'
+	'omw': 'on my way',
+  'ty': 'Thank you',
+  'hbd': 'Happy Birthday!',
+  'g2g': 'gotta go'
   };
 }]);
 

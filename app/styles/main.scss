@@ -94,6 +94,10 @@ mentio-menu {
 @import "partials/search";
 @import "partials/emoji-predictions";
 
+.lightbox.invite {
+  display: none;
+}
+
 .blur-back {
 	filter: blur(12px);
   -moz-filter: blur(12px);
@@ -122,6 +126,21 @@ mentio-menu {
     border: 4px solid transparent;
     border-top-color: lighten($primary, 7);
     border-left-color: lighten($primary, 7);
+  }
+}
+
+.lightbox .container {
+  text-align: center;
+  width: 550px;
+  margin: 0 auto;
+  padding: 50px;
+  .invite-button {
+    float: right;
+    padding: 7px 10px;
+    background: $primary;
+    border-radius: 3px;
+    color: $white;
+    margin: 7.5px 0;
   }
 }
 

@@ -4,16 +4,32 @@ var app = angular.module('yaadeinApp');
 var baseURL = 'http://172.25.55.156:60020/yaadein';
 
 app.service('TickerService', ['$http', '$q', function ($http, $q) {
+    this.getTrending = function () {
+        var deferred = $q.defer();
+        var url = baseURL + '/trending/';
+        $http.get(url)
+          .success(function (x) {
+            deferred.resolve(x);
+          });
+        return deferred.promise;
+    };
 
-	var deferred = $q.defer();
-	$http.get('http://beta.json-generator.com/api/json/get/HByxuXv')
-		.success(function (d) {
-			deferred.resolve(d);
-		});
-
-	this.getTicks = function () {
-		return deferred.promise;
-	};
+    this.inviteUsers = function (x) {
+      var q = $q.defer();
+      var URL = baseURL + '/invite/';
+      $http({
+        method: 'POST',
+        url: URL,
+        headers: {'Content-Type':'multipart/form-data'},
+        data: {
+          user_tags: x
+        },
+        file: []
+      }).success(function (d) {
+          q.resolve(d);
+        });
+      return q.promise;
+    };
 }]);
 
 app.service('HomeService', ['$http', '$q', function ($http, $q) {
@@ -38,6 +54,7 @@ app.service('HomeService', ['$http', '$q', function ($http, $q) {
 	this.getLoggedUser = function () {
 		return deferred.promise;
 	};
+
 }]);
 
 app.service('UserService', ['$http', '$q', function ($http, $q) {

@@ -38,6 +38,20 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <div id="inviteBox" class="lightbox fade invite">
+        <div class="close-lightbox icon icon-cancel" ng-click="closeInvite()"></div>
+        <div class="container">
+              <div class="tag-input-box">
+                <i class="inline fa fa-user-plus"></i>
+                <tags-input type="text" ng-model="newPost.user_tags" class="" display-property="value" placeholder="Invite friends" tabindex="0" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" show-focus="true" ng-required="required">
+                   <auto-complete source="loadTags($query)" min-length="1" select-first-match="true" highlight-matched-text="true"></auto-complete>
+                </tags-input>
+              </div>
+              <button class="invite-button" ng-click="inviteUsers()">Invite</button>
+        </div>
+        </div>
+    </div>
+
     <div id="searchBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'search'">
         <div class="close-lightbox icon icon-cancel" ng-click="closeSearch()"></div>
         <div>
@@ -69,13 +83,13 @@
             <form class="post-form" name="postForm">
               <div class="tag-input-box">
                 <i class="inline fa fa-user-plus"></i>
-                <tags-input type="text" ng-model="newPost.user_tags" class="" display-property="value" placeholder="Tag friends" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" show-focus="true" ng-required="required">
+                <tags-input type="text" ng-model="newPost.user_tags" class="" display-property="value" placeholder="Tag friends" tabindex="0" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" show-focus="true" ng-required="required">
                    <auto-complete source="loadTags($query)" min-length="1" select-first-match="true" highlight-matched-text="true"></auto-complete>
                 </tags-input>
               </div>
               <div class="tag-input-box">
                 <i class="inline fa fa-map-marker"></i>
-                <tags-input type="text" ng-model="newPost.spot" class="" display-property="value" placeholder="Spot" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" max-tags="1">
+                <tags-input type="text" ng-model="newPost.spot" class="" display-property="value" placeholder="Spot" add-from-autocomplete-only="true" tabindex="1" replace-spaces-with-dashes="false" max-tags="1">
                   <auto-complete source="loadSpots($query)" min-length="1" select-first-match="true" highlight-matched-text="true"></auto-complete>
                 </tags-input>
               </div>
@@ -90,7 +104,11 @@
                   mentio-typed-term="typedTerm"
                   required
                   name="message"
+                  tabindex="2"
                   class="big-input" placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
+                  <!-- <div class="private-select">
+                    <input type="checkbox" ng-model="postStatus">&nbsp;Private
+                  </div> -->
                   <div>
                     <div class="images-upload-container">
                       <!-- <div class="thumb" ng-repeat="f in files" ng-show="f.dataUrl != null" ng-style="{ 'background-image': 'url(' + f.dataUrl + ')'}"> -->
@@ -103,7 +121,7 @@
                         </li>
                       </ul>
                     </div>
-                    <button class="upload-bttn" ng-disabled="!postForm.$valid" ng-click="upload(images1.imageArray)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Post</button>
+                    <button id="uploadButton" class="upload-bttn" ng-disabled="!postForm.$valid" ng-click="upload(images1.imageArray)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Post</button>
                 </div>
             </form>
         </div>
@@ -126,20 +144,16 @@
     </div>
 
     <div class="right-sidebar" id="ticker">
-        <div class="ticker-content" scrollable scrollend="addToTicker();">
-            <a ng-href="/profile/{~{tick.enrolmentNo}~}" class="ticker-element" ng-repeat="tick in ticks">
-                <div class="user-image-container">
-                <div>
-                    <div class="user-image" ng-style="{ 'background-image': 'url(' + tick.profilePic + ')' }"></div>
-                </div>
-                </div>
-                <div class="ticker-details">
-                <p>{~{tick.name}~} posted a new memory<br><span am-time-ago="tick.time" style="color:#ccc;"></span></p>
-                </div>
-            </a>
-            <div class="loader" style="padding-top:20px; text-align:center;" ng-if="isLoading">
-                <img src="images/svg-loaders/three-dots.svg" alt="Loading..." style="height:10px;">
+        <div class="ticker-content" scrollable>
+            <div class="trending invite">
+              <button class="invite-button" ng-click="showInviteBox()"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Invite</button>
             </div>
+            <div class="trending">
+              Trending
+            </div>
+            <a ng-href="/hashtag/{~{hash}~}" class="ticker-element" ng-repeat="hash in trending">
+              #{~{hash}~}
+            </a>
         </div>
         <div id="app-title">
             <a href="/"><div id="yaadein-title" ng-bind="appname"></div></a>

@@ -7,18 +7,38 @@
 	height: calc(100vh - 72px); // Subtract height of .credits div
 	overflow: auto;
 	//begin -- a.ticker-element
+  .trending {
+    text-align: center;
+    color: $dark-grey;
+    font-size: $med;
+    padding: 15px;
+    &.invite {
+      border-bottom: 1px solid $grey;
+      & .invite-button {
+        padding: 7px 10px;
+        border-radius: 3px;
+        color: $white;
+        background: $primary;
+        cursor: pointer;
+        &:hover {
+          background: darken($primary, 6);
+        }
+      }
+    }
+  }
 	a.ticker-element {
 		display: block;
-		width: 190px;
-		height: 50px;
+		width: 100%;
+    font-size: 21px;
+    word-break: break-word;
 		overflow: hidden;
 		background: $white;
 		padding: 15px;
 		padding-top: 10px;
 		padding-bottom: 10px;
-		border-bottom: 1px solid $grey;
-		color: $black;
+		color: $primary;
 		cursor: pointer;
+    text-align: right;
 		@include transition (all 150ms ease-out);
 		&:hover {
 			color: $white;
