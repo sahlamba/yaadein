@@ -22,8 +22,7 @@
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.css" />
-    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog.css" />
-    <link rel="stylesheet" href="bower_components/ngDialog/css/ngDialog-theme-default.css" />
+    <link rel="stylesheet" href="bower_components/sweetalert/lib/sweet-alert.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -67,10 +66,10 @@
     <div id="postBox" class="lightbox fade" ng-if="getCurrentNavItem() === 'post'">
         <div class="close-lightbox icon icon-cancel" ng-click="closePost()"></div>
         <div>
-            <form class="post-form">
+            <form class="post-form" name="postForm">
               <div class="tag-input-box">
                 <i class="inline fa fa-user-plus"></i>
-                <tags-input type="text" ng-model="newPost.user_tags" class="" display-property="value" placeholder="Tag friends" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" show-focus="true">
+                <tags-input type="text" ng-model="newPost.user_tags" class="" display-property="value" placeholder="Tag friends" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" show-focus="true" ng-required="required">
                    <auto-complete source="loadTags($query)" min-length="1" select-first-match="true" highlight-matched-text="true"></auto-complete>
                 </tags-input>
               </div>
@@ -89,18 +88,22 @@
                   mentio-search="predictEmoji(term)"
                   mentio-select="getEmojiTextRaw(item)"
                   mentio-typed-term="typedTerm"
-
+                  required
+                  name="message"
                   class="big-input" placeholder="Type memory here" style="resize:none;" ng-model="newPost.post_text"></textarea>
                   <div>
                     <div class="images-upload-container">
                       <!-- <div class="thumb" ng-repeat="f in files" ng-show="f.dataUrl != null" ng-style="{ 'background-image': 'url(' + f.dataUrl + ')'}"> -->
-                      <div class="thumb" ng-repeat="f in files">
-                        {~{f.name}~}
-                        <i class="fa fa-times-circle-o fa-lg"></i>
-                      </div>
-                      <div class="image-upload-bttn" type="file" name="files" size="40" ng-file-select ng-model="files" ng-accept="'image/*'" ng-file-change="generateThumb(files)" ng-multiple="true"><i class="fa fa-camera-retro"></i><br>Add Photos</div>
+                      <div class="image-upload-bttn" type="file" name="images" size="40" ng-file-select ng-model="images" ng-accept="'image/*'" ng-file-change="addImage($files)" ng-multiple="true"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Add Photos</div>
+                      <ul>
+                        <li class="thumb" ng-repeat="f in images1.imageArray">
+                          <i class="fa fa-picture-o"></i>
+                          {~{f.name}~}
+                          <i class="fa fa-times-circle-o fa-lg delete" ng-click="deleteImage($index)"></i>
+                        </li>
+                      </ul>
                     </div>
-                    <button class="upload-bttn" ng-click="upload(files)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Post</button>
+                    <button class="upload-bttn" ng-disabled="!postForm.$valid" ng-click="upload(images1.imageArray)"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Post</button>
                 </div>
             </form>
         </div>
@@ -124,7 +127,7 @@
 
     <div class="right-sidebar" id="ticker">
         <div class="ticker-content" scrollable scrollend="addToTicker();">
-            <a ng-href="/profile/{~{tick.enrolmentNo}~}" class="ticker-element" ng-repeat="tick in ticks | limitTo: 100 | orderBy: '-tick.time'">
+            <a ng-href="/profile/{~{tick.enrolmentNo}~}" class="ticker-element" ng-repeat="tick in ticks">
                 <div class="user-image-container">
                 <div>
                     <div class="user-image" ng-style="{ 'background-image': 'url(' + tick.profilePic + ')' }"></div>
@@ -166,7 +169,8 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
-    <script src="bower_components/ngDialog/js/ngDialog.js"></script>
+    <script src="bower_components/sweetalert/lib/sweet-alert.js"></script>
+    <script src="bower_components/angular-sweetalert/SweetAlert.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->

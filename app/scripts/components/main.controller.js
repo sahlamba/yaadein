@@ -3,10 +3,8 @@
 var app = angular.module('yaadeinApp');
 var originURL = 'http://172.25.55.156:60020';
 
-app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService', 'PostService', 'Lightbox',
-    function ($scope, $http, $q, $timeout, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService, PostService, Lightbox) {
-
-    $scope.fileReaderSupported = window.FileReader != null && (window.FileAPI == null || FileAPI.html5 != false);
+app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService', 'PostService', 'Lightbox', 'SweetAlert',
+    function ($scope, $http, $q, $timeout, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService, PostService, Lightbox, SweetAlert) {
 
     ngNotify.config({
       theme: 'pure',
@@ -173,26 +171,6 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
     return defer.promise;
   };
 
-  $scope.generateThumb = function (files) {
-    for (var i = 0; i < files.length; i += 1) {
-      var file = files[i];
-      if (file !== null) {
-        console.log(i);
-        if($scope.fileReaderSupported && file.type.indexOf('image') > -1) {
-          $timeout(function() {
-              var fileReader = new FileReader();
-              fileReader.readAsDataURL(file);
-              fileReader.onload = function (e) {
-                $timeout(function() {
-                  file.dataUrl = e.target.result;
-                });
-              };
-          });
-        }
-      }
-    }
-  };
-
   $scope.$watch('coverpic', function (photo) {
       if (photo !== null) {
         (function(file){
@@ -200,6 +178,18 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
         })(photo);
       }
   });
+
+  $scope.images1 = {
+      'imageArray': []
+  };
+
+  $scope.addImage = function (files) {
+    $scope.images1.imageArray = $scope.images1.imageArray.concat(files);
+  };
+
+  $scope.deleteImage = function (i) {
+    $scope.images1.imageArray.splice(i, 1);
+  };
 
   $scope.upload = function (files) {
     var uploadUrl = originURL + '/yaadein/user/' + $scope.user.enrolmentNo + '/';
@@ -263,13 +253,28 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
   };
 
   $scope.deletePost = function (id, index) {
-    var flag = PostService.deletePost(id);
-    flag.then(function (d) {
-        if (d === 'True') {
-          ngNotify.set('Post deleted successfully!', 'success');
-          $scope.user.posts_data.splice(index, 1);
+    SweetAlert.swal({
+      title: "Are you sure?",
+      text: "Your post will be deleted forever",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      closeOnConfirm: false,
+      closeOnCancel: false }, 
+      function(isConfirm){ 
+        if (isConfirm) {
+          var flag = PostService.deletePost(id);
+          flag.then(function (d) {
+            if (d === 'True') {
+              $scope.user.posts_data.splice(index, 1);
+              SweetAlert.swal("Deleted!", "Your post has been deleted.", "success");
+            } else {
+              SweetAlert.swal("Error!", "Your post could not be deleted.", "error");
+            }
+           });
         } else {
-          ngNotify.set('Could not delete post!', 'error');
+          SweetAlert.swal("Cancelled", "Your post wasn't deleted!", "error");
         }
     });
   };
@@ -313,8 +318,8 @@ app.controller('HomeController', ['$scope', '$http', 'HomeService',
 
 }]);
 
-app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserService', 'PostService', 'ngNotify',
-	function ($routeParams, $scope, $http, UserService, PostService, ngNotify) {
+app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserService', 'PostService', 'ngNotify', 'SweetAlert',
+	function ($routeParams, $scope, $http, UserService, PostService, ngNotify, SweetAlert) {
 
 	$scope.currentUser = {};
 	var userPromise = UserService.getUser($routeParams.enrolmentNo);
@@ -335,16 +340,32 @@ app.controller('ProfileController', ['$routeParams', '$scope', '$http', 'UserSer
 	});
 
   $scope.deleteProfilePost = function (id, index) {
-    var flag = PostService.deletePost(id);
-    flag.then(function (d) {
-        if (d === 'True') {
-          ngNotify.set('Post deleted successfully!', 'success');
-          $scope.currentUser.posts_data.splice(index, 1);
+    SweetAlert.swal({
+      title: "Are you sure?",
+      text: "Your post will be deleted forever",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      closeOnConfirm: false,
+      closeOnCancel: false }, 
+      function(isConfirm){ 
+        if (isConfirm) {
+          var flag = PostService.deletePost(id);
+          flag.then(function (d) {
+            if (d === 'True') {
+              $scope.currentUser.posts_data.splice(index, 1);
+              SweetAlert.swal("Deleted!", "Your post has been deleted.", "success");
+            } else {
+              SweetAlert.swal("Error!", "Your post could not be deleted.", "error");
+            }
+           });
         } else {
-          ngNotify.set('Could not delete post!', 'error');
+          SweetAlert.swal("Cancelled", "Your post wasn't deleted!", "error");
         }
     });
   };
+
   $scope.isLoggedUserProfile = function () {
     return $scope.user.enrolmentNo === $scope.currentUser.enrolmentNo;
   };
@@ -371,8 +392,8 @@ app.controller('GalleryController', ['$routeParams', '$scope', 'dataUserService'
 
 }]);
 
-app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'HashtagService', 'PostService', 'ngNotify', 
-	function ($routeParams, $scope, $http, HashtagService, PostService, ngNotify) {
+app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'HashtagService', 'PostService', 'ngNotify', 'SweetAlert',
+	function ($routeParams, $scope, $http, HashtagService, PostService, ngNotify, SweetAlert) {
 
   $scope.hash = $routeParams.hashtag;  
 	$scope.posts = [];
@@ -390,13 +411,28 @@ app.controller('HashtagController', ['$routeParams', '$scope', '$http', 'Hashtag
   });
 
   $scope.deleteHashtagPost = function (id, index) {
-    var flag = PostService.deletePost(id);
-    flag.then(function (d) {
-        if (d === 'True') {
-          ngNotify.set('Post deleted successfully!', 'success');
-          $scope.posts.splice(index, 1);
+    SweetAlert.swal({
+      title: "Are you sure?",
+      text: "Your post will be deleted forever",
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#DD6B55",confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+      closeOnConfirm: false,
+      closeOnCancel: false }, 
+      function(isConfirm){ 
+        if (isConfirm) {
+          var flag = PostService.deletePost(id);
+          flag.then(function (d) {
+            if (d === 'True') {
+              $scope.posts.splice(index, 1);
+              SweetAlert.swal("Deleted!", "Your post has been deleted.", "success");
+            } else {
+              SweetAlert.swal("Error!", "Your post could not be deleted.", "error");
+            }
+           });
         } else {
-          ngNotify.set('Could not delete post!', 'error');
+          SweetAlert.swal("Cancelled", "Your post wasn't deleted!", "error");
         }
     });
   };
