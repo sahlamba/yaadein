@@ -198,7 +198,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 
   $scope.loadTags = function (query) {
     var defer = $q.defer();
-    $http.get(originURL + '/yaadein/search/1/?q=' + query, {ignoreLoadingBar: true})
+    $http.get(originURL + '/yaadein_api/search/1/?q=' + query, {ignoreLoadingBar: true})
       .success(function (d) {
           defer.resolve(d.results);
     });
@@ -207,7 +207,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 
   $scope.loadSpots = function (query) {
     var defer = $q.defer();
-    $http.get(originURL + '/yaadein/search/2/?q=' + query, {ignoreLoadingBar: true})
+    $http.get(originURL + '/yaadein_api/search/2/?q=' + query, {ignoreLoadingBar: true})
       .success(function (d) {
           defer.resolve(d.results);
     });
@@ -239,13 +239,19 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
   };
 
   $scope.upload = function (files) {
-    var uploadUrl = originURL + '/yaadein/user/' + $scope.user.enrolmentNo + '/';
+    var uploadUrl = originURL + '/yaadein_api/user/' + $scope.user.enrolmentNo + '/';
     if ($routeParams && $routeParams.enrolmentNo) {
-      uploadUrl = originURL + '/yaadein/user/' + $routeParams.enrolmentNo + '/';
+      uploadUrl = originURL + '/yaadein_api/user/' + $routeParams.enrolmentNo + '/';
+    }
+    var sizeExceeded = false;
+    for(var j = 0; j < files.length; j += 1) {
+      if (files[j].size > 2097152) {
+        sizeExceeded = true;
+      }
     }
     //for(var i = 0; i < files.length; i += 1) {
     //var file = files[i];
-    if(files.length < 11 && $scope.newPost.post_text!=='') {
+    if(files.length < 11 && $scope.newPost.post_text!=='' && !sizeExceeded) {
       $('#uploadButton').prop('disabled', true);
       $upload.upload({
         url: uploadUrl,
@@ -281,6 +287,8 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
     } else {
       if(files.length > 10) {
         ngNotify.set('Maximum 10 photos are allowed.', 'warn');
+      } else if(sizeExceeded) {
+        ngNotify.set('Maximum file size for a photo is 2MB', 'warn');
       } else if($scope.newPost.post_text === '')  {
         ngNotify.set('Type in some memories', 'warn');
         $('#postMessageInput').addClass('error');
@@ -292,7 +300,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
   $scope.uploadCover = function (files) {
     if (files && files.length === 1) {
       $upload.upload({
-        url: originURL + '/yaadein/cover/upload/',
+        url: originURL + '/yaadein_api/cover/upload/',
         headers: {'Content-Type':'multipart/form-data'}, 
         method: 'POST',
         data: {

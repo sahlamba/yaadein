@@ -330,6 +330,7 @@ module.exports = function (grunt) {
             '{,*/}*.html',
             'styles/fonts/{,*/}*.*',
             'fonts/*',
+            'styles/{,*/}*.{gif,jpeg,jps,png}'
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',

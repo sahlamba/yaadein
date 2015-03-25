@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var baseURL = 'http://172.25.55.156:60020/yaadein';
+var baseURL = 'http://172.25.55.156:60020/yaadein_api';
 
 app.service('TickerService', ['$http', '$q', function ($http, $q) {
     this.getTrending = function () {

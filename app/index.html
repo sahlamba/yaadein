@@ -54,7 +54,7 @@
               placeholder="Search people, spots..."
               pause="50"
               selected-object="personSelected"
-              remote-url="http://172.25.55.156:60020/yaadein/search/3/?q="
+              remote-url="http://172.25.55.156:60020/yaadein_api/search/3/?q="
               search-fields="value"
               remote-url-data-field="results"
               remote-url-response-formatter="addOriginToImageUrl"
@@ -185,6 +185,7 @@
     <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/main.js"></script>
+        <script src="scripts/components/emoji.min.js"></script>
         <script src="scripts/components/main.config.js"></script>
         <script src="scripts/components/main.services.js"></script>
         <script src="scripts/components/main.filters.js"></script>
