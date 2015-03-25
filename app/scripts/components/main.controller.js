@@ -148,6 +148,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 	$scope.user = {};
   var LoggedUserData = HomeService.getLoggedUser();
   LoggedUserData.then(function (d) {
+      console.log(d);
       $scope.user = d;
       $scope.navigationItems[0].url += $scope.user.enrolmentNo;
   });
@@ -262,7 +263,6 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
         $('#loading').fadeIn(100);
       }).success(function (data, status, headers, config) {
         $('#loading').fadeOut(100);
-        console.log('Response' + JSON.stringify(data));
         var postPromise = PostService.getPost(data.posts_data[0].post_id);
         postPromise.then(function (d) {
           d.post_owner_pic = originURL + d.post_owner_pic;
