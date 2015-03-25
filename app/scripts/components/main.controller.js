@@ -192,6 +192,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
     $scope.newPost.post_text = '';
     $scope.newPost.user_tags = [];
     $scope.newPost.image_url = [];
+    $scope.images1.imageArray = [];
   };
 
   $scope.loadTags = function (query) {
@@ -233,43 +234,55 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
   };
 
   $scope.upload = function (files) {
-    $('#uploadButton').prop('disabled', true);
     var uploadUrl = originURL + '/yaadein/user/' + $scope.user.enrolmentNo + '/';
     if ($routeParams && $routeParams.enrolmentNo) {
       uploadUrl = originURL + '/yaadein/user/' + $routeParams.enrolmentNo + '/';
     }
     //for(var i = 0; i < files.length; i += 1) {
     //var file = files[i];
-    $upload.upload({
-      url: uploadUrl,
-      headers: {'Content-Type':'multipart/form-data'}, 
-      method: 'POST',
-      data: {
-        post_text: $scope.newPost.post_text,
-        user_tags: $scope.newPost.user_tags,
-        spot: $scope.newPost.spot,
-        post_type: $scope.newPost.post_type
-      },
-      file: files,
-      withCredentials: true
-    }).progress(function (evt) {
-    }).success(function (data, status, headers, config) {
-      console.log('Response' + JSON.stringify(data));
-      var postPromise = PostService.getPost(data.posts_data[0].post_id);
-      postPromise.then(function (d) {
-        d.post_owner_pic = originURL + d.post_owner_pic;
-        for(var j = 0; j < d.image_url.length; j += 1) {
-          d.image_url[j] = originURL + d.image_url[j];
-        }
-        $scope.user.posts_data.unshift(d);
+    if(files.length < 11 && $scope.newPost.post_text!=='') {
+      $('#uploadButton').prop('disabled', true);
+      $upload.upload({
+        url: uploadUrl,
+        headers: {'Content-Type':'multipart/form-data'}, 
+        method: 'POST',
+        data: {
+          post_text: $scope.newPost.post_text,
+          user_tags: $scope.newPost.user_tags,
+          spot: $scope.newPost.spot,
+          post_type: $scope.newPost.post_type
+        },
+        file: files,
+        withCredentials: true
+      }).progress(function (evt) {
+        $('#loading').fadeIn(100);
+      }).success(function (data, status, headers, config) {
+        $('#loading').fadeOut(100);
+        console.log('Response' + JSON.stringify(data));
+        var postPromise = PostService.getPost(data.posts_data[0].post_id);
+        postPromise.then(function (d) {
+          d.post_owner_pic = originURL + d.post_owner_pic;
+          for(var j = 0; j < d.image_url.length; j += 1) {
+            d.image_url[j] = originURL + d.image_url[j];
+          }
+          $scope.user.posts_data.unshift(d);
+        });
+        $scope.closePost();
+        ngNotify.set('Successfully posted!', 'success');
+      }).error(function(data, status, headers, config) {
+        $('#loading').fadeOut(100);
+        ngNotify.set('Could not post!', 'error');
+        $('#uploadButton').prop('disabled', false);
       });
-      $scope.closePost();
-      ngNotify.set('Successfully posted!', 'success');
-    }).error(function(data, status, headers, config) {
-      ngNotify.set('Could not post!', 'error');
-      $('#uploadButton').prop('disabled', false);
-    });
-    //}
+    } else {
+      if(files.length > 10) {
+        ngNotify.set('Maximum 10 photos are allowed.', 'warn');
+      } else if($scope.newPost.post_text === '')  {
+        ngNotify.set('Type in some memories', 'warn');
+        $('#postMessageInput').addClass('error');
+        $('#postMessageInput').focus();
+      }
+    }
   };
 
   $scope.uploadCover = function (files) {
