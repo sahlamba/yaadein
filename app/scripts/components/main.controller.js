@@ -341,7 +341,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
   //Emoji Service
   $scope.predictEmoji = function(term) {
     var emojiList = [];
-    return $http.get('data/emojis.json')
+    return $http.get('scripts/emojis.json')
       .then(function (response) {
           angular.forEach(response.data, function(item) {
             if (item.name.toUpperCase().indexOf(term.toUpperCase()) >= 0) {
