@@ -233,6 +233,10 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
     $scope.images1.imageArray.splice(i, 1);
   };
 
+  $scope.deleteAllImages = function () {
+    $scope.images1.imageArray = [];
+  };
+
   $scope.upload = function (files) {
     var uploadUrl = originURL + '/yaadein/user/' + $scope.user.enrolmentNo + '/';
     if ($routeParams && $routeParams.enrolmentNo) {
@@ -296,13 +300,11 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
         file: files,
         withCredentials: true
       }).progress(function (evt) {
-        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        console.log('progress: ' + progressPercentage + '% ' + evt.config.file[0].name);
       }).success(function (data, status, headers, config) {
-        console.log('File ' + config.file.name + ' uploaded. Response' + JSON.stringify(data));
-        console.log(config);
         ngNotify.set('Cover photo updated successfully!', 'success');
         location.reload();
+      }).error(function (data, status, headers, config) {
+        ngNotify.set('Could not update cover photo.', 'error');
       });
     }
   };

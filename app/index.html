@@ -114,6 +114,7 @@
                     <div class="images-upload-container">
                       <!-- <div class="thumb" ng-repeat="f in files" ng-show="f.dataUrl != null" ng-style="{ 'background-image': 'url(' + f.dataUrl + ')'}"> -->
                       <div class="image-upload-bttn" type="file" name="images" size="40" ng-file-select ng-model="images" ng-accept="'image/*'" ng-file-change="addImage($files)" ng-multiple="true"><i class="fa fa-camera-retro"></i>&nbsp;&nbsp;Add Photos</div>
+                      <button class="image-upload-bttn" ng-show="images1.imageArray.length > 1" ng-click="deleteAllImages()"><i class="fa fa-times-circle-o fa-lg"></i>&nbsp;&nbsp;Delete All</button>
                       <ul id="images-list">
                         <li class="thumb" ng-repeat="f in images1.imageArray">
                           <i class="fa fa-picture-o"></i>
