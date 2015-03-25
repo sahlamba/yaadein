@@ -2,8 +2,10 @@
 @import "bourbon/app/assets/stylesheets/_bourbon.scss";
 // endbower
 
-@import "elements";
-@import "animations";
+@import "partials/normalize";
+@import "partials/font-styles";
+@import "partials/elements";
+@import "partials/animations";
 @import "../../bower_components/bourbon/app/assets/stylesheets/bourbon";
 
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {

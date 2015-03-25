@@ -1,5 +1,5 @@
-// Generated on 2015-01-13 using
-// generator-webapp-uncss 0.1.0
+// Generated on 2015-03-18 using
+// generator-webapp 0.5.1
 'use strict';
 
 // # Globbing
@@ -9,8 +9,6 @@
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
-
-  var modRewrite = require('connect-modrewrite');
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
@@ -83,7 +81,6 @@ module.exports = function (grunt) {
         options: {
           middleware: function(connect) {
             return [
-              modRewrite(['^[^\\.]*$ /index.html [L]']),
               connect.static('.tmp'),
               connect().use('/bower_components', connect.static('./bower_components')),
               connect.static(config.app)
@@ -223,22 +220,12 @@ module.exports = function (grunt) {
     // concat, minify and revision files. Creates configurations in memory so
     // additional tasks can operate on them
     useminPrepare: {
-      html: '/index.html',
       options: {
-        dest: '',
-        flow: {
-          html: {
-            steps: {
-              // Disabled as we'll be using a manual
-              // cssmin configuration later. This is
-              // to ensure we work well with grunt-uncss
-              // css: ['cssmin']
-            },
-            post: {}
-          }
-        }
-      }
+        dest: '<%= config.dist %>'
+      },
+      html: '<%= config.app %>/index.html'
     },
+
     // Performs rewrites based on rev and the useminPrepare configuration
     usemin: {
       options: {
@@ -250,25 +237,6 @@ module.exports = function (grunt) {
       },
       html: ['<%= config.dist %>/{,*/}*.html'],
       css: ['<%= config.dist %>/styles/{,*/}*.css']
-    },
-
-     uncss: {
-      dist: {
-        options: {
-          // Take our Autoprefixed stylesheet main.css &
-          // any other stylesheet dependencies we have..
-          stylesheets: [
-            '../.tmp/styles/main.css'
-
-          ],
-          // Ignore css selectors for async content with complete selector or regexp
-          // Only needed if using Bootstrap
-          ignore: [/dropdown-menu/,/\.collapsing/,/\.collapse/]
-        },
-        files: {
-          '.tmp/styles/main.css': ['<%= config.app %>/index.html']
-        }
-      }
     },
 
     // The following *-min tasks produce minified files in the dist folder
@@ -319,15 +287,16 @@ module.exports = function (grunt) {
     // By default, your `index.html`'s <!-- Usemin block --> will take care
     // of minification. These next options are pre-configured if you do not
     // wish to use the Usemin blocks.
-     cssmin: {
-       dist: {
-         files: {
-           '<%= config.dist %>/styles/main.css': [
-             '.tmp/styles/{,*/}*.css'
-           ]
-         }
-       }
-     },
+    // cssmin: {
+    //   dist: {
+    //     files: {
+    //       '<%= config.dist %>/styles/main.css': [
+    //         '.tmp/styles/{,*/}*.css',
+    //         '<%= config.app %>/styles/{,*/}*.css'
+    //       ]
+    //     }
+    //   }
+    // },
     // uglify: {
     //   dist: {
     //     files: {
@@ -341,6 +310,12 @@ module.exports = function (grunt) {
     //   dist: {}
     // },
 
+    uglify: {
+      options: {
+        mangle: false
+      }
+    },
+
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -353,7 +328,8 @@ module.exports = function (grunt) {
             '*.{ico,png,txt}',
             'images/{,*/}*.webp',
             '{,*/}*.html',
-            'styles/fonts/{,*/}*.*'
+            'styles/fonts/{,*/}*.*',
+            'fonts/*',
           ]
         }, {
           src: 'node_modules/apache-server-configs/dist/.htaccess',
@@ -366,23 +342,6 @@ module.exports = function (grunt) {
         cwd: '<%= config.app %>/styles',
         dest: '.tmp/styles/',
         src: '{,*/}*.css'
-      }
-    },
-
-    // Generates a custom Modernizr build that includes only the tests you
-    // reference in your app
-    modernizr: {
-      dist: {
-        devFile: 'bower_components/modernizr/modernizr.js',
-        outputFile: '<%= config.dist %>/scripts/vendor/modernizr.js',
-        files: {
-          src: [
-            '<%= config.dist %>/scripts/{,*/}*.js',
-            '<%= config.dist %>/styles/{,*/}*.css',
-            '!<%= config.dist %>/scripts/vendor/*'
-          ]
-        },
-        uglify: true
       }
     },
 
@@ -449,15 +408,12 @@ module.exports = function (grunt) {
     'useminPrepare',
     'concurrent:dist',
     'autoprefixer',
-    'uncss',
+    'concat',
     'cssmin',
-    //'concat',
-    //'uglify',
+    'uglify',
     'copy:dist',
-    'modernizr',
     'rev',
-    'usemin',
-    'htmlmin'
+    'usemin'
   ]);
 
   grunt.registerTask('default', [
