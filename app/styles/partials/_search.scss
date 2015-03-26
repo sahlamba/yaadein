@@ -2,10 +2,10 @@
 //begin -- .lightbox
 .lightbox {
 	position: fixed;
-	width: calc(100vw - 51px);
+	width: calc(100vw - 200px);
 	height: 100vh;
 	top: 0;
-	left: 50px;
+  left: 200px;
 	background: rgba(255, 255, 255, 0.85);
 	z-index: 1001;
 	//Close lightbox icon

@@ -152,32 +152,52 @@ mentio-menu {
 	position: fixed;
 	left: 0;
 	top: 0;
-	width: 50px;
+	width: 200px;
 	height: 100vh;
 	overflow: hidden;
 	z-index: 1000;
 	//For padding in % width containers
 	div {
 		padding: 0;
+    //App Title
+    #app-title {
+      width: 100%;
+      padding: 15px;
+      font-size: 9px;
+      background: $white;
+      text-align: center;
+      border-bottom: 1px solid $grey;
+      a {
+        display: table;
+        margin: 0 auto;
+        #yaadein-title {
+          position: relative;
+          display: block;
+          font-family: $script-font;
+          color: $primary;
+          background: $white;
+          font-size: $massive;
+          text-transform: lowercase;
+          text-align: center;
+          z-index: 901;
+        }
+      }
+    }
 		//begin -- .nav
 		.nav {
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 50px;
+			width: 200px;
 			height: 100vh;
 			background: $white;
 			z-index: 1000;
 			a.nav-link {
 				display: block;
-				div.icon, div.fa {
+				div {
 					width: 100%;
 					overflow: hidden;
-					padding-top: 13px;
-					padding-bottom: 13px;
-					text-align: center;
+					padding: 13px 10px;
+					text-align: left;
 					border-right: 0;
-					font-size: $big;
+					font-size: $small;
 					@include transition(all 100ms ease-out);
 					&:hover, &:focus {
 						color: $primary;
@@ -191,13 +211,22 @@ mentio-menu {
 			//Credits
 			.credits {
 				display: block;
-        width: 40px;
+        padding: 10px 15px;
 				position: absolute;
-				left: 5px;
-				bottom: 10px;
+				left: 0;
+				bottom: 0;
+        color: $dark-grey;
 				background: $white;
-				font-size: 11px;
+				font-size: $tiny;
 				z-index: 1000;
+        text-align: center;
+        line-height: 1.4;
+        a{
+          color: $black;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
         img {
           width: 100%;
           margin-bottom: 3px;
@@ -236,8 +265,8 @@ mentio-menu {
 	right: 0;
 	bottom: 0;
 	z-index: 800;
-	margin-left: 50px;
-	margin-right: 220px;
+	margin-left: 200px;
+  margin-right: 200px;
 	@include transition(all 150ms ease-out);
 	div.padded {
 		padding: 20px;
@@ -271,37 +300,10 @@ mentio-menu {
 	position: fixed;
 	right: 0;
 	top: 0;
-	width: 220px;
+	width: 200px;
 	height: 100vh;
 	z-index: 900;
 	background: $white;
 	@include transition(all 150ms ease-out);
-  //App Title
-  #app-title {
-		width: 100%;
-		padding: 15px;
-		position: absolute;
-		top: 0;
-		right: 0;
-		font-size: 9px;
-		background: $white;
-		text-align: center;
-    border-bottom: 1px solid $grey;
-    a {
-      display: table;
-      margin: 0 auto;
-      #yaadein-title {
-        position: relative;
-		    display: block;
-			  font-family: $script-font;
-			  color: $primary;
-			  background: $white;
-			  font-size: $massive;
-			  text-transform: lowercase;
-        text-align: center;
-			  z-index: 901;
-		  }
-    }
-	}
 	@import "partials/ticker";
 }//end -- .right-sidebar

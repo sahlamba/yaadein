@@ -26,7 +26,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
       'id': 'home',
       'class': 'fa fa-home',
       'url': '/',
-      'hint': 'Home'
+      'hint': 'Feed'
     },
 		{
 			'id': 'search',
@@ -38,7 +38,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 			'id': 'post',
 			'class': 'fa fa-pencil-square-o',
 			'url': '#',
-			'hint:': 'Post a memory'
+			'hint': 'Post'
 		},
 		//{
 			//'id': 'notifications',
@@ -50,7 +50,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 			'id': 'signOut',
 			'class': 'fa fa-sign-out',
 			'url': originURL+'/logout/',
-			'hint': 'Log Out'
+			'hint': 'Sign Out'
 		}
 	];
 
@@ -58,6 +58,10 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
   $scope.lastNavItem = $scope.navigationItems[1];
 
 	$scope.setCurrentNavItem = function (navItem) {
+    if(navItem === null) {
+      $scope.currentNavItem = {};
+      return;
+    }
     $scope.lastNavItem = $scope.currentNavItem;
 		$scope.currentNavItem = navItem;
 		if ($scope.currentNavItem.id === 'search' || $scope.currentNavItem.id === 'post') {
@@ -141,16 +145,16 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
   };
 
   $scope.personSelected = function(selected) {
-    $scope.setCurrentNavItem($scope.navigationItems[0])
+    $scope.setCurrentNavItem({});
     $location.path('/profile/' + selected.originalObject.id);
   };
 
 	$scope.user = {};
   var LoggedUserData = HomeService.getLoggedUser();
   LoggedUserData.then(function (d) {
-      console.log(d);
       $scope.user = d;
       $scope.navigationItems[0].url += $scope.user.enrolmentNo;
+      $scope.navigationItems[0].hint = $scope.user.name;
   });
 
 	//Append enrolment number to profile and gallery URLs
@@ -198,7 +202,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 
   $scope.loadTags = function (query) {
     var defer = $q.defer();
-    $http.get(originURL + '/yaadein_api/search/1/?q=' + query, {ignoreLoadingBar: true})
+    $http.get(originURL + '/yaadein_api/search/4/?q=' + query, {ignoreLoadingBar: true})
       .success(function (d) {
           defer.resolve(d.results);
     });

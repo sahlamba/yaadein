@@ -54,7 +54,7 @@ app.config(['$locationProvider', '$routeProvider', function ($locationProvider, 
 		redirectTo: '/'
 	});
 
-	$locationProvider.html5Mode(true).hashPrefix('!');
+  $locationProvider.html5Mode(true).hashPrefix('!');
 	
 }]);
 
@@ -62,3 +62,7 @@ app.config(['$interpolateProvider', '$httpProvider', function ($interpolateProvi
     $interpolateProvider.startSymbol('{~{').endSymbol('}~}');
     $httpProvider.defaults.withCredentials = true;
 }]);
+
+//app.run(['$http', '$cookies', function ($http, $cookies) {
+//    $http.defaults.headers.common['X-CSRFToken'] = $cookies['csrftoken'];
+//}]);

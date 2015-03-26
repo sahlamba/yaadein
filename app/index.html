@@ -77,7 +77,7 @@
             <form class="post-form" name="postForm">
               <div class="tag-input-box">
                 <i class="inline fa fa-user-plus"></i>
-                <tags-input type="text" ng-model="newPost.user_tags" class="" display-property="value" placeholder="Tag friends" tabindex="0" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" show-focus="true" ng-required="required">
+                <tags-input type="text" ng-model="newPost.user_tags" class="" display-property="value" placeholder="Tag friends" tabindex="0" add-from-autocomplete-only="true" replace-spaces-with-dashes="false" show-focus="true">
                    <auto-complete source="loadTags($query)" min-length="1" select-first-match="true" highlight-matched-text="true"></auto-complete>
                 </tags-input>
               </div>
@@ -125,11 +125,14 @@
 
     <div class="left-sidebar">
     <div>
+        <div id="app-title">
+            <a href="/" ng-click="setCurrentNavItem(navigationItems[1])"><div id="yaadein-title" ng-bind="appname"></div></a>
+        </div>
         <div class="nav">
             <a ng-href="{~{navItem.url}~}" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
-              <div id="{~{navItem.id}~}" class="{~{navItem.class}~}" ng-class="{ 'active': isCurrentNavItem(navItem) }"></div>
+              <div id="{~{navItem.id}~}" ng-class="{ 'active': isCurrentNavItem(navItem) }"><i class="{~{navItem.class}~}"></i>&nbsp;&nbsp;{~{navItem.hint}~}</div>
             </a>
-            <a href="http://img.channeli.in/" target="_blank"><div class="credits"><img src="images/IMG.jpg" alt="IMG"><br>&copy;&nbsp;<span id="year"></span></div></a>
+            <div class="credits">Made with <i class="fa fa-heart fa-lg"></i> and <i class="fa fa-code fa-lg"></i> by <a href="http://img.channeli.in/" target="_blank">IMG</a><br>&copy;&nbsp;<span id="year"></span></div>
         </div>
     </div>
     </div>
@@ -150,9 +153,6 @@
             <a ng-href="/hashtag/{~{hash}~}" class="ticker-element" ng-repeat="hash in trending">
               #{~{hash}~}
             </a>
-        </div>
-        <div id="app-title">
-            <a href="/"><div id="yaadein-title" ng-bind="appname"></div></a>
         </div>
     </div>
 
@@ -181,6 +181,7 @@
     <script src="bower_components/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.js"></script>
     <script src="bower_components/sweetalert/lib/sweet-alert.js"></script>
     <script src="bower_components/angular-sweetalert/SweetAlert.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
         <!-- build:js({app,.tmp}) scripts/main.js -->

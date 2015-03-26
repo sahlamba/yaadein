@@ -3,8 +3,7 @@
 .ticker-content {
 	position: relative;
 	width: 100%;
-  top: 72px;
-	height: calc(100vh - 72px); // Subtract height of .credits div
+	height: 100vh; // Subtract height of .credits div
 	overflow: auto;
 	//begin -- a.ticker-element
   .trending {
