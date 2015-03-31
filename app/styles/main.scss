@@ -38,6 +38,10 @@ body {
   outline: none;
 }
 
+a[ng-click] {
+cursor: pointer;
+}
+
 a:link, a:visited, a:hover, a:active {
   text-decoration: none;
   cursor: pointer;

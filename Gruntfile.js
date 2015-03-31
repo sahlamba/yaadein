@@ -362,6 +362,14 @@ module.exports = function (grunt) {
         'imagemin',
         'svgmin'
       ]
+    },
+
+    processhtml: {
+      build: {
+        files: {
+                 '<%= config.dist %>/index.html':['<%= config.dist %>/index.html']
+        }
+      }
     }
   });
 
@@ -415,7 +423,8 @@ module.exports = function (grunt) {
     'uglify',
     'copy:dist',
     'rev',
-    'usemin'
+    'usemin',
+    'processhtml'
   ]);
 
   grunt.registerTask('default', [

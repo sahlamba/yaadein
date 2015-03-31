@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8">
     <title ng-bind="appname"></title>
+    <!-- build:[href] /yaadein/ -->
     <base href="/">
+    <!-- /build -->
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
@@ -126,7 +128,7 @@
     <div class="left-sidebar">
     <div>
         <div id="app-title">
-            <a href="/" ng-click="setCurrentNavItem(navigationItems[1])"><div id="yaadein-title" ng-bind="appname"></div></a>
+            <a href="#/" ng-click="setCurrentNavItem(navigationItems[1])"><div id="yaadein-title" ng-bind="appname"></div></a>
         </div>
         <div class="nav">
             <a ng-href="{~{navItem.url}~}" class="nav-link" ng-repeat="navItem in navigationItems" ng-click="setCurrentNavItem(navItem)">
@@ -150,7 +152,7 @@
             <div class="trending">
               Trending
             </div>
-            <a ng-href="/hashtag/{~{hash}~}" class="ticker-element" ng-repeat="hash in trending">
+            <a ng-href="#/hashtag/{~{hash}~}" class="ticker-element" ng-repeat="hash in trending">
               #{~{hash}~}
             </a>
         </div>
@@ -184,7 +186,12 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
-        <!-- build:js({app,.tmp}) scripts/main.js -->
+
+    <!-- build:include production.html -->
+      <script type="text/javascript" src="scripts/development.js"></script>
+    <!-- /build -->
+
+    <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/components/emoji.min.js"></script>
         <script src="scripts/components/main.config.js"></script>
@@ -192,7 +199,7 @@
         <script src="scripts/components/main.filters.js"></script>
         <script src="scripts/components/main.directives.js"></script>
         <script src="scripts/components/main.controller.js"></script>
-        <!-- endbuild -->
+    <!-- endbuild -->
 
     <script type="text/javascript">
       (function(){

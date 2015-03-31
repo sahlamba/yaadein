@@ -1,7 +1,7 @@
 'use strict';
 
 var app = angular.module('yaadeinApp');
-var originURL = 'http://172.25.55.156:60020';
+var originURL = base_domain;
 
 app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$upload', '$location', '$routeParams', '$route', 'ngNotify', 'TickerService', 'HomeService', 'PostService', 'Lightbox', 'SweetAlert',
     function ($scope, $http, $q, $timeout, $upload, $location, $routeParams, $route, ngNotify, TickerService, HomeService, PostService, Lightbox, SweetAlert) {
@@ -19,13 +19,13 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 		{
 			'id': 'profile',
 			'class': 'fa fa-user',
-			'url': '/profile/',
+			'url': '#/profile/',
 			'hint': 'Profile'
 		},
     {
       'id': 'home',
       'class': 'fa fa-bars',
-      'url': '/',
+      'url': '#/',
       'hint': 'Feed'
     },
 		{
@@ -82,7 +82,10 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 		return $scope.currentNavItem.id;
 	};
 
-  $scope.enlargeImage = function (images, index) {
+  $scope.enlargeimage = function (images, index, ev) {
+    ev.preventDefault();
+    console.log("1");
+    ev.stopPropagation();
     Lightbox.openModal(images, index);
   }; 
 
