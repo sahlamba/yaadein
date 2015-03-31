@@ -7,11 +7,11 @@
 	overflow: auto;
 	//begin -- a.ticker-element
   .trending {
-    text-align: center;
     color: $dark-grey;
     font-size: $med;
     padding: 15px;
     &.invite {
+      text-align: center;
       border-bottom: 1px solid $grey;
       & .invite-button {
         padding: 7px 10px;
@@ -28,16 +28,15 @@
 	a.ticker-element {
 		display: block;
 		width: 100%;
-    font-size: 21px;
+    font-size: 16px;
     word-break: break-word;
 		overflow: hidden;
 		background: $white;
 		padding: 15px;
-		padding-top: 10px;
-		padding-bottom: 10px;
+		padding-top: 5px;
+		padding-bottom: 5px;
 		color: $primary;
 		cursor: pointer;
-    text-align: right;
 		@include transition (all 150ms ease-out);
 		&:hover {
 			color: $white;

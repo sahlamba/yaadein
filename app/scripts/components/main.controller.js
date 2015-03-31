@@ -24,7 +24,7 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 		},
     {
       'id': 'home',
-      'class': 'fa fa-home',
+      'class': 'fa fa-bars',
       'url': '/',
       'hint': 'Feed'
     },
