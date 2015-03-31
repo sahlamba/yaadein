@@ -24,10 +24,10 @@
             </h2>
             <p ng-bind-html="post.post_text | linky:'_blank' | emoji | hashtags"></p>
             <div class="images-container">
-                <a href="#" ng-if="post.image_url.length > 1" ng-repeat="image in post.image_url" ng-click="enlargeImage(post.image_url, $index)">
+                <a href="#" ng-if="post.image_url.length > 1" ng-repeat="image in post.image_url" ng-click="enlargeImage(post.image_url, $index, $event)">
 					<div ng-style="{'background':'url(' + image + ')'}"></div>
                 </a>
-				<a href="#" class="single-image" ng-if="post.image_url.length === 1" ng-repeat="image in post.image_url" ng-click="enlargeImage(post.image_url, $index)">
+				<a href="#" class="single-image" ng-if="post.image_url.length === 1" ng-repeat="image in post.image_url" ng-click="enlargeImage(post.image_url, $index, $event)">
 					<img ng-src="{~{image}~}" alt="{~{$index}~}">
                 </a>
             </div>

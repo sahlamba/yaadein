@@ -82,10 +82,8 @@ app.controller('YaadeinController', ['$scope', '$http', '$q', '$timeout', '$uplo
 		return $scope.currentNavItem.id;
 	};
 
-  $scope.enlargeimage = function (images, index, ev) {
+  $scope.enlargeImage = function (images, index, ev) {
     ev.preventDefault();
-    console.log("1");
-    ev.stopPropagation();
     Lightbox.openModal(images, index);
   }; 
 
